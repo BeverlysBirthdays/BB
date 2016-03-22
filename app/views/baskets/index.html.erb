@@ -1,8 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Baskets</h1>
+<div class = "row valign-wrapper">
+  <h4 class="col s8 valign">Baskets Listing</h4>
+  <%= link_to "Add New Basket", new_basket_path, class: "waves-effect waves-light btn col s4 valign purple lighten-5 light-blue-text text-darken-4" %>
+</div>
 
-<table>
+<% if @baskets.empty? %>
+    No baskets created yet.
+<% else %>
+  <table class = "hoverable">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <!-- <th>Agent</th> -->
+<!--         <th>Item</th>
+        <th>Quantity</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <% @baskets.each do |basket| %>
+        <tr>
+          <td><%= link_to basket.checkout_date.strftime('%m/%d/%y'), basket_path(basket) %></td>
+  <!--         <td><%# link_to basket.agent.name, agent_path(basket.agent) %></td> -->
+          <td><%= link_to '<i class="mdi-navigation-close"></i>'.html_safe, basket_path(basket), method: 'delete', class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {confirm: "Are you sure you want to delete this order", position: 'right', tooltip: 'Delete Order'}%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
+<!-- <table>
   <thead>
     <tr>
       <th>Checkout date</th>
@@ -11,17 +39,17 @@
   </thead>
 
   <tbody>
-    <% @baskets.each do |basket| %>
+    <%# @baskets.each do |basket| %>
       <tr>
-        <td><%= basket.checkout_date %></td>
-        <td><%= link_to 'Show', basket %></td>
-        <td><%= link_to 'Edit', edit_basket_path(basket) %></td>
-        <td><%= link_to 'Destroy', basket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%# basket.checkout_date %></td>
+        <td><%# link_to 'Show', basket %></td>
+        <td><%# link_to 'Edit', edit_basket_path(basket) %></td>
+        <td><%# link_to 'Destroy', basket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
-</table>
+</table> 
 
-<br>
+<br> -->
 
-<%= link_to 'New Basket', new_basket_path %>
+<%# link_to 'New Basket', new_basket_path %>
