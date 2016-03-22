@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @basket %> |
-<%= link_to 'Back', baskets_path %>
+<div class="row">
+<%= link_to "Show Basket", @basket, class: "waves-effect waves-light btn col s5 valign purple lighten-5 light-blue-text text-darken-4" %>
+<%= link_to "Back to Basket Listings", baskets_path, class: "waves-effect waves-light btn col s5 offset-s2 valign purple lighten-5 light-blue-text text-darken-4" %>
+</div>
