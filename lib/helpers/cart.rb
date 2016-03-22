@@ -47,8 +47,10 @@ module BbInventoryHelpers
     def save_each_item_in_cart(basket)
       session[:cart].each do |item_id, quantity|
         info = {item_id: item_id, quantity: quantity, basket_id: basket.id}
-        BasketItem.create(info)
+        # create Basket Items for each Basket
+        b = BasketItem.create(info)
       end
+
     end
 
   end
