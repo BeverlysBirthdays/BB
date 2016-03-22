@@ -1,9 +1,38 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Checkout date:</strong>
-  <%= @basket.checkout_date %>
+  <strong>Basket Details</strong>
+</p>
+<!-- <p>
+  <strong>Agency:</strong>
+  <%# @basket.agency.name%>
+</p> -->
+<p>
+	<strong>Checkout Date:</strong>
+	<%= @basket.checkout_date %>
 </p>
 
-<%= link_to 'Edit', edit_basket_path(@basket) %> |
-<%= link_to 'Back', baskets_path %>
+
+<div class = "row">
+	<!--Current Basket details -->
+	<div class = "col s5">
+		<strong class = "teal-text">Items Checked Out: </strong>
+		<table class = "hoverable">
+			<thead>
+				<th>Name</th>
+				<th>Quantity</th>
+			</thead>
+			<% @basket_items.each do |bi| %>
+				<tr>
+					<td><%=link_to bi.item.name, item_path(bi.item)%></td>
+					<td><%=bi.quantity%></td>
+				</tr>	
+			<%end%>
+		</table>
+		<%= link_to "Edit Basket", edit_basket_path(@basket), class: "waves-effect waves-light btn col s5 valign green lighten-5 light-blue-text text-darken-4" %>
+	</div>
+</div>
+
+<br>
+<%= link_to "Back to Basket Listings", baskets_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
+
