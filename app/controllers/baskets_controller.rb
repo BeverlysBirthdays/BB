@@ -43,6 +43,8 @@ class BasketsController < ApplicationController
         format.html { redirect_to @basket, notice: 'Basket was successfully created.' }
         format.json { render :show, status: :created, location: @basket }
       else
+        @basket_items_in_cart = get_list_of_items_in_cart
+        
         format.html { render :new }
         format.json { render json: @basket.errors, status: :unprocessable_entity }
       end
