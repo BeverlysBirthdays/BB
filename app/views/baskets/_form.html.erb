@@ -11,11 +11,47 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :checkout_date %><br>
-    <%= f.date_select :checkout_date %>
+
+  <!--Associations-->
+<!--     <div class = "row">
+      <div>
+        <%# f.label :agent_id %>
+        <%# f.collection_select :agent_id, Agent.active.alphabetical, :id, lambda { |c| c.proper_name}, include_blank: true %>
+      </div>
+    </div> -->
+
+    <!-- Items -->
+    <div class = "row">
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+        </thead>
+        <% @basket_items_in_cart.each do |bi| %>
+        <tr>
+          <td><%= link_to bi.item.name, item_path(bi.item) %></td>
+          <td><%= bi.item.category.name %></td> 
+          <td>
+            <%= bi.quantity %>
+          </td>
+          <td><%= link_to '<i class="mdi-navigation-close"></i>'.html_safe, remove_item_path(bi.item.id), class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {position: 'right', tooltip: 'Remove from Cart'}%></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <!--Submit -->
+    <div class="form-actions">
+      <%= f.submit nil, class: 'btn deep-orange lighten-3' %>
+      <%= link_to 'Cancel', show_cart_path, :class => 'btn deep-orange lighten-3' %>
+    </div>
+
+<!--   <div class="field">
+    <%# f.label :checkout_date %><br>
+    <%# f.date_select :checkout_date %>
   </div>
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%# f.submit %>
+  </div> -->
 <% end %>
