@@ -15,3 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require materialize
+
+$(document).ready(function() {
+$('select').material_select();
+});
