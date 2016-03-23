@@ -7,7 +7,7 @@
 </div>
 
 <% if @basket_items_in_cart.empty? %>
-	"There are no items in cart at this time"
+	There are no items in cart at this time
 <%else%>
 	<table>
 		<thead>
@@ -25,5 +25,5 @@
 		<% end %>
 	</table>
 <% end %>
-
+<br>
 <%= link_to "Back to Item Listings", items_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
