@@ -46,6 +46,9 @@ class BasketsController < ApplicationController
           bi.item.save!
         end
 
+        # clear cart
+        clear_cart
+        
         format.html { redirect_to @basket, notice: 'Basket was successfully created.' }
         format.json { render :show, status: :created, location: @basket }
       else
