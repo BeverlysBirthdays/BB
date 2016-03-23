@@ -19,3 +19,13 @@
 $(document).ready(function() {
 $('select').material_select();
 });
+
+$(".button-collapse").sideNav();
+$( document ).ready(function() { $(".dropdown-button").dropdown(); });
+
+$(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+    $('.close').click(function(){
+    	$(this).parent().hide();
+    })
+ });

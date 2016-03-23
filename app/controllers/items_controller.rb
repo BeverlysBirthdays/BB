@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   def index
     # create cart
     create_cart
-    @items = Item.all
+    @items = Item.all.paginate(:page => params[:page]).per_page(10)
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
   end
@@ -17,6 +17,8 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @gender_list = Item::GENDER_LIST.to_h
+    @age_list = Item::AGE_LIST.to_h 
   end
 
   # GET /items/new

@@ -7,7 +7,7 @@ class BasketsController < ApplicationController
   # GET /baskets
   # GET /baskets.json
   def index
-    @baskets = Basket.all
+    @baskets = Basket.all.paginate(:page => params[:page]).per_page(10)
   end
 
   # GET /baskets/1

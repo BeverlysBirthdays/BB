@@ -1,5 +1,5 @@
 <%= form_tag() do %>
   <%= label_tag("Barcode: ") %>
-  <%= text_field_tag :barcode %>
-  <%= submit_tag("Submit") %>
+  <%= text_field_tag :barcode, '', autofocus: true %>
+  <%= button_tag "Submit", class: "waves-effect waves-light btn pink white-text" %>
 <% end %>

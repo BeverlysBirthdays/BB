@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <div class = "row valign-wrapper">
   <h4 class="col s8 valign">Baskets Listing</h4>
-  <%= link_to "Add New Basket", new_basket_path, class: "waves-effect waves-light btn col s4 valign purple lighten-5 light-blue-text text-darken-4" %>
+  <%= link_to "Add New Basket", new_basket_path, class: "waves-effect waves-light btn col s4 valign green white-text" %>
 </div>
 
 <% if @baskets.empty? %>
@@ -28,6 +26,11 @@
     </tbody>
   </table>
 <% end %>
+
+<!-- Add the pagination using will_paginate gem -->
+<span class="paginate">
+  <%= will_paginate @all_orders, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+</span>
 
 
 <!-- <table>
