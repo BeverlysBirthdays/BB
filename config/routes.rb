@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'get_new_barcode' => 'items#get_new_barcode', as: :get_new_barcode
   post 'get_new_barcode' => 'items#get_new_item_info', as: :get_new_item_info
 
+  get 'home' => 'home#home', as: :home
+
   # Named routes - Cart
   get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart
   get 'show_cart' => 'carts#show_cart', as: :show_cart
@@ -68,4 +70,11 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+    # Set the root url
+  root :to => 'home#home'  
+
+  # Last route in routes.rb that essentially handles routing errors
+  get '*a', to: 'errors#routing'
+  
 end

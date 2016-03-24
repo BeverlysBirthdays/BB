@@ -1,15 +1,34 @@
+<div class="row"></div>
 <div class="row">
 
 	<!-- Add New Item -->
 	<div class="col s4">
+		<div class="card pink hoverable">
+			<%= link_to new_item_path, class: 'white-text' do%>
+				<div class="card-image"><i class="material-icons">add</i></div>
+				<div class="card-content center-align">ADD NEW ITEM</div>
+			<% end %>
+		</div>
 	</div>
 
 	<!-- Check-out Baskets -->
 	<div class="col s4">
+		<div class="card green white-text hoverable">
+			<%= link_to show_cart_path, class: 'white-text' do%>
+				<div class="card-image"><i class="material-icons">shopping_basket</i></div>
+				<div class="card-content center-align">CREATE BASKET</div>
+			<% end %>
+		</div>
 	</div>
 
 	<!-- Dashboard -->
 	<div class="col s4">
+		<div class="card blue white-text hoverable">
+			<%= link_to items_path, class: 'white-text' do%>
+				<div class="card-image"><i class="material-icons">dashboard</i></div>
+				<div class="card-content center-align">DASHBOARD</div>
+			<% end %>
+		</div>
 	</div>
 
 </div>
