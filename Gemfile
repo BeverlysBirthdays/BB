@@ -50,3 +50,6 @@ group :development do
   gem 'spring'
 end
 
+# For Heroku integration
+gem 'rails_12factor', group: :production
+ruby "2.2.0"
