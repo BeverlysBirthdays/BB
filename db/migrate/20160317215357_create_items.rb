@@ -12,5 +12,6 @@ class CreateItems < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :items, :gender, using: 'gin'
   end
 end
