@@ -39,6 +39,7 @@ class ItemsController < ApplicationController
 
   def get_new_item_info
     barcode = params[:barcode]
+    # if item doesn't have barcode, don't autopopulate form
     if barcode==''
       @item=nil
     else
