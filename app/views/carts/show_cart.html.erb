@@ -1,8 +1,9 @@
+<div class="row"></div>
 <div class = "row valign-wrapper">
-	<h4 class="col s4 valign">Cart <i class = "mdi-action-shopping-cart"></i></h4>
+	<h4 class="col s4">Cart <i class = "mdi-action-shopping-cart"></i></h4>
 	<% if ! @basket_items_in_cart.empty? %>
-	<%= link_to "Clear Cart", clear_cart_path, class: "waves-effect waves-light btn col s3 offset-s1 valign orange" %>
-	<%= link_to "Checkout", new_basket_path, class: "waves-effect waves-light btn col s3 offset-s1 valign teal green" %>
+	<%= link_to "Clear Cart", clear_cart_path, class: "waves-effect waves-light btn col s3 offset-s1 red valign" %>
+	<%= link_to "Checkout", new_basket_path, class: "waves-effect waves-light btn col s3 offset-s1 orange valign" %>
 	<% end %>
 </div>
 
@@ -26,4 +27,4 @@
 	</table>
 <% end %>
 <br>
-<%= link_to "Back to Item Listings", items_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
+<%= link_to "Back to Item Listings", items_path, class: "waves-effect waves-light btn valign green white-text" %>
