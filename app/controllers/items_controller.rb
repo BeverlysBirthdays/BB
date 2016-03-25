@@ -39,7 +39,11 @@ class ItemsController < ApplicationController
 
   def get_new_item_info
     barcode = params[:barcode]
-    @item = Item.find_by barcode: barcode 
+    if barcode==''
+      @item=nil
+    else
+      @item = Item.find_by barcode: barcode 
+    end
     if @item.nil?
       @item = Item.new
       @item.barcode = barcode

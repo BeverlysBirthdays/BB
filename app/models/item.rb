@@ -39,7 +39,7 @@ class Item < ActiveRecord::Base
 	scope :by_self_bought, -> { where(donated: false)} # Self_bought = False
 
 	# Validations
-	validates_presence_of :barcode, :name, :quantity
+	validates_presence_of :name, :quantity
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "is not an option"
 	validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 1, on: :create
