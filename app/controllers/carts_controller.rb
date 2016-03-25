@@ -2,9 +2,20 @@ class CartsController < ApplicationController
 
 	include BbInventoryHelpers::Cart
 
-	def add_to_cart
+	def add_to_cart()
+		# render item quantity form
+		id = params[:id]
+		redirect_to get_quantity_for_item_path(id)
+	end
+
+	def get_quantity_for_item()
 		@item = Item.find(params[:id])
-		add_item_to_cart(@item.id)
+	end
+
+	def add_item_and_quantity_to_cart
+		@item = Item.find(params[:id])
+		@qty = params[:qty]
+		add_item_to_cart(@item.id.to_i, @qty.to_i)
 		redirect_to show_cart_path
 	end
 

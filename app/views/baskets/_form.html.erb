@@ -35,7 +35,7 @@
           <td>
             <%= bi.quantity %>
           </td>
-          <td><%= link_to '<i class="mdi-navigation-close"></i>'.html_safe, remove_item_path(bi.item.id), class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {position: 'right', tooltip: 'Remove from Cart'}%></td>
+          <td><%= link_to '<i class="mdi-navigation-close"></i>'.html_safe, remove_item_path(bi.item.id), class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {position: 'right', tooltip: 'Remove from Bin'}%></td>
         </tr>
         <% end %>
       </table>

@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
   # Named routes - Cart
   get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart
+  get 'get_quantity_for_item/:id' => 'carts#get_quantity_for_item', as: :get_quantity_for_item
+  post 'get_quantity_for_item/:id' => 'carts#add_item_and_quantity_to_cart', as: :add_item_and_quantity_to_cart
+
   get 'show_cart' => 'carts#show_cart', as: :show_cart
   get 'remove_item/:id' => 'carts#remove_item', as: :remove_item
   get 'clear' =>  'carts#clear', as: :clear_cart

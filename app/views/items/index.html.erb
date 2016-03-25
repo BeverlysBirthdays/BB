@@ -1,7 +1,7 @@
 <div class = "row valign-wrapper">
   <h4 class="valign col s5">Items Listing</h4>
   <%= link_to "Add New Item", new_item_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
-  <%= link_to "Show Cart", show_cart_path, class: "waves-effect waves-light btn col s3 offset-s1 valign orange white-text" %>
+  <%= link_to "Show Bin", show_cart_path, class: "waves-effect waves-light btn col s3 offset-s1 valign orange white-text" %>
 </div>
 
 <!-- <p id="notice"><%= notice %></p>
@@ -45,8 +45,7 @@
         <% end %>
 
         <td><%= item.category.name %></td>
-
-        <td><%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id), class: "waves-effect waves-light btn-floating deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Cart'} %>
+        <td><%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Bin'} %>
 
 
   <!--  Don't display destory links in index page: 
@@ -55,4 +54,5 @@
     <% end %>
   </tbody>
 </table>
+
 
