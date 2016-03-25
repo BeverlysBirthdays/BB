@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration
       t.string :barcode
       t.integer :quantity
       t.string :name
-      t.integer :gender
+      t.integer :gender, array: true
       t.integer :age
       t.boolean :type
       t.text :notes
