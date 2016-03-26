@@ -13,23 +13,42 @@
 			<span class="title"> <%= item.name.capitalize %></span>
 			<p>
 				<!-- First Line -->
-				Age:
+				<strong>Age: </strong>
 				<% for a in item.age %>
 					<%= @age_list.key(a)%> | 
       			<% end %>
+      			&nbsp;&nbsp;
+				<!-- First line -->
+				<strong>Gender: </strong><%= @gender_list.key(item.gender) %>
 				<br>
-				<!-- Second line -->
-				Gender: <%= @gender_list.key(item.gender) %>
-				<br>
-				<!-- Third Line -->
-				Notes: 
+				<!-- Second Line -->
+				<!-- Donated -->
+				<% if item.donated == true %>
+					Donated
+				<% else %>
+					Bought
+				<% end %>
+				&nbsp;&nbsp;
+				<strong>Notes: </strong>
 				<% if item.notes == ""%> 
 					- 
 				<% else %> 
 					<%= item.notes %>
 				<% end %>
 			</p>	
-			<%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped secondary-content", data: {position: 'right', tooltip: 'Add to Bin'} %> 
+			<div class="secondary-content">
+				<!-- Donated -->
+<!-- 				<%# if item.donated == true%>
+					<i class="mdi-action-done small center-align tooltipped", data-position: 'right', data-tooltip='Donated'></i>
+		        <%# else %>
+		        	<i class="mdi-content-clear center-align small tooltipped", data-position='right', data-tooltip='Bought'></i>
+		        <%# end %> -->
+				<!-- Quantity -->
+				<text class='tooltipped', data-position='left', data-tooltip='Quantity in Inventory'><%= item.quantity %></text>
+		        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<!-- Add to Bin -->
+				<%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Bin'} %> 
+			</div>
 		</li>
 	<% end %>
 </ul>
