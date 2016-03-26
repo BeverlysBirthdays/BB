@@ -54,9 +54,11 @@ class Item < ActiveRecord::Base
 	private
 	def age_is_in_list
 		age_values_list = []
+		# get integer values for all age groups
 		for age_group in AGE_LIST
 			age_values_list+=[age_group[1]]
 		end
+		# check if age value entered is in age group list
 		for i in self.age
 			if age_values_list.include?(i) == false
 				return false
