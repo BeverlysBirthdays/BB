@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
     @items = Item.all.paginate(:page => params[:page]).per_page(10)
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
+    render 'list_index'
   end
 
   # GET /items/1

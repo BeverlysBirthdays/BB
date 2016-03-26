@@ -8,7 +8,7 @@ class Category < ActiveRecord::Base
 	#group by program and order
 
 	# Validations
-	validates_presence_of :name
+	validates_presence_of :name, :icon
 
 	# Other methods
 	

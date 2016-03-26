@@ -6,4 +6,30 @@
 </div>
 
 <!-- Collection View -->
-
+<ul class="collection">
+	<% @items.each do |item| %>
+		<li class='collection-item avatar'>
+			<i class='material-icons circle green'> <%=item.category.icon %></i>
+			<span class="title"> <%= item.name.capitalize %></span>
+			<p>
+				<!-- First Line -->
+				Age:
+				<% for a in item.age %>
+					<%= @age_list.key(a)%> | 
+      			<% end %>
+				<br>
+				<!-- Second line -->
+				Gender: <%= @gender_list.key(item.gender) %>
+				<br>
+				<!-- Third Line -->
+				Notes: 
+				<% if item.notes == ""%> 
+					- 
+				<% else %> 
+					<%= item.notes %>
+				<% end %>
+			</p>	
+			<%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped secondary-content", data: {position: 'right', tooltip: 'Add to Bin'} %> 
+		</li>
+	<% end %>
+</ul>
