@@ -59,7 +59,9 @@
         <%# f.number_field :age %>
         <% al = Item::AGE_LIST %>
         <% for i in 0..al.length-1 %>
-          <%= f.radio_button :age, i %>
+          <%= f.check_box :age, i %>
+          :tag_list, { :multiple => true }, 'foo', nil
+          <%= check_box_tag %>
           <%= f.label :age, al[i][0], :value => i %>
         <% end %>
         <%# f.select(:age, Item::AGE_LIST)%>

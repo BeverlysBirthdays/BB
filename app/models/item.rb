@@ -15,10 +15,10 @@ class Item < ActiveRecord::Base
 	# Scopes
 	scope :alphabetical,  -> { order("name.downcase") }
 	# by gender
-	scope :for_neutral, -> { where(gender: 0)} # neutral
+	scope :for_neutral, -> { where(gender: 0])} # neutral
 	scope :for_girl, -> { where(gender: 1)} # girl
 	scope :for_boy, -> { where(gender: 2)} # boy
-	scope :by_gender, -> (g){ where("gender = ?", g) }
+	scope :by_gender, -> (g){ where(gender: g) }
 	# by age
 	scope :for_baby, -> { where(age: 0)} # 0-2 years
 	scope :for_pre_teen, -> { where(age: 1)} # 3-10 years
