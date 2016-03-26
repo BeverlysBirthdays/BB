@@ -76,6 +76,11 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
+    pg_array_parser (0.0.9)
+    postgres_ext (3.0.0)
+      activerecord (>= 4.0.0)
+      arel (>= 4.0.1)
+      pg_array_parser (~> 0.0.9)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -162,6 +167,8 @@ DEPENDENCIES
   jquery-rails
   materialize-sass
   pg
+  pg_array_parser
+  postgres_ext
   rails (= 4.2.5.1)
   rails_12factor
   sass-rails (~> 5.0)

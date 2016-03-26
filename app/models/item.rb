@@ -15,7 +15,7 @@ class Item < ActiveRecord::Base
 	# Scopes
 	scope :alphabetical,  -> { order("name.downcase") }
 	# by gender
-	scope :for_neutral, -> { where(gender: 0])} # neutral
+	scope :for_neutral, -> { where(gender: 0)} # neutral
 	scope :for_girl, -> { where(gender: 1)} # girl
 	scope :for_boy, -> { where(gender: 2)} # boy
 	scope :by_gender, -> (g){ where(gender: g) }
@@ -39,15 +39,30 @@ class Item < ActiveRecord::Base
 	scope :by_self_bought, -> { where(donated: false)} # Self_bought = False
 
 	# Validations
-	validates_presence_of :name, :quantity
+	validates_presence_of :name, :quantity, :category_id
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "is not an option"
-	validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
+	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 1, on: :create
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 0, on: :update
+	validate :age_is_in_list
 
 	# Other methods
 	def increase_quantity (incr)
 		self.quantity += incr
+	end
+
+	private
+	def age_is_in_list
+		age_values_list = []
+		for age_group in AGE_LIST
+			age_values_list+=[age_group[1]]
+		end
+		for i in self.age
+			if age_values_list.include?(i) == false
+				return false
+			end
+		end
+		return true
 	end
 
 end

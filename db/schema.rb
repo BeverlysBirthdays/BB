@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20160325051341) do
     t.string   "barcode"
     t.integer  "quantity"
     t.string   "name"
-    t.integer  "age"
+    t.integer  "age",                      array: true
     t.text     "notes"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
@@ -48,5 +48,7 @@ ActiveRecord::Schema.define(version: 20160325051341) do
     t.boolean  "donated"
     t.integer  "gender"
   end
+
+  add_index "items", ["age"], name: "index_items_on_age", using: :gin
 
 end

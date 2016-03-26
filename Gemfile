@@ -29,6 +29,8 @@ gem 'simple_form'
 gem 'validates_timeliness', '~> 4.0'
 gem 'materialize-sass'
 gem 'will_paginate'
+gem 'pg_array_parser'
+gem 'postgres_ext'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
