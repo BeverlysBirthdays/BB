@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     create_cart
     # age list with only keys
     al = Item::AGE_LIST.to_h.keys()
-    gl = Item::AGE_LIST.to_h.keys()
+    gl = Item::GENDER_LIST.to_h.keys()
     # Filter record OR Return all items
     @filterrific = initialize_filterrific( Item, params[:filterrific], 
       select_options: { 
