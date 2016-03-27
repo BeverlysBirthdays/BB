@@ -6,6 +6,19 @@ class Item < ActiveRecord::Base
 	AGE_LIST = [['0-2', 0], ['3-10', 1], ['11-21', 2]]
 	# Minimum number of items in stock = 10
 	MINIMUM = 10
+
+	filterrific(
+	  default_filter_params: { sorted_by: 'name.downcase' },
+	  available_filters: [
+	    :sorted_by,
+	    :search_by_name,
+	    :search_by_barcode,
+	    :by_gender,
+	    :by_age_category,
+	    :by_donation,
+	    :by_self_bought
+	  ]
+	)
 	
 	# Relationships
 	belongs_to :category
@@ -20,12 +33,14 @@ class Item < ActiveRecord::Base
 	scope :for_boy, -> { where(gender: 2)} # boy
 	scope :by_gender, -> (g){ where(gender: g) }
 	# by age
-	scope :for_baby, -> { where(age: 0)} # 0-2 years
-	scope :for_pre_teen, -> { where(age: 1)} # 3-10 years
-	scope :for_teen, -> { where(age: 2)} # 11-21 years
-	scope :for_age_category, -> (c){ where("age = ?", c)}
+	scope :for_baby, -> { where.overlap(age: [0])} # 0-2 years
+	scope :for_pre_teen, -> { where.overlap(age: [1])} # 3-10 years
+	scope :for_teen, -> { where.overlap(age: [2])} # 11-21 years
+	scope :by_age_category, -> (c){ where.overlap("age = ?", [c])}
+	# by category
+	scope :by_category, -> (c) {joins(:category).where("categories.name = c", c)}
 	# by name
-	scope :search_by_name, -> (name) { where("name LIKE ?", "%" + name + "%")}
+	scope :search_by_name, -> (name) { where("name LIKE ? OR notes LIKE ?", "%" + name + "%", "%"+name+"%") }
 	# by barcode
 	scope :search_by_barcode, -> (b) { where("barcode = ", b)}
 	# stock

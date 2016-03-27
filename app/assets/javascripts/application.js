@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require materialize
+//= require filterrific/filterrific-jquery
 
 $(document).ready(function() {
 $('select').material_select();

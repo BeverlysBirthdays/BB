@@ -9,6 +9,8 @@ class ItemsController < ApplicationController
   def index
     # create cart
     create_cart
+    # Filter record OR Return all items
+    @items =  @filterrific = initialize_filterrific( Item, params[:filterrific]) or return
     @items = Item.all.paginate(:page => params[:page]).per_page(10)
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
