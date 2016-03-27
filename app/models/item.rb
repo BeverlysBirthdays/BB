@@ -15,6 +15,7 @@ class Item < ActiveRecord::Base
 	    :search_by_barcode,
 	    :by_gender,
 	    :by_age_category,
+	    :by_category,
 	    :by_donation,
 	    :by_self_bought
 	  ]

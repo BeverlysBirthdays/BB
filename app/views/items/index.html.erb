@@ -1,5 +1,20 @@
-<div class="filter-box z-depth-2 green white-text">
-  <%= render( partial: 'items/filterform' )%>
+<div class='row'>
+
+  <!-- Main Content -->
+  <div class='col s12 m9 l10'>
+    <%= render( partial: 'list', locals: { items: @items} )%>
+  </div>
+
+  <!-- Fixed filters on right side-->
+  <div class='col hide-on-small-only m3 l2'>
+    <div class='toc-wrapper pin-top'>
+      <div class='buysellads hide-on-small-only'>
+        <br><p></p><br>
+        <%= render( partial: 'filter_form' )%>
+      </div>
+    </div>
+  </div>
+
 </div>
+
 <%# link_to 'Reset', reset_filterrific_url %>
-<%= render( partial: 'list', locals: { items: @items} )%>

@@ -9,12 +9,18 @@ class ItemsController < ApplicationController
   def index
     # create cart
     create_cart
+    # age list with only keys
+    al = Item::AGE_LIST.to_h.keys()
+    gl = Item::AGE_LIST.to_h.keys()
     # Filter record OR Return all items
-    @items =  @filterrific = initialize_filterrific( Item, params[:filterrific]) or return
+    @filterrific = initialize_filterrific( Item, params[:filterrific], 
+      select_options: { 
+        by_category: Category.alphabetical.all.map(&:name),
+        by_age_category: al,
+        by_gender: gl },) or return
     @items = Item.all.paginate(:page => params[:page]).per_page(10)
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
-    render 'list_index'
   end
 
   # GET /items/1

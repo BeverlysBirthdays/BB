@@ -1,38 +1,26 @@
 <%= form_for_filterrific @filterrific, html: { id: 'filterrific-no-ajax-auto-submit' } do |f| %>
 
 	<div>
-	    Name
 	    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-	    <%= f.text_field(:search_by_name, class: 'filterrific-periodically-observed') %>
+	    <%= f.text_field(:search_by_name, class: 'filterrific-periodically-observed', :placeholder=>'Name') %>
 	</div>
 	<div>
-	    Barcode
-	    <%= f.text_field(:search_by_barcode, class: 'filterrific-periodically-observed') %>
+	    <%= f.text_field(:search_by_barcode, class: 'filterrific-periodically-observed', :placeholder=>'Barcode') %>
 	</div>
 
 	<div>
-	  	Gender
 	  	<%= f.select(:by_gender, @filterrific.select_options[:by_gender], { include_blank: 'Gender' }) %>
 	</div>
 	<div>
-		Age:
-	  	<%= f.select(:by_age_category, @filterrific.select_options[:by_age_category], { include_blank: 'Category' }) %>		
+	  	<%= f.select(:by_age_category, @filterrific.select_options[:by_age_category], { include_blank: 'Age' }) %>		
 	</div>
-
-  <div>
-    Sorted by
-    <%= f.select(:sorted_by, @filterrific.select_options[:sorted_by]) %>
-  </div>
-  <div>
-    <%= link_to(
-      'Reset filters',
-      reset_filterrific_url,
-    ) %>
-  </div>
-  <%# add an automated spinner to your form when the list is refreshed %>
-  <%= render_filterrific_spinner %>
+	<div>
+		<%= f.select(:by_category, @filterrific.select_options[:by_category], { include_blank: 'Category' }) %>	
+	</div>
+	<div>
+		<%= link_to 'Reset filters',reset_filterrific_url, class: 'waves-effect waves-light btn col s12 purple lighten-5 light-blue-text text-darken-4' %>
+	</div>
+	<%# add an automated spinner to your form when the list is refreshed %>
+	<%= render_filterrific_spinner %>
 <% end %>
 
-
-  <%# f.submit 'Filter' %>
-<% end %>

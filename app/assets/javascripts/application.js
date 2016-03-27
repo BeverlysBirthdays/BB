@@ -18,11 +18,15 @@
 //= require filterrific/filterrific-jquery
 
 $(document).ready(function() {
-$('select').material_select();
+	$('select').material_select();
+    $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
+
 });
 
 $(".button-collapse").sideNav();
-$( document ).ready(function() { $(".dropdown-button").dropdown(); });
+$( document ).ready(function() { 
+	$(".dropdown-button").dropdown(); 
+});
 
 $(document).ready(function(){
     $('.tooltipped').tooltip({delay: 50});
