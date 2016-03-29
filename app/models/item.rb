@@ -8,7 +8,7 @@ class Item < ActiveRecord::Base
 	MINIMUM = 10
 
 	filterrific(
-	  default_filter_params: { sorted_by: 'name.downcase' },
+	  default_settings: { sorted_by: 'name' },
 	  available_filters: [
 	    :sorted_by,
 	    :search_by_name,
@@ -27,7 +27,8 @@ class Item < ActiveRecord::Base
 	has_many :baskets, through: :basket_items
 
 	# Scopes
-	scope :alphabetical,  -> { order("name.downcase") }
+	scope :sorted_by, lambda { order('name') }
+	scope :alphabetical,  -> { order('name') }
 	# by gender
 	scope :for_neutral, -> { where(gender: 0)} # neutral
 	scope :for_girl, -> { where(gender: 1)} # girl

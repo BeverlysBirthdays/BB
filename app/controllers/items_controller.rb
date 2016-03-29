@@ -17,8 +17,8 @@ class ItemsController < ApplicationController
       select_options: { 
         by_category: Category.alphabetical.all.map(&:name),
         by_age_category: al,
-        by_gender: gl },) or return
-    @items = Item.all.paginate(:page => params[:page]).per_page(10)
+        by_gender: gl },) or return 
+    @items = @filterrific.find.paginate(:page => params[:page]).per_page(10)
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
   end
