@@ -30,17 +30,11 @@ class Item < ActiveRecord::Base
 	scope :sorted_by, lambda { order('name') }
 	scope :alphabetical,  -> { order('name') }
 	# by gender
-	scope :for_neutral, -> { where(gender: 0)} # neutral
-	scope :for_girl, -> { where(gender: 1)} # girl
-	scope :for_boy, -> { where(gender: 2)} # boy
 	scope :by_gender, -> (g){ where(gender: g) }
 	# by age
-	scope :for_baby, -> { where.overlap(age: [0])} # 0-2 years
-	scope :for_pre_teen, -> { where.overlap(age: [1])} # 3-10 years
-	scope :for_teen, -> { where.overlap(age: [2])} # 11-21 years
-	scope :by_age_category, -> (c){ where.overlap("age = ?", [c])}
+	scope :by_age_category, -> (c){ where("age && ARRAY[?]", c.to_i)}
 	# by category
-	scope :by_category, -> (c) {joins(:category).where("categories.name = c", c)}
+	scope :by_category, -> (c) {joins(:category).where("categories.name = ?", c)}
 	# by name
 	scope :search_by_name, -> (name) { where("name LIKE ? OR notes LIKE ?", "%" + name + "%", "%"+name+"%") }
 	# by barcode

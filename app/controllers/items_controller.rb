@@ -10,17 +10,17 @@ class ItemsController < ApplicationController
     # create cart
     create_cart
     # age list with only keys
-    al = Item::AGE_LIST.to_h.keys()
-    gl = Item::GENDER_LIST.to_h.keys()
+    al = Item::AGE_LIST.to_h
+    gl = Item::GENDER_LIST.to_h
+    @gender_list = Item::GENDER_LIST.to_h
+    @age_list = Item::AGE_LIST.to_h 
     # Filter record OR Return all items
     @filterrific = initialize_filterrific( Item, params[:filterrific], 
       select_options: { 
-        by_category: Category.alphabetical.all.map(&:name),
-        by_age_category: al,
-        by_gender: gl },) or return 
+        by_category: Category.alphabetical.all.to_a.map(&:name),
+        by_age_category: @age_list,
+        by_gender: @gender_list },) or return 
     @items = @filterrific.find.paginate(:page => params[:page]).per_page(10)
-    @gender_list = Item::GENDER_LIST.to_h
-    @age_list = Item::AGE_LIST.to_h 
   end
 
   # GET /items/1

@@ -1,4 +1,6 @@
-<% js = escape_javascript(
+<%# js = escape_javascript(
   render(partial: 'items/list', locals: { items: @items })
 ) %>
-$("#filterrific_results").html("<%= js %>");
+// $("#filterrific_results").html("<%# js %>");
+
+$("#filterrific_results").replaceWith('<%= j render("items/list") %>');
