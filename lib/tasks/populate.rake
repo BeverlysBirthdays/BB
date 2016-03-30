@@ -50,19 +50,20 @@ namespace :db do
 
     # Step 2: Create Items
     category_ids = Category.all.to_a.map(&:id)
-    Item.populate 1 do |item|
+    # Item.populate 1 do |item|
+    200.times do 
+      item = Item.new
       # get some fake data using faker gem
-      item.name = Faker::Name.name
-      item.quantity = rand(100)
-      item.age = [0,1]
+      item.name = Faker::Commerce.product_name
+      item.quantity = rand(100)+1
+      item.age = [[0,1],[1,2],[0,1,2],[0],[0],[1],[1],[2]].sample
       item.gender = rand(2)
-      item.barcode = rand(10000..100000)
+      item.barcode = (10000..100000).to_a.sample
       item.donated = rand(1) == 1 ? true : false
-      item.category_id = rand(category_ids)
+      item.category_id = category_ids.sample
       item.notes = Faker::Lorem.sentence
       # set the timestamps
-      item.created_at = Time.now
-      item.updated_at = Time.now   
+      item.save!   
     end
 
   end
