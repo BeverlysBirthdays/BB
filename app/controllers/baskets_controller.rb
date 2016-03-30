@@ -18,6 +18,10 @@ class BasketsController < ApplicationController
 
   # GET /baskets/new
   def new
+    # create cart if doesn't already exist
+    if session[:cart]==nil
+      create_cart # create cart
+
     @basket = Basket.new
     @basket_items_in_cart = get_list_of_items_in_cart
     if @basket_items_in_cart.empty?
