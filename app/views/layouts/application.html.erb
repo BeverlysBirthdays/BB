@@ -10,44 +10,50 @@
 
 <body>
 
-    <!-- Top bar NAVIGATION -->
-    <div>
-      <%= render 'partials/top_nav' %>
-    </div>
-
-    <!-- CONTENT -->
-    <div class= "container">
-
-      <!--flash alert box for form -->
-      <% flash.each do |name, msg| %>
-      <div class="alert-box <%= name == :notice ? "success" : "warning" %> radius">
-        <a href="#" class="close">&times;</a>
-        <%= msg %>
+    <header>
+      <!-- Top bar NAVIGATION -->
+      <div>
+        <%= render 'partials/top_nav' %>
       </div>
-      <% end %>
+    </header>
 
-      <div class="row">
+    <main> 
+      <!-- CONTENT -->
+      <div class= "container">
 
-        <!-- side bar navigation -->
- <!--        <div class = "col s3 card">
-          <%# render 'partials/quick_links' %>
-        </div> -->
-
-        <!--Main content-->
-        <div class="col s12">
-          <%# flash.each do |name, msg| %>
-          <%# content_tag :div, msg, :id => "flash_#{name}" %>
-          <%# end %>
-          <%= yield %>
-          <%= javascript_include_tag "application" %>
+        <!--flash alert box for form -->
+        <% flash.each do |name, msg| %>
+        <div class="alert-box <%= name == :notice ? "success" : "warning" %> radius">
+          <a href="#" class="close">&times;</a>
+          <%= msg %>
         </div>
+        <% end %>
 
-      </div>  
-    </div>
+        <div class="row">
+
+          <!-- side bar navigation -->
+   <!--        <div class = "col s3 card">
+            <%# render 'partials/quick_links' %>
+          </div> -->
+
+          <!--Main content-->
+          <div class="col s12">
+            <%# flash.each do |name, msg| %>
+            <%# content_tag :div, msg, :id => "flash_#{name}" %>
+            <%# end %>
+            <%= yield %>
+            <%= javascript_include_tag "application" %>
+          </div>
+
+        </div>  
+      </div>
+    </main>
 
     <!-- FOOTER -->
     <footer class="page-footer light-blue lighten-1">
-      <%= render 'partials/footer' %>
+      <div class='col s12' id='footer'>
+        <%= render 'partials/footer' %>
+      </div>
     </footer>
 
 <%# yield %>

@@ -15,3 +15,6 @@
  *= require materialize
  */
 
+.footer {
+	position: absolute;
+}
