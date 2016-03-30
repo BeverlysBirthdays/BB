@@ -8,6 +8,9 @@
 
 	<!-- Collection View -->
 	<ul class="collection">
+		<% if @items.empty? %>
+		 There are no items in inventory.
+		<% else %>
 		<% @items.each do |item| %>
 			<li class='collection-item avatar'>
 				<i class='material-icons circle green'> <%=item.category.icon %></i>
@@ -51,6 +54,7 @@
 					<%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Bin'} %> 
 				</div>
 			</li>
+		<% end %>
 		<% end %>
 	</ul>
 </div>
