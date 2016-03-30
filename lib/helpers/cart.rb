@@ -34,6 +34,11 @@ module BbInventoryHelpers
     end
 
     def get_list_of_items_in_cart
+      # if no cart at this moment, call create_cart
+      if session[:cart]==nil
+        create_cart
+      end
+      
       basket_items = Array.new
       return basket_items if session[:cart].empty? # skip if cart empty...
       session[:cart].each do |item_id, quantity|
