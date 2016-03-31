@@ -42,9 +42,10 @@
     </div>
 
     <!--Submit -->
-    <div class="form-actions">
-      <%= f.submit nil, class: 'btn deep-orange lighten-3' %>
-      <%= link_to 'Cancel', show_cart_path, :class => 'btn deep-orange lighten-3' %>
+    <div class="form-actions row">
+      <%= f.submit nil, class: 'btn orange white-text col s3' %>
+      <%= link_to 'Back to Bin', show_cart_path, :class => 'btn red white-text col s3 offset-s1' %>
+      <%= link_to "Back to Items", items_path , class: "waves-effect waves-light btn col s4 offset-s1 valign green white-text col s3" %>
     </div>
 
 <!--   <div class="field">
