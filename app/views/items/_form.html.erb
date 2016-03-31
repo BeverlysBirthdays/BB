@@ -12,9 +12,16 @@
   <% end %>
 
   <div class="row">
+    <!-- Barcode -->
     <div class="col s6">
       <%= f.label :barcode %><br>
       <%= f.text_field :barcode %>
+    </div>
+    <!-- Category -->
+    <div class='col s6'>
+      <%= f.label :category_id %><br>
+      <%# f.number_field :category_id %>
+      <%= f.collection_select :category_id, Category.alphabetical, :id, :name %>
     </div>
   </div>
 
@@ -25,6 +32,15 @@
       <%= f.label :name %><br>
       <%= f.text_field :name %>
     </div>
+    <!-- Quantity in Inventory -->
+    <div class="col s4">
+      <%= f.label 'Quantity in Inventory'%><br>
+      <% if @item.quantity.nil? == false %>
+        <%= f.number_field :quantity, :disabled => true %>
+      <% else %>
+        <%= f.number_field :quantity, :value=>0, :disabled => true %>
+      <% end %>
+    </div>
     <!-- Quantity -->
     <div class="col s4">
       <% if controller.action_name.capitalize == 'Update'%>
@@ -33,13 +49,8 @@
         <%= f.label :quantity, 'Quantity' %><br>
       <% end %>
       <%= f.number_field :quantity, :value => 1%>
-      </div>
-    <!-- Category -->
-    <div class="col s4">
-      <%= f.label :category_id %><br>
-      <%# f.number_field :category_id %>
-      <%= f.collection_select :category_id, Category.alphabetical, :id, :name %>
     </div>
+
   </div>
   <div class="row">
       <!-- Gender -->

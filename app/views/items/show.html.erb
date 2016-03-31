@@ -44,7 +44,7 @@
       <% if @item.donated == true%>
         <i class="mdi-action-done center-align small"></i>
       <% else %>
-        <i class="mdi-content-clear center-align small">
+        <i class="mdi-content-clear center-align small"></i>
       <% end %>
   </div>
 </div>
@@ -54,7 +54,7 @@
     <% if @item.notes == ""%>
       None
     <% else %>
-      %= @item.notes %>
+      <%= @item.notes %>
     <% end %>
   </div>
 </div>
