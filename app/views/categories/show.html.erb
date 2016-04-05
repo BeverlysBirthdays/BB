@@ -1,7 +1,12 @@
+
+<h3><%= @category.name %></h3>
 <p>
   <strong>Name:</strong>
-  <%= @category.name %>
+  <%= @category.name %><br>
+  <strong>Icon:</strong>
+  <%= @category.icon %><br>
+  <i class='material-icons'><%= @category.icon %></i>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= link_to 'Edit', edit_category_path(@category), class: "waves-effect waves-light btn pink white-text" %>
+<%= link_to 'Back', categories_path, class: "waves-effect waves-light btn green white-text" %>

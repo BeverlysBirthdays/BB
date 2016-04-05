@@ -1,14 +1,13 @@
 <!-- <p id="notice"><%# notice %></p>  -->
 
-<h1>Listing Categories</h1>
+<h3>Listing Categories</h3>
 <ul class='collection'>
   <% @categories.each do |category| %>
     <li class='collection-item avatar'>
-      <i class='material-icons circle green'> <%= category.icon.upcase %></i>
+      <i class='material-icons circle green'><%= category.icon %></i>
       <%= link_to category.name, category %>
     </li>
   <% end %>
 </ul>
 
-
-<%= link_to 'New Category', new_category_path %>
+<%= link_to 'New Category', new_category_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
