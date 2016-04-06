@@ -1,13 +1,7 @@
 <div id='filterrific_results'>
-	<!-- Nav buttons -->
-	<div class = "row valign-wrapper">
-	  <h4 class="valign col s5">Items Listing</h4>
-	  <%= link_to "Add New Item", new_item_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
-	  <%= link_to "Show Basket", show_cart_path, class: "waves-effect waves-light btn col s3 offset-s1 valign orange white-text" %>
-	</div>
-
+	
 	<!-- Collection View -->
-	<ul class="collection">
+	<ul class="collection" id='itemsIndex'>
 		<% if @items.empty? %>
 		 There are no items in inventory.
 		<% else %>
@@ -58,8 +52,8 @@
 		<% end %>
 	</ul>
 
-	<span class="smtext">
-		<%= will_paginate @vaccinations, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
-	</span>
+<!-- 	<span class="smtext" id='infinite-scrolling'>
+		<%# will_paginate @items, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>
+	</span> -->
 
 </div>

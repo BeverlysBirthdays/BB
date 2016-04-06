@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @bin_item.quantity %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @bin_item.item_id %>
+</p>
+
+<p>
+  <strong>Bin:</strong>
+  <%= @bin_item.bin_id %>
+</p>
+
+<%= link_to 'Edit', edit_bin_item_path(@bin_item) %> |
+<%= link_to 'Back', bin_items_path %>

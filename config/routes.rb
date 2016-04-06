@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :items
-  resources :basket_items
-  resources :baskets
+  resources :bin_items
+  resources :bins
   resources :categories
   resources :carts
 

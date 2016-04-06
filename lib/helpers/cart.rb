@@ -39,21 +39,21 @@ module BbInventoryHelpers
         create_cart
       end
       
-      basket_items = Array.new
-      return basket_items if session[:cart].empty? # skip if cart empty...
+      bin_items = Array.new
+      return bin_items if session[:cart].empty? # skip if cart empty...
       session[:cart].each do |item_id, quantity|
         info = {item_id: item_id, quantity: quantity}
-        basket_item = BasketItem.new(info)
-        basket_items << basket_item
+        bin_item = BinItem.new(info)
+        bin_items << bin_item
       end
-      basket_items    
+      bin_items    
     end
 
-    def save_each_item_in_cart(basket)
+    def save_each_item_in_cart(bin)
       session[:cart].each do |item_id, quantity|
-        info = {item_id: item_id, quantity: quantity, basket_id: basket.id}
+        info = {item_id: item_id, quantity: quantity, bin_id: bin.id}
         # create Basket Items for each Basket
-        b = BasketItem.create(info)
+        b = BinItem.create(info)
       end
 
     end

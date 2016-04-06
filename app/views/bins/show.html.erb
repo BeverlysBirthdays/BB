@@ -1,13 +1,13 @@
 <p>
-  <strong>Basket Details</strong>
+  <strong>Bin Details</strong>
 </p>
 <!-- <p>
   <strong>Agency:</strong>
-  <%# @basket.agency.name%>
+  <%# @bin.agency.name%>
 </p> -->
 <p>
 	<strong>Checkout Date:</strong>
-	<%= @basket.checkout_date %>
+	<%= @bin.checkout_date %>
 </p>
 
 
@@ -20,17 +20,17 @@
 				<th>Name</th>
 				<th>Quantity</th>
 			</thead>
-			<% @basket_items.each do |bi| %>
+			<% @bin_items.each do |bi| %>
 				<tr>
 					<td><%=link_to bi.item.name, item_path(bi.item)%></td>
 					<td><%=bi.quantity%></td>
 				</tr>	
 			<%end%>
 		</table>
-		<%= link_to "Edit Basket", edit_basket_path(@basket), class: "waves-effect waves-light btn col s5 valign green lighten-5 light-blue-text text-darken-4" %>
+		<%= link_to "Edit Bin", edit_bin_path(@bin), class: "waves-effect waves-light btn col s5 valign green lighten-5 light-blue-text text-darken-4" %>
 	</div>
 </div>
 
 <br>
-<%= link_to "Back to Basket Listings", baskets_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
+<%= link_to "Back to Bin Listings", bins_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
 

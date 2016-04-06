@@ -1,10 +1,10 @@
-<%= form_for(@basket_item) do |f| %>
-  <% if @basket_item.errors.any? %>
+<%= form_for(@bin_item) do |f| %>
+  <% if @bin_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@basket_item.errors.count, "error") %> prohibited this basket_item from being saved:</h2>
+      <h2><%= pluralize(@bin_item.errors.count, "error") %> prohibited this bin_item from being saved:</h2>
 
       <ul>
-      <% @basket_item.errors.full_messages.each do |message| %>
+      <% @bin_item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -20,8 +20,8 @@
     <%= f.number_field :item_id %>
   </div>
   <div class="field">
-    <%= f.label :basket_id %><br>
-    <%= f.number_field :basket_id %>
+    <%= f.label :bin_id %><br>
+    <%= f.number_field :bin_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

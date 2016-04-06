@@ -3,9 +3,9 @@
 one:
   quantity: 1
   item_id: 1
-  basket_id: 1
+  bin_id: 1
 
 two:
   quantity: 1
   item_id: 1
-  basket_id: 1
+  bin_id: 1

@@ -1,10 +1,10 @@
-<%= form_for(@basket) do |f| %>
-  <% if @basket.errors.any? %>
+<%= form_for(@bin) do |f| %>
+  <% if @bin.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@basket.errors.count, "error") %> prohibited this basket from being saved:</h2>
+      <h2><%= pluralize(@bin.errors.count, "error") %> prohibited this bin from being saved:</h2>
 
       <ul>
-      <% @basket.errors.full_messages.each do |message| %>
+      <% @bin.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -28,7 +28,7 @@
           <th>Category</th>
           <th>Quantity</th>
         </thead>
-        <% @basket_items_in_cart.each do |bi| %>
+        <% @bin_items_in_cart.each do |bi| %>
         <tr>
           <td><%= link_to bi.item.name, item_path(bi.item) %></td>
           <td><%= bi.item.category.name %></td> 
@@ -44,7 +44,7 @@
     <!--Submit -->
     <div class="form-actions row">
       <%= f.submit nil, class: 'btn orange white-text col s3' %>
-      <%= link_to 'Back to Bin', show_cart_path, :class => 'btn red white-text col s3 offset-s1' %>
+      <%= link_to 'Back to Basket', show_cart_path, :class => 'btn red white-text col s3 offset-s1' %>
       <%= link_to "Back to Items", items_path , class: "waves-effect waves-light btn col s4 offset-s1 valign green white-text col s3" %>
     </div>
 

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Bin Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity</th>
+      <th>Item</th>
+      <th>Bin</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bin_items.each do |bin_item| %>
+      <tr>
+        <td><%= bin_item.quantity %></td>
+        <td><%= bin_item.item_id %></td>
+        <td><%= bin_item.bin_id %></td>
+        <td><%= link_to 'Show', bin_item %></td>
+        <td><%= link_to 'Edit', edit_bin_item_path(bin_item) %></td>
+        <td><%= link_to 'Destroy', bin_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bin item', new_bin_item_path %>

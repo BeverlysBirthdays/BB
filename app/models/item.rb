@@ -23,8 +23,8 @@ class Item < ActiveRecord::Base
 	
 	# Relationships
 	belongs_to :category
-	has_many :basket_items
-	has_many :baskets, through: :basket_items
+	has_many :bin_items
+	has_many :bins, through: :bin_items
 
 	# Scopes
 	scope :sorted_by, lambda { order('name') }

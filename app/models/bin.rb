@@ -1,8 +1,8 @@
-class Basket < ActiveRecord::Base
+class Bin < ActiveRecord::Base
 
 	# Relationships
-	has_many :basket_items
-	has_many :items, through: :basket_items
+	has_many :bin_items
+	has_many :items, through: :bin_items
 
 	# Scopes
 	scope :chronological, -> { order ("checkout_date DESC") }

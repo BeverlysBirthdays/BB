@@ -1,7 +1,7 @@
-class BasketItem < ActiveRecord::Base
+class BinItem < ActiveRecord::Base
 
 	# Relationships
-	belongs_to :basket 
+	belongs_to :bin 
 	belongs_to :item 
 
 	# Validations
