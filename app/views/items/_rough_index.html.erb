@@ -45,7 +45,7 @@
         <% end %>
 
         <td><%= item.category.name %></td>
-        <td><%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Bin'} %> </td>
+        <td><%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Basket'} %> </td>
 
 
   <!--  Don't display destory links in index page: 
