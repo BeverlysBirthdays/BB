@@ -8,10 +8,11 @@ class BinsController < ApplicationController
   # GET /bins.json
   def index
     # Filter record OR Return all items
-    @filterrific = initialize_filterrific( Bin, params[:filterrific], 
+    @filterrific = initialize_filterrific(Bin, params[:filterrific], 
       select_options: { 
-        by_agency: Agency.alphabetical.all.to_a.map(&:name)},) or return 
+        search_by_agency: Agency.alphabetical.all.to_a.map(&:name)},) or return 
     @bins = @filterrific.find.paginate(:page => params[:page]).per_page(10)
+    puts("Bins: ",@bins)
     #@bins = Bin.all.paginate(:page => params[:page]).per_page(10)
   end
 

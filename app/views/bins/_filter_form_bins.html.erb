@@ -2,12 +2,15 @@
 
 	<div>
 	    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-	    <%= f.select(:search_by_agency, @filterrific.select_options[:by_agency], { include_blank: 'Agency' }) %>	
+	    <%= f.select(:search_by_agency, @filterrific.select_options[:search_by_agency], { include_blank: 'Agency' }) %>	
 	    <%# f.text_field(:search_by_agency, class: 'filterrific-periodically-observed', :placeholder=>'Agency Name') %>
 	</div>
 	<div>
 	    <%# f.text_field(:search_by_date, class: 'filterrific-periodically-observed', :placeholder=>'Date') %>
 	    <%= f.date_select(:search_by_date, class: 'filterrific-periodically-observed', :use_short_month=> true, :default=> Date.today) %>
+	</div>
+	<div>
+		<%= link_to 'Reset filters',reset_filterrific_url, class: 'waves-effect waves-light btn col s12 green white-text' %>
 	</div>
 
 	<%# add an automated spinner to your form when the list is refreshed %>
