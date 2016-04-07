@@ -19,6 +19,7 @@
 
 $(document).ready(function() {
 	$('select').material_select();
+	// fixed filter bar on right
     $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
 
 });

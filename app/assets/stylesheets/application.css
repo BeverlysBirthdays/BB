@@ -28,6 +28,14 @@ main {
 flex: 1 0 auto;
 }
 
+.card-panel{
+  border: 1px solid green;
+}
+
+.sticky{
+  position: fixed;
+}
+
 /*.avg {
   display: block;
  }
