@@ -20,6 +20,14 @@
       </div>
     </div> -->
 
+    <!-- Agency and number of bins -->
+    <div class='row'>
+      <div class='col s6'>
+        <%= f.label :num_of_bins, 'Number of Bins' %>
+        <%= f.number_field :num_of_bins, :value => 1 %>
+      </div>
+    </div>
+
     <!-- Items -->
     <div class = "row">
       <table>
@@ -43,7 +51,15 @@
 
     <!--Submit -->
     <div class="form-actions row">
-      <%= f.submit nil, class: 'btn orange white-text col s3' %>
+
+      <% if controller.action_name.capitalize == 'Edit'%>
+        <%= f.button 'Update', class: 'btn orange white-text col s3' %>
+      <% else %>
+        <%= f.button 'Create', class: 'btn orange white-text col s3' %> 
+      <% end %>
+
+
+      <%# f.button class: 'btn orange white-text col s3' %>
       <%= link_to 'Back to Basket', show_cart_path, :class => 'btn red white-text col s3 offset-s1' %>
       <%= link_to "Back to Items", items_path , class: "waves-effect waves-light btn col s4 offset-s1 valign green white-text col s3" %>
     </div>
