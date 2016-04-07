@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
         by_category: Category.alphabetical.all.to_a.map(&:name),
         by_age_category: @age_list,
         by_gender: @gender_list },) or return 
-    @items = @filterrific.find.paginate(:page => params[:page]).per_page(10)
+    @items = @filterrific.find.alphabetical.paginate(:page => params[:page]).per_page(10)
   end
 
   # GET /items/1
