@@ -3,6 +3,7 @@ class Bin < ActiveRecord::Base
 	# Relationships
 	has_many :bin_items
 	has_many :items, through: :bin_items
+	belongs_to :agency
 
 	# Scopes
 	scope :chronological, -> { order ("checkout_date DESC") }

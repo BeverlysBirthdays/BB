@@ -1,0 +1,14 @@
+<p>
+  <strong>Name:</strong>
+  <%= @agency.name %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @agency.active %>
+</p>
+
+<div class='row'>
+	<%= link_to "Edit Agency", edit_agency_path(@agency), class: "waves-effect waves-light btn col s5 valign pink white-text" %>
+	<%= link_to "Back to Agency Listings", agencies_path, class: "waves-effect waves-light btn col s5 offset-s2 valign green white-text" %>
+</div>

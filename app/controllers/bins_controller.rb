@@ -20,6 +20,7 @@ class BinsController < ApplicationController
   def new
     @bin = Bin.new
     @bin_items_in_cart = get_list_of_items_in_cart
+    @agencies = Agency.active.alphabetical
     if @bin_items_in_cart.empty?
         redirect_to items_path, notice: "No items in basket to checkout"
     end
@@ -27,6 +28,8 @@ class BinsController < ApplicationController
 
   # GET /bins/1/edit
   def edit
+    @agencies = Agency.active.alphabetical
+    @bin_items_in_cart = @bin.bin_items
   end
 
   # POST /bins

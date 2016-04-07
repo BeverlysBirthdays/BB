@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :agencies
   resources :items
   resources :bin_items
   resources :bins
   resources :categories
   resources :carts
+  resources :agencies
 
   get 'get_new_barcode' => 'items#get_new_barcode', as: :get_new_barcode
   post 'get_new_barcode' => 'items#get_new_item_info', as: :get_new_item_info
@@ -18,6 +20,10 @@ Rails.application.routes.draw do
   get 'show_cart' => 'carts#show_cart', as: :show_cart
   get 'remove_item/:id' => 'carts#remove_item', as: :remove_item
   get 'clear' =>  'carts#clear', as: :clear_cart
+
+  # Toggle Agency Status
+  patch 'toggle_agency/:id' => 'agencies#toggle_agency', as: :toggle_agency
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
