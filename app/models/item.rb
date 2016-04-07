@@ -38,7 +38,7 @@ class Item < ActiveRecord::Base
 	# by name
 	scope :search_by_name, -> (name) { where("name LIKE ? OR notes LIKE ?", "%" + name + "%", "%"+name+"%") }
 	# by barcode
-	scope :search_by_barcode, -> (b) { where("barcode = ", b)}
+	scope :search_by_barcode, -> (b) { where("barcode = ? ", b.to_s)}
 	# stock
 	scope :by_asc_count, -> { order("quantity ASC")}
 	scope :by_desc_count, -> { order("quantity DESC")}
