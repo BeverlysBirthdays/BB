@@ -194,6 +194,3 @@ DEPENDENCIES
   validates_timeliness (~> 4.0)
   web-console (~> 2.0)
   will_paginate
-
-BUNDLED WITH
-   1.10.6
