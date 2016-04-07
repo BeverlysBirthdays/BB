@@ -50,7 +50,7 @@ class Item < ActiveRecord::Base
 	scope :by_self_bought, -> { where(donated: false)} # Self_bought = False
 
 	# Validations
-	validates_presence_of :name, :quantity, :category_id
+	validates_presence_of :name, :quantity, :category_id, :age
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 1, on: :create
@@ -64,9 +64,9 @@ class Item < ActiveRecord::Base
 
 	private
 	def age_is_in_list
-		if self.age.nil?
-			errors.add(:age, "can't be blank")
-		else
+		if ! self.age.nil?
+		# 	errors.add(:age, "can't be blank")
+		# else
 			age_values_list = []
 			# get integer values for all age groups
 			for age_group in AGE_LIST
