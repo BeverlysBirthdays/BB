@@ -51,7 +51,7 @@ class Item < ActiveRecord::Base
 
 	# Validations
 	validates_presence_of :name, :quantity, :category_id
-	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "is not an option"
+	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 1, on: :create
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 0, on: :update

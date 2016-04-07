@@ -10,6 +10,7 @@ class CartsController < ApplicationController
 
 	def get_quantity_for_item()
 		@item = Item.find(params[:id])
+
 	end
 
 	def add_item_and_quantity_to_cart
