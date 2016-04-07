@@ -1,0 +1,15 @@
+<%= form_for_filterrific @filterrific do |f| %>
+
+	<div>
+	    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
+	    <%= f.select(:search_by_agency, @filterrific.select_options[:by_agency], { include_blank: 'Agency' }) %>	
+	    <%# f.text_field(:search_by_agency, class: 'filterrific-periodically-observed', :placeholder=>'Agency Name') %>
+	</div>
+	<div>
+	    <%# f.text_field(:search_by_date, class: 'filterrific-periodically-observed', :placeholder=>'Date') %>
+	    <%= f.date_select(:search_by_date, class: 'filterrific-periodically-observed', :use_short_month=> true, :default=> Date.today) %>
+	</div>
+
+	<%# add an automated spinner to your form when the list is refreshed %>
+	<%= render_filterrific_spinner %>
+<% end %>
