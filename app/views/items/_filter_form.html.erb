@@ -9,13 +9,13 @@
 	</div>
 
 	<div>
-	  	<%= f.select(:by_gender, @filterrific.select_options[:by_gender], { include_blank: 'Gender' }) %>
+	  	<%= f.select(:by_gender, @filterrific.select_options[:by_gender], { include_blank: 'Gender' }, class: 'filterrific-periodically-observed') %>
 	</div>
 	<div>
-	  	<%= f.select(:by_age_category, @filterrific.select_options[:by_age_category], { include_blank: 'Age' }) %>		
+	  	<%= f.select(:by_age_category, @filterrific.select_options[:by_age_category], { include_blank: 'Age' }, class: 'filterrific-periodically-observed') %>		
 	</div>
 	<div>
-		<%= f.select(:by_category, @filterrific.select_options[:by_category], { include_blank: 'Category' }) %>	
+		<%= f.select(:by_category, @filterrific.select_options[:by_category], { include_blank: 'Category' }, class: 'filterrific-periodically-observed') %>	
 	</div>
 	<div>
 		<%= link_to 'Reset filters',reset_filterrific_url, class: 'waves-effect waves-light btn col s12 green white-text' %>
