@@ -18,13 +18,14 @@ module BbInventoryHelpers
     end
 
     def add_item_to_cart(item_id, qty=1)
-      if session[:cart].keys.include?(item_id.to_s)
-        # if item in cart, increment quantity by 1
-        session[:cart][item_id.to_s] += qty
-      else
-        # add it to the cart
-        session[:cart][item_id.to_s] = qty
-      end
+      # if session[:cart].keys.include?(item_id.to_s)
+      #   # if item in cart, set quantity to new value
+      #   session[:cart][item_id.to_s] = qty
+      # else
+      #   # add it to the cart
+      #   session[:cart][item_id.to_s] = qty
+      # end
+      session[:cart][item_id.to_s] = qty
     end
 
     def remove_item_from_cart(item_id)
