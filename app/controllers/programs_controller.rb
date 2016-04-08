@@ -1,17 +1,25 @@
 class ProgramsController < ApplicationController
   before_action :set_program, only: [:show, :edit, :update, :destroy]
-  
-  def create
-  end
 
   def index
+    @programs = Programs.alphabetical.all
   end
-
-  def edit
+  
+  def show
   end
 
   def new
   end
+
+  def create
+  end
+
+ 
+
+  def edit
+  end
+
+  
 
   def update
   end

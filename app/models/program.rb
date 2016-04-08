@@ -4,5 +4,5 @@ class Program < ActiveRecord::Base
 	belongs_to :bin
 
 	# Scopes 
-
+    scope :alphabetical, -> { order(:name) }
 end
