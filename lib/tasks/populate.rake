@@ -10,7 +10,6 @@ namespace :db do
     Rake::Task['db:migrate'].invoke
 
     require 'faker'
-    require 'populator'
 
     # Step 1: Create Categories
     big_item = Category.new
