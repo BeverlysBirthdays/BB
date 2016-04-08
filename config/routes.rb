@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  get 'programs/create'
+
+  get 'programs/index'
+
+  get 'programs/edit'
+
+  get 'programs/new'
+
+  get 'programs/update'
+
+  get 'programs/delete'
+
   resources :agencies
   resources :items
   resources :bin_items
