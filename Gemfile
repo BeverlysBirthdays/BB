@@ -61,6 +61,7 @@ group :development do
   gem 'populator3'
 end
 
+# Outside development group temporarily until heroku db is set to production.
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   # faker for populate script
