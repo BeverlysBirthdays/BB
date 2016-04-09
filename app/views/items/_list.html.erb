@@ -55,7 +55,7 @@
 			        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			        
 					<!-- Add to Basket -->
-					<%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Basket'} %> 
+					<%= link_to '<i class="material_icons">shopping_basket</i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Basket'} %> 
 				</div>
 			</li>
 		<% end %>

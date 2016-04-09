@@ -22,8 +22,8 @@
         <td><%= agency.email %></td>
 
         <!-- Toggle Agency Status: active/ inactive -->
-        <td><%= link_to_if agency.active, '<i class="mdi-action-done center-align small"></i>'.html_safe, toggle_agency_path(agency), method: 'patch', class: "tooltipped", data: {confirm: "Are you sure you want to deactivate #{agency.name}?", position: 'bottom', tooltip: 'Deactivate Agency'} do
-          link_to '<i class="mdi-content-clear center-align small"></i>'.html_safe, toggle_agency_path(agency), method: 'patch', class: "tooltipped", data: {confirm: "Are you sure you want to activate #{agency.name}?", position: 'bottom', tooltip: 'Activate Agency'}
+        <td><%= link_to_if agency.active, '<i class="material-icons center-align small">done</i>'.html_safe, toggle_agency_path(agency), method: 'patch', class: "tooltipped", data: {confirm: "Are you sure you want to deactivate #{agency.name}?", position: 'bottom', tooltip: 'Deactivate Agency'} do
+          link_to '<i class="material-icons center-align small">clear</i>'.html_safe, toggle_agency_path(agency), method: 'patch', class: "tooltipped", data: {confirm: "Are you sure you want to activate #{agency.name}?", position: 'bottom', tooltip: 'Activate Agency'}
           end%>
         </td>
 
