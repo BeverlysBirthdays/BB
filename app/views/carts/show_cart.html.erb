@@ -18,7 +18,8 @@
 		</thead>
 		<% @bin_items_in_cart.each do |bi| %>
 		<tr>
-			<td><%= link_to bi.item.name, item_path(bi.item) %></td>
+			<!-- Bad style but only option to display names of items in cart since bin and asscoiations not yet created at this time -->
+			<td><%= link_to Item.find(bi.item_id).name, item_path(bi.item) %></td>
 			<td><%= bi.item.category.name %></td>
 			<td><%= bi.quantity %></td>
 			<td><%= link_to '<i class="material-icons">remove</i>'.html_safe, add_to_cart_path(bi.item.id), class: "waves-effect waves-light btn-floating deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Change Quantity in Basket'}%></td>

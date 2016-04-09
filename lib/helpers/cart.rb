@@ -44,6 +44,7 @@ module BbInventoryHelpers
       return bin_items if session[:cart].empty? # skip if cart empty...
       session[:cart].each do |item_id, quantity|
         info = {item_id: item_id, quantity: quantity}
+        print 'Info: ', info
         bin_item = BinItem.new(info)
         bin_items << bin_item
       end
