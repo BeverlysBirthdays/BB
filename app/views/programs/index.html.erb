@@ -1,2 +1,10 @@
-<h1>Programs#index</h1>
-<p>Find me in app/views/programs/index.html.erb</p>
+<h3>Listing Programs</h3>
+<ul class='collection'>
+  <% @programs.each do |program| %>
+    <li class='collection-item'>
+      <%= link_to program.name, program %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'New Program', new_program_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
