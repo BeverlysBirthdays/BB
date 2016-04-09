@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408200012) do
+ActiveRecord::Schema.define(version: 20160409004751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20160408200012) do
     t.datetime "updated_at",  null: false
     t.boolean  "donated"
     t.integer  "gender"
+    t.decimal  "unit_price"
   end
 
   add_index "items", ["age"], name: "index_items_on_age", using: :gin
