@@ -20,14 +20,7 @@
 
 </div>
 
-<div class="row">
-  <div class="col s6">
-      <strong>Quantity remaining in inventory:</strong>
-      <%= @item.quantity %>
-  </div>
-</div>
-
-
+<!-- Gender + Age -->
 <div class="row">
   <div class="col s4">
       <strong>Gender:</strong>
@@ -35,8 +28,24 @@
   </div>
   <div class="col s4">
       <strong>Age:</strong>
-      <% for a in @item.age %>
-        <%= @age_list.key(a)%> | 
+
+      <!-- Age array and length of loop -->
+      <% a = @item.age %>
+      <% a_length = @item.age.length %>
+
+      <% if a_length-1 == 0 %>
+        <!-- If length of age = 1 -->
+        <%= @age_list.key(@item.age[0])%> 
+      <% else %>
+        <!-- If length of age list > 1 -->
+        <% for i in a_length %>
+          <% if i == a_length %>
+            <!-- Dont show '|' if last item -->
+            <%= @age_list.key(@item.age[i])%> 
+          <% else %>
+            <%= @age_list.key(@item.age[i])%> | 
+          <% end %>
+        <% end %>
       <% end %>
   </div>
   <div class="col s4">
@@ -48,6 +57,19 @@
       <% end %>
   </div>
 </div>
+
+<!-- Quantity + Price -->
+<div class="row">
+  <div class="col s6">
+      <strong>Quantity remaining in inventory:</strong>
+      <%= @item.quantity %>
+  </div>
+  <div class='col s6'>
+    <strong>Unit Price</strong>
+    <%= number_to_currency @item.unit_price %>
+  </div>
+</div>
+
 <div class="row">
   <div class="col s6">
     <strong> Notes: </strong>
