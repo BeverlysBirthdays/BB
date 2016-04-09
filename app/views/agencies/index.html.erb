@@ -1,12 +1,15 @@
-<div class = "row valign-wrapper">
-  <h4 class="valign col s5">Agency Listing</h4>
-  <%= link_to "Add New Agency", new_agency_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
+<p></p>
+<div class = "row">
+  <h4 class="col s6">Agency Listing</h4>
+  <%= link_to "Add New Agency", new_agency_path, class: "waves-effect waves-light btn col s5 offset-s1 valign pink white-text" %>
 </div>
 
 <table>
   <thead>
     <tr>
       <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
       <th>Active</th>
     </tr>
   </thead>
@@ -15,6 +18,8 @@
     <% @agencies.each do |agency| %>
       <tr>
         <td><%= link_to agency.name, agency_path(agency) %></td>
+        <td><%= number_to_phone agency.phone %></td>
+        <td><%= agency.email %></td>
 
         <!-- Toggle Agency Status: active/ inactive -->
         <td><%= link_to_if agency.active, '<i class="mdi-action-done center-align small"></i>'.html_safe, toggle_agency_path(agency), method: 'patch', class: "tooltipped", data: {confirm: "Are you sure you want to deactivate #{agency.name}?", position: 'bottom', tooltip: 'Deactivate Agency'} do
