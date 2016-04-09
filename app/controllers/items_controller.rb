@@ -51,19 +51,27 @@ class ItemsController < ApplicationController
   def get_new_item_info
     @categories = Category.alphabetical
     barcode = params[:barcode]
+    name = params[:name]
+    print 'Name: ', name
     # if item doesn't have barcode, don't autopopulate form
-    if barcode==''
-      @item=nil
-    else
+    # Barcode takes precedence over name
+    if barcode != ''
       @item = Item.find_by barcode: barcode 
+    elsif name !=''
+      print 'Reached'
+      @item = Item.search_by_name(name).first
+      print 'Item: ', @item
+    else
+      @item=nil
     end
+
     if @item.nil?
       @item = Item.new
       @item.barcode = barcode
       @total_quantity = 0
       render 'new'
     else
-      render 'edit'
+      redirect_to edit_item_path(@item.id)
     end
 
     # barcode = params[:barcode]
@@ -74,6 +82,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
+    print 'Item: ', @item
     @total_quantity = @item.total_quantity
   end
 

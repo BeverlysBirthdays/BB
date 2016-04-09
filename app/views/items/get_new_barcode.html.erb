@@ -1,10 +1,22 @@
 <p></p>
 <%= form_tag() do%>
 
+<!-- Barcode -->
 <div class='row'>
 	<%= label_tag("Barcode: ") %> <br>
 	<%= text_field_tag :barcode, '', autofocus: true, class: 'col s4' %>
 </div>
+
+<div class='row'>
+	<h5>OR</h5>
+</div>
+
+<!-- Optional Name Lookup for items without barcode -->
+<div class = 'row'>
+	<%= label_tag("Item Name: ") %> <br>
+	<%= text_field_tag :name, '', class: 'col s4' %>
+</div>
+
 <div class='actions row'>
 	<%= button_tag "Submit", class: "waves-effect waves-light btn pink white-text col s4" %>
 </div>
