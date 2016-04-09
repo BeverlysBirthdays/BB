@@ -1,15 +1,4 @@
 Rails.application.routes.draw do
-  get 'programs/create'
-
-  get 'programs/index'
-
-  get 'programs/edit'
-
-  get 'programs/new'
-
-  get 'programs/update'
-
-  get 'programs/delete'
 
   resources :agencies
   resources :items
@@ -17,7 +6,7 @@ Rails.application.routes.draw do
   resources :bins
   resources :categories
   resources :carts
-  resources :agencies
+  resources :programs
 
   get 'get_new_barcode' => 'items#get_new_barcode', as: :get_new_barcode
   post 'get_new_barcode' => 'items#get_new_item_info', as: :get_new_item_info

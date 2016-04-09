@@ -2,7 +2,7 @@ class ProgramsController < ApplicationController
   before_action :set_program, only: [:show, :edit, :update, :destroy]
 
   def index
-    @programs = Programs.alphabetical.all
+    @programs = Program.alphabetical.all
   end
   
   def show
