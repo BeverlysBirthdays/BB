@@ -6,14 +6,43 @@
   		<%= f.input :name %>
   	</div>
   </div>
+
+  <!-- Address -->
+  <div class='form-inputs row'>
+    <div class='col s3'>
+      <%= f.input :street, placeholder: '31 Robbins Station Road' %>
+    </div>
+    <div class='col s3'>
+      <%= f.input :city, input_html: {value: 'Pittsburgh'} %>
+    </div>
+    <div class='col s3'>
+      <% al = Agency::STATES_LIST %>
+      <%= f.input :state, collection: al, selected:al[0] %>
+    </div>
+    <div class='col s3'>
+      <%= f.input :zip, placeholder: '15642' %>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class='form-inputs row'>
+    <div class='col s6'>
+      <%= f.input :phone, placeholder: '412-970-9734' %>
+    </div>
+    <div class='col s6'>
+      <%= f.input :email, placeholder: 'agency@domain.com' %>
+    </div>
+  </div>
+
+  <!-- Active -->
   <div class='form-inputs row'>
   	<div class='col s6'>
-  		<%= f.input :active, as: :boolean, boolean_style: :inline%>
+  		<%= f.input :active, as: :boolean, boolean_style: :inline, input_html: {:checked=>true} %>
   	</div>
   </div>
 
   <div class="form-actions row">
-    <%= f.button :submit, class: 'col s3 pink white-text' %>
+    <%= f.button :submit, class: 'col s6 pink white-text' %>
   </div>
   
 <% end %>
