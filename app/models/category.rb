@@ -9,6 +9,7 @@ class Category < ActiveRecord::Base
 
 	# Validations
 	validates_presence_of :name, :icon
+	validates_uniqueness_of :name, :icon
 
 	# Other methods
 	

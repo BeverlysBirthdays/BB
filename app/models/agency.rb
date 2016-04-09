@@ -14,6 +14,7 @@ class Agency < ActiveRecord::Base
 
 	# Validations
 	validates_presence_of :name, :street
+	validates_uniqueness_of :name
 	# if zip included, it must be 5 digits only
 	validates_format_of :zip, with: /\A\d{5}\z/, message: "should be five digits long", allow_blank: true
 	# phone can have dashes, spaces, dots and parens, but must be 10 digits
