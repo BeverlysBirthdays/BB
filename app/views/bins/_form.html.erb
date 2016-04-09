@@ -13,13 +13,17 @@
 
     <!-- Agency and number of bins -->
     <div class='row'>
-      <div class='col s6'>
+      <div class='col s4'>
         <%= f.label :num_of_bins, 'Number of Bins' %>
         <%= f.number_field :num_of_bins, :value => 1 %>
       </div>
-      <div class='col s6'>
+      <div class='col s4'>
         <%= f.label :agency_id %>
         <%= f.collection_select :agency_id, @agencies, :id, :name %>
+      </div>
+      <div class='col s4'>
+        <%= f.label :program_id %>
+        <%= f.collection_select :program_id, Programs.alphabetical.all, :id, :name %>
       </div>
     </div>
 
