@@ -82,6 +82,14 @@ class Item < ActiveRecord::Base
 		where(total_quantity <= MINIMUM)
 	end
 
+	def total_inventory_value
+		if unit_price==''
+			return 'N.A'
+		else
+			return self.total_quantity * self.unit_price
+		end
+	end
+
 	def is_donated?
 		print 'Donated?: ', donated=='1'
 		donated=='1'
