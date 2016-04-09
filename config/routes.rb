@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
+
   resources :agencies
   resources :items
   resources :bin_items
   resources :bins
   resources :categories
   resources :carts
-  resources :agencies
+  resources :programs
 
   get 'get_new_barcode' => 'items#get_new_barcode', as: :get_new_barcode
   post 'get_new_barcode' => 'items#get_new_item_info', as: :get_new_item_info

@@ -1,5 +1,4 @@
 <%= form_for_filterrific @filterrific do |f| %>
-
 	<div>
 	    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 	    <%= f.select(:search_by_agency, @filterrific.select_options[:search_by_agency], { include_blank: 'Agency' }) %>	
@@ -8,6 +7,9 @@
 	<div>
 	    <%# f.text_field(:search_by_date, class: 'filterrific-periodically-observed', :placeholder=>'Date') %>
 	    <%= f.date_select(:search_by_date, class: 'filterrific-periodically-observed', :use_short_month=> true, :default=> Date.today) %>
+	</div>
+	<div>
+	    <%= f.select(:search_by_program, @filterrific.select_options[:search_by_program], { include_blank: 'Program' }, class: 'filterrific-periodically-observed') %>	
 	</div>
 	<div>
 		<%= link_to 'Reset filters',reset_filterrific_url, class: 'waves-effect waves-light btn col s12 green white-text' %>

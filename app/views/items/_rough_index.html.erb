@@ -33,9 +33,9 @@
         <td><%= @age_list.key(item.age) %></td>
 
         <% if item.donated == true%>
-          <td class = "center-align"><i class="mdi-action-done small"></i></td>
+          <td class = "center-align"><i class="material-icons small">done</i></td>
         <% else %>
-          <td class = "center-align"><i class="mdi-content-clear center-align small"></i></td>
+          <td class = "center-align"><i class="material-icons center-align small">clear</i></td>
         <% end %>
 
         <% if item.notes == ""%>
@@ -45,11 +45,11 @@
         <% end %>
 
         <td><%= item.category.name %></td>
-        <td><%= link_to '<i class="mdi-action-add-shopping-cart"></i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Basket'} %> </td>
+        <td><%= link_to '<i class="material-icons">shopping_cart</i>'.html_safe, add_to_cart_path(item.id),class: "waves-effect waves-light btn-floating modal-trigger deep-orange lighten-3 tooltipped", data: {position: 'right', tooltip: 'Add to Basket'} %> </td>
 
 
   <!--  Don't display destory links in index page: 
-  <td><%# link_to '<i class="mdi-navigation-close"></i>'.html_safe, item_path(item), method: 'delete', class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {confirm: "Are you sure you want to delete #{item.name}?", position: 'right', tooltip: 'Delete Item'}%></td> -->
+  <td><%# link_to '<i class="material-icons">close</i>'.html_safe, item_path(item), method: 'delete', class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {confirm: "Are you sure you want to delete #{item.name}?", position: 'right', tooltip: 'Delete Item'}%></td> -->
       </tr>
     <% end %>
   </tbody>

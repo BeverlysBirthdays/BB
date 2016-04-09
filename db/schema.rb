@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160409052644) do
     t.datetime "updated_at",    null: false
     t.integer  "num_of_bins"
     t.integer  "agency_id"
+    t.integer  "program_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -67,5 +68,11 @@ ActiveRecord::Schema.define(version: 20160409052644) do
   end
 
   add_index "items", ["age"], name: "index_items_on_age", using: :gin
+
+  create_table "programs", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

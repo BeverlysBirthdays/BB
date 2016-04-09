@@ -10,7 +10,11 @@ class BinsController < ApplicationController
     # Filter record OR Return all items
     @filterrific = initialize_filterrific(Bin, params[:filterrific], 
       select_options: { 
-        search_by_agency: Agency.alphabetical.all.to_a.map(&:name)},) or return 
+        search_by_agency: Agency.alphabetical.all.to_a.map(&:name),
+        search_by_program: Program.alphabetical.all.to_a.map(&:name) 
+      },
+      persistence_id: false 
+    ) or return 
     @bins = @filterrific.find.paginate(:page => params[:page]).per_page(10)
     puts("Bins: ",@bins)
     #@bins = Bin.all.paginate(:page => params[:page]).per_page(10)
@@ -101,6 +105,6 @@ class BinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bin_params
-      params.require(:bin).permit(:num_of_bins, :agency_id)
+      params.require(:bin).permit(:num_of_bins, :agency_id, :program_id)
     end
 end
