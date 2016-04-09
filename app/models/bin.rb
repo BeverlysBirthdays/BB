@@ -5,7 +5,8 @@ class Bin < ActiveRecord::Base
 	  available_filters: [
 	    :sorted_by,
 	    :search_by_agency,
-	    :search_by_date
+	    :search_by_date,
+	    :search_by_program
 	  ]
 	)
 
@@ -20,6 +21,7 @@ class Bin < ActiveRecord::Base
 	# scope :for_date, -> (d) { where ("checkout_date = ?", d) }
 	scope :search_by_agency, -> (a){joins(:agency).where('agencies.name = ?', a)}
 	scope :search_by_date, -> (d){where("checkout_date=?", d)}
+	scope :search_by_program, -> (p) { joins(:program).where('programs.name = ?', p) }
 	
 	# Validations
 	validates_date :checkout_date
