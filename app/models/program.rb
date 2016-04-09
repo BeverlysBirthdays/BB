@@ -1,7 +1,7 @@
 class Program < ActiveRecord::Base
 
 	# Relationships
-	belongs_to :bin
+	has_many :bins
 
 	# Scopes 
     scope :alphabetical, -> { order(:name) }

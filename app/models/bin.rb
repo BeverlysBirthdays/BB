@@ -10,7 +10,7 @@ class Bin < ActiveRecord::Base
 	)
 
 	# Relationships
-	has_one :program
+	belongs_to :program
 	has_many :bin_items
 	has_many :items, through: :bin_items
 	belongs_to :agency

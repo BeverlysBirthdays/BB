@@ -23,7 +23,7 @@
       </div>
       <div class='col s4'>
         <%= f.label :program_id %>
-        <%= f.collection_select :program_id, Programs.alphabetical.all, :id, :name %>
+        <%= f.collection_select :program_id, Program.alphabetical.all, :id, :name %>
       </div>
     </div>
 
