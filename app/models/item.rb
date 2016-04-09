@@ -56,6 +56,8 @@ class Item < ActiveRecord::Base
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 1, on: :create
 	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 0, on: :update
 	validate :age_is_in_list
+	# validates presence of price if bought
+	validates_presence_of :unit_price, if: '! donated.nil?'
 
 	# Other methods
 	def increase_quantity (incr)
