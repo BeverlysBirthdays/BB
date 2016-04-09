@@ -2,7 +2,7 @@ class CreateItems < ActiveRecord::Migration
   def change
     create_table :items do |t|
       t.string :barcode
-      t.integer :quantity
+      t.integer :quantity, array: true
       t.string :name
       t.integer :gender
       t.integer :age, array: true
@@ -13,5 +13,6 @@ class CreateItems < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :items, :age, using: 'gin'
+    add_index :items, :quantity, using: 'gin'
   end
 end

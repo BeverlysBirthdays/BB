@@ -16,8 +16,8 @@ class Item < ActiveRecord::Base
 	    :by_gender,
 	    :by_age_category,
 	    :by_category,
-	    :by_donation,
-	    :by_self_bought
+	    # :by_donation,
+	    # :by_bought
 	  ]
 	)
 	
@@ -25,6 +25,10 @@ class Item < ActiveRecord::Base
 	belongs_to :category
 	has_many :bin_items
 	has_many :bins, through: :bin_items
+
+	# Virtual Attributes
+	attr_accessor :donated
+	attr_accessor :check_in_quantity
 
 	# Scopes
 	scope :sorted_by, lambda { order('name') }
@@ -39,29 +43,48 @@ class Item < ActiveRecord::Base
 	scope :search_by_name, -> (name) { where("name LIKE ? OR notes LIKE ?", "%" + name + "%", "%"+name+"%") }
 	# by barcode
 	scope :search_by_barcode, -> (b) { where("barcode = ? ", b.to_s)}
+
 	# stock
-	scope :by_asc_count, -> { order("quantity ASC")}
-	scope :by_desc_count, -> { order("quantity DESC")}
-	scope :for_low_stock, -> { where("quantity <= ?", MINIMUM)}
-	scope :not_in_stock, -> { where("quantity = ?", 0)}
-	scope :in_stock, -> { where("quantity > ?", 0)}
+	# scope :by_asc_count, -> { order("quantity ASC")}
+	# scope :by_desc_count, -> { order("quantity DESC")}
+	# scope :for_low_stock, -> { where("quantity <= ?", MINIMUM)}
+	# scope :not_in_stock, -> { where("quantity = ?", 0)}
+	# scope :in_stock, -> { where("quantity > ?", 0)}
+
 	# donations vs. self-bought
-	scope :by_donation, -> { where(donated: true)} # donation = True
-	scope :by_self_bought, -> { where(donated: false)} # Self_bought = False
+	# scope :by_donation, -> {where('quantity[0]!=0') }
+	# scope, :by_bought, -> {where('quantity[1]!=0')}
+
+
+	# # donation = True
+	# scope :by_donation, -> { where("name && ARRAY[0]")}
+	# # Self_bought = False
+	# scope :by_self_bought, -> { where("name && ARRAY[1]")} 
+	# scope :by_donation, -> {where(donated: true)}
+	# scope, :by_self_bought, -> {where(donated: false)}
 
 	# Validations
-	validates_presence_of :name, :quantity, :category_id, :age
+	validates_presence_of :name, :category_id, :age, :donated_quantity, :bought_quantity
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
-	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 1, on: :create
-	validates_numericality_of :quantity, only_integer: true, greater_than_or_equal_to: 0, on: :update
+	validates_numericality_of :donated_quantity, only_integer: true, greater_than_or_equal_to: 0
+	validates_numericality_of :bought_quantity, only_integer: true, greater_than_or_equal_to: 0
 	validate :age_is_in_list
 	# validates presence of price if bought
-	validates_presence_of :unit_price, if: '! donated.nil?'
+	validates_presence_of :unit_price, if: '!is_donated?'
 
 	# Other methods
-	def increase_quantity (incr)
-		self.quantity += incr
+
+	def total_quantity
+		return self.donated_quantity + self.bought_quantity
+	end
+	def low_stock
+		where(total_quantity <= MINIMUM)
+	end
+
+	def is_donated?
+		print 'Donated?: ', donated=='1'
+		donated=='1'
 	end
 
 	private

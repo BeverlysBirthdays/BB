@@ -10,13 +10,21 @@
   <!-- Barcode -->
   <div class="col s4">
       <strong>Barcode:</strong>
-      <%= @item.barcode %>
-  </div>
-  <!-- Category -->
-  <div class="col s4">
-      <strong>Category:</strong>
-      <%= @item.category.name %>
+      <% if @item.barcode='' %>
+        None
+      <% else %>
+        <%= @item.barcode %>
+      <% end %>
   </div> 
+  <!-- Price -->
+  <div class='col s4'>
+    <strong>Unit Price</strong>
+    <% if unit_price='' %>
+      N.A
+    <% else %>
+      <%= number_to_currency @item.unit_price %>
+    <% end %>
+  </div>
 
 </div>
 
@@ -48,25 +56,27 @@
         <% end %>
       <% end %>
   </div>
+
+  <!-- Category -->
   <div class="col s4">
-      <strong>Donation:</strong>
-      <% if @item.donated == true%>
-        <i class="mdi-action-done center-align small"></i>
-      <% else %>
-        <i class="mdi-content-clear center-align small"></i>
-      <% end %>
+      <strong>Category:</strong>
+      <%= @item.category.name %>
   </div>
 </div>
 
-<!-- Quantity + Price -->
+<!-- Quantity  -->
 <div class="row">
-  <div class="col s6">
-      <strong>Quantity remaining in inventory:</strong>
-      <%= @item.quantity %>
+  <div class="col s4">
+      <strong>Total Quantity in inventory:</strong>
+      <%= @total_quantity %>
   </div>
-  <div class='col s6'>
-    <strong>Unit Price</strong>
-    <%= number_to_currency @item.unit_price %>
+  <div class='col s4'>
+    <strong>Quantity donated: </strong>
+    <%= @item.donated_quantity %>
+  </div>
+  <div class='col s4'>
+    <strong>Quantity Bought: </strong>
+    <%= @item.bought_quantity %>
   </div>
 </div>
 
@@ -78,6 +88,18 @@
     <% else %>
       <%= @item.notes %>
     <% end %>
+  </div>
+</div>
+
+<div class='row'>
+  <!-- Donation: Specific to item checked in. Not for all similar items in inventory -->
+  <div class="col s4">
+      <strong>Donation:</strong>
+      <% if @item.donated == true%>
+        <i class="mdi-action-done center-align small"></i>
+      <% else %>
+        <i class="mdi-content-clear center-align small"></i>
+      <% end %>
   </div>
 </div>
 

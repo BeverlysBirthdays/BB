@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
   def show
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
+    @total_quantity = @item.total_quantity
   end
 
   # GET /items/new
@@ -48,6 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def get_new_item_info
+    @categories = Category.alphabetical
     barcode = params[:barcode]
     # if item doesn't have barcode, don't autopopulate form
     if barcode==''
@@ -58,16 +60,21 @@ class ItemsController < ApplicationController
     if @item.nil?
       @item = Item.new
       @item.barcode = barcode
+      @total_quantity = 0
+      render 'new'
+    else
+      render 'edit'
     end
-    @categories = Category.alphabetical
+
     # barcode = params[:barcode]
     # @item = Item.where("barcode=?", @bcode)
     # redirect_to action: "new", barcode: @bcode
-    render 'new'
+    # render 'new'
   end
 
   # GET /items/1/edit
   def edit
+    @total_quantity = @item.total_quantity
   end
 
   # POST /items
@@ -75,8 +82,17 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
+    if @item.donated=='1'
+      @item.donated_quantity = item_params['check_in_quantity']
+      @item.bought_quantity = 0
+    else
+      @item.bought_quantity = item_params['check_in_quantity']
+      @item.bought_quantity = 0
+    end
+
     respond_to do |format|
       if @item.save
+
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
@@ -89,12 +105,29 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
-    quantity_increase = item_params[:quantity].to_i
-    previous_quantity = @item.quantity
+
+    quantity_increase = item_params[:check_in_quantity].to_i
+    previous_donated_quantity = @item.donated_quantity
+    previous_bought_quantity = @item.bought_quantity
+
+    # save previous price. Update only if new price is not blank.
+    price = @item.unit_price
+
     respond_to do |format|
       if @item.update(item_params)
-        @item.quantity = previous_quantity + quantity_increase
-        @item.save 
+
+        if @item.donated=='1'
+          @item.donated_quantity = previous_donated_quantity + quantity_increase
+        else
+          @item.bought_quantity = previous_bought_quantity + quantity_increase
+        end
+
+        if item_params[:unit_price]==''
+          @item.unit_price = price
+        end
+
+        @item.save!
+
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -122,6 +155,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:barcode, :unit_price, :quantity, :name, :gender, :donated, :notes, :category_id, :age=>[])
+      params.require(:item).permit(:barcode, :unit_price, :check_in_quantity, :name, :gender, :donated, :notes, :category_id, :age=>[])
     end
 end

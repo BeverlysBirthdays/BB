@@ -40,20 +40,17 @@
     <!-- Quantity in Inventory -->
     <div class="col s3">
       <%= f.label 'Quantity in Inventory'%><br>
-      <% if @item.quantity.nil? == false %>
-        <%= f.number_field :quantity, :disabled => true %>
-      <% else %>
-        <%= f.number_field :quantity, :value=>0, :disabled => true %>
-      <% end %>
+      <%= f.number_field :quantity, :disabled => true, :value=>@total_quantity %>
     </div>
     <!-- Quantity -->
     <div class="col s3">
+      <% %>
       <% if controller.action_name.capitalize == 'Edit'%>
-        <%= f.label :quantity, 'Increase quantity by' %><br>
-        <%= f.number_field :quantity, :value => 0%>
+        <%= f.label :check_in_quantity, 'Increase quantity by' %><br>
+        <%= f.number_field :check_in_quantity, :value => 0%>
       <% else %>
-        <%= f.label :quantity, 'Quantity' %><br>
-        <%= f.number_field :quantity, :value => 1%>
+        <%= f.label :check_in_quantity, 'Quantity' %><br>
+        <%= f.number_field :check_in_quantity, :value => 1%>
       <% end %>
     </div>
 
