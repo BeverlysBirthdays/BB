@@ -5,8 +5,8 @@
 	    <%# f.text_field(:search_by_agency, class: 'filterrific-periodically-observed', :placeholder=>'Agency Name') %>
 	</div>
 	<div>
-	    <%# f.text_field(:search_by_date, class: 'filterrific-periodically-observed', :placeholder=>'Date') %>
-	    <%= f.date_select(:search_by_date, class: 'filterrific-periodically-observed', :use_short_month=> true, :default=> Date.today) %>
+	    <%= f.text_field(:search_by_date, id: 'datepicker', class: 'filterrific-periodically-observed', :placeholder=>'Date') %>
+	    <%# f.date_select(:search_by_date, class: 'filterrific-periodically-observed', :use_short_month=> true, :default=> Date.today) %>
 	</div>
 	<div>
 	    <%= f.select(:search_by_program, @filterrific.select_options[:search_by_program], { include_blank: 'Program' }, class: 'filterrific-periodically-observed') %>	

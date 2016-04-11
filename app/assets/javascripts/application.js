@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui/datepicker
 //= require turbolinks
 //= require_tree .
 //= require materialize
@@ -23,6 +24,9 @@ $(document).ready(function() {
     $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
 
 });
+
+//datepicker for filter on bins index page
+$( "#datepicker" ).datepicker();
 
 $(".button-collapse").sideNav();
 $( document ).ready(function() { 

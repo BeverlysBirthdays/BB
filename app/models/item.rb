@@ -49,7 +49,7 @@ class Item < ActiveRecord::Base
 	# scope :by_desc_count, -> { order("quantity DESC")}
 	# scope :for_low_stock, -> { where("quantity <= ?", MINIMUM)}
 	# scope :not_in_stock, -> { where("quantity = ?", 0)}
-	# scope :in_stock, -> { where("quantity > ?", 0)}
+	# scope :in_stock, -> { where('total_quantity > ?', 0)}
 
 	# donations vs. self-bought
 	# scope :by_donation, -> {where('quantity[0]!=0') }
@@ -80,6 +80,9 @@ class Item < ActiveRecord::Base
 	end
 	def low_stock
 		where(total_quantity <= MINIMUM)
+	end
+	def in_stock
+		where(total_quantity > 0)
 	end
 
 	def total_inventory_value
