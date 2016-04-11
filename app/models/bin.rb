@@ -17,6 +17,7 @@ class Bin < ActiveRecord::Base
 	belongs_to :agency
 
 	# Scopes
+	scope :sorted_by, -> { order ("checkout_date DESC") }
 	scope :chronological, -> { order ("checkout_date DESC") }
 	# scope :for_date, -> (d) { where ("checkout_date = ?", d) }
 	scope :search_by_agency, -> (a){joins(:agency).where('agencies.name = ?', a)}

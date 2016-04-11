@@ -1,7 +1,7 @@
 <%= form_for_filterrific @filterrific do |f| %>
 	<div>
 	    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
-	    <%= f.select(:search_by_agency, @filterrific.select_options[:search_by_agency], { include_blank: 'Agency' }) %>	
+	    <%= f.select(:search_by_agency, @filterrific.select_options[:search_by_agency], { include_blank: 'Agency' }, class: 'filterrific-periodically-observed') %>	
 	    <%# f.text_field(:search_by_agency, class: 'filterrific-periodically-observed', :placeholder=>'Agency Name') %>
 	</div>
 	<div>
