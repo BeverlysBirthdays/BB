@@ -60,6 +60,8 @@ group :development do
   # faker for populate script
   gem 'faker'
   gem 'populator3'
+  # ERD generator
+  gem 'rails-erd'
 end
 
 # For Heroku integration
