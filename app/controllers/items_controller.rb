@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
     @total_quantity = @item.total_quantity
+
   end
 
   # GET /items/new
@@ -53,15 +54,12 @@ class ItemsController < ApplicationController
     @categories = Category.alphabetical
     barcode = params[:barcode]
     name = params[:name]
-    print 'Name: ', name
     # if item doesn't have barcode, don't autopopulate form
     # Barcode takes precedence over name
     if barcode != ''
       @item = Item.find_by barcode: barcode 
     elsif name !=''
-      print 'Reached'
       @item = Item.search_by_name(name).first
-      print 'Item: ', @item
     else
       @item=nil
     end
