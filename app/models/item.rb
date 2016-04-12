@@ -86,7 +86,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def total_inventory_value
-		if unit_price==''
+		if unit_price.nil?
 			return 'N.A'
 		else
 			return self.total_quantity * self.unit_price
@@ -94,7 +94,6 @@ class Item < ActiveRecord::Base
 	end
 
 	def is_donated?
-		print 'Donated?: ', donated=='1'
 		donated=='1'
 	end
 

@@ -18,8 +18,8 @@
   </div> 
   <!-- Price -->
   <div class='col s4'>
-    <strong>Unit Price</strong>
-    <% if unit_price='' %>
+    <strong>Unit Price:</strong>
+    <% if @item.unit_price.nil? %>
       N.A
     <% else %>
       <%= number_to_currency @item.unit_price %>
