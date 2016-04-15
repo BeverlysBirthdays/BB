@@ -98,6 +98,17 @@ class Item < ActiveRecord::Base
 	def total_quantity
 		self.item_checkins.sum('quantity_remaining')
 	end
+	def total_donated_quantity
+		self.item_checkins.where(donated: true).sum('quantity_remaining')
+	end
+	# def total_donated_value
+	# 	d = self.item_checkins.where(donated: true)
+	# 	p
+	# 	return d.where('!unit_price.nil?').sum('quantity_remaining * unit_price')
+	# end
+	def total_bought_quantity
+		self.item_checkins.where(donated: false).sum('quantity_remaining * unit_price')
+	end
 
 	private
 	def age_is_in_list

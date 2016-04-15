@@ -42,13 +42,13 @@
 			        <%# end %> -->
 
 			        <!-- Price -->
-					<text class='tooltipped', data-position='left', data-tooltip='Total Value'>
-						<% if item.unit_price.nil?%>
-							<%= 'N.A' %>
-						<% else %>
-							<%= number_to_currency item.total_inventory_value %>
-						<% end %>
-					</text>
+<!-- 					<text class='tooltipped', data-position='left', data-tooltip='Total Value'>
+						<%# if item.unit_price.nil?%>
+							<%# 'N.A' %>
+						<%# else %>
+							<%# number_to_currency item.total_inventory_value %>
+						<%# end %>
+					</text> -->
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
 					<!-- Quantity -->
 					<text class='tooltipped', data-position='left', data-tooltip='Total Quantity in Inventory'><%= item.total_quantity %></text>

@@ -35,18 +35,13 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    # @item = Item.new
-    # @bcode = params[:barcode]
-    # i = Item.where("barcode = ?", @bcode)
-    # if (i!=nil):
     redirect_to get_new_barcode_path
   end
 
   # NEW ITEM -> BARCODE -> FORM -> SAVE ITEM
 
   def get_new_barcode
-    # @item = Item.new
-    # redirect_to get_new_item_info_path(@item)
+
   end
 
   def get_new_item_info
@@ -72,10 +67,6 @@ class ItemsController < ApplicationController
       redirect_to edit_item_path(@item.id)
     end
 
-    # barcode = params[:barcode]
-    # @item = Item.where("barcode=?", @bcode)
-    # redirect_to action: "new", barcode: @bcode
-    # render 'new'
   end
 
   # GET /items/1/edit
@@ -88,14 +79,6 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
-
-    # if @item.donated=='1'
-    #   @item.donated_quantity = item_params['check_in_quantity']
-    #   @item.bought_quantity = 0
-    # else
-    #   @item.bought_quantity = item_params['check_in_quantity']
-    #   @item.bought_quantity = 0
-    # end
 
     respond_to do |format|
       if @item.save
@@ -117,27 +100,15 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
 
-    quantity_increase = item_params[:check_in_quantity].to_i
-    previous_donated_quantity = @item.donated_quantity
-    previous_bought_quantity = @item.bought_quantity
-
-    # save previous price. Update only if new price is not blank.
-    price = @item.unit_price
-
     respond_to do |format|
       if @item.update(item_params)
 
-        if @item.donated=='1'
-          @item.donated_quantity = previous_donated_quantity + quantity_increase
-        else
-          @item.bought_quantity = previous_bought_quantity + quantity_increase
-        end
-
-        if item_params[:unit_price]==''
-          @item.unit_price = price
-        end
-
-        @item.save!
+        # create new item_checkin record
+        # if quantity of item edited: new check_in record only consists of item increment
+        if item_params['check_in_quantity'].to_i > 0
+          info = {item_id: @item.id, quantity_checkedin: item_params['check_in_quantity'], donated: item_params['donated'], unit_price: item_params['unit_price'], quantity_remaining: item_params['check_in_quantity'], checkin_date: Date.today}
+          @item_checkin = ItemCheckin.create(info)
+        end 
 
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }

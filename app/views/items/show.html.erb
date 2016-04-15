@@ -18,12 +18,13 @@
   </div> 
   <!-- Price -->
   <div class='col s4'>
-    <strong>Unit Price:</strong>
-    <% if @item.unit_price.nil? %>
+    <strong>Total Value:</strong>
+<!--     <%# if @item.unit_price.nil? %>
       N.A
-    <% else %>
-      <%= number_to_currency @item.unit_price %>
-    <% end %>
+    <%# else %>
+      <%# number_to_currency @item.unit_price %>
+    <%# end %> -->
+    <%# number_to_currency @item.total_donated_value+total_bought_value %>
   </div>
 
 </div>
@@ -70,13 +71,13 @@
       <strong>Total Quantity in inventory:</strong>
       <%= @total_quantity %>
   </div>
-  <div class='col s4'>
+<div class='col s4'>
     <strong>Quantity donated: </strong>
-    <%= @item.donated_quantity %>
+    <%= @item.total_donated_quantity %>
   </div>
   <div class='col s4'>
     <strong>Quantity Bought: </strong>
-    <%= @item.bought_quantity %>
+    <%= @item.total_bought_quantity %>
   </div>
 </div>
 
