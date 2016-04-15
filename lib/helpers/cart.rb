@@ -48,7 +48,8 @@ module BbInventoryHelpers
         bin_item = BinItem.new(info)
         bin_items << bin_item
       end
-      bin_items    
+      bin_items
+      print('Bin items in cart.rb: ', bin_items)    
     end
 
     def save_each_item_in_cart(bin)

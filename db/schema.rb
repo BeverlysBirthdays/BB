@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160409052644) do
+ActiveRecord::Schema.define(version: 20160415132632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,18 +53,26 @@ ActiveRecord::Schema.define(version: 20160409052644) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "item_checkins", force: :cascade do |t|
+    t.integer  "quantity_checkedin"
+    t.integer  "quantity_remaining"
+    t.float    "unit_price"
+    t.boolean  "donated"
+    t.date     "checkin_date"
+    t.integer  "item_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
   create_table "items", force: :cascade do |t|
     t.string   "barcode"
     t.string   "name"
-    t.integer  "age",                           array: true
+    t.integer  "age",                      array: true
     t.text     "notes"
     t.integer  "category_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "gender"
-    t.float    "unit_price"
-    t.integer  "donated_quantity"
-    t.integer  "bought_quantity"
   end
 
   add_index "items", ["age"], name: "index_items_on_age", using: :gin

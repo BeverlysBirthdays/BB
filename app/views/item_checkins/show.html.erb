@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Quantity checkedin:</strong>
+  <%= @item_checkin.quantity_checkedin %>
+</p>
+
+<p>
+  <strong>Quantity remaining:</strong>
+  <%= @item_checkin.quantity_remaining %>
+</p>
+
+<p>
+  <strong>Unit price:</strong>
+  <%= @item_checkin.unit_price %>
+</p>
+
+<p>
+  <strong>Donated:</strong>
+  <%= @item_checkin.donated %>
+</p>
+
+<p>
+  <strong>Checkin date:</strong>
+  <%= @item_checkin.checkin_date %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @item_checkin.item_id %>
+</p>
+
+<%= link_to 'Edit', edit_item_checkin_path(@item_checkin) %> |
+<%= link_to 'Back', item_checkins_path %>

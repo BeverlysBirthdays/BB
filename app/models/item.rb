@@ -82,7 +82,7 @@ class Item < ActiveRecord::Base
 		where(total_quantity <= MINIMUM)
 	end
 	def in_stock
-		where(total_quantity > 0)
+	 	total_quantity > 0
 	end
 
 	def total_inventory_value

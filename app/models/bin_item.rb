@@ -11,10 +11,13 @@ class BinItem < ActiveRecord::Base
 	# Methods
 	private
 	def item_in_inventory
-		all_item_ids = Item.in_stock.map(&:id)
-		unless all_item_ids.include?(self.item_id)
+		if !self.item.in_stock
 			errors.add(:item, "is not in stock")
 		end
+		# all_item_ids = Item.in_stock.map(&:id)
+		# unless all_item_ids.include?(self.item_id)
+		# 	errors.add(:item, "is not in stock")
+		# end
 	end
 
 end

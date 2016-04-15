@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :item_checkins
   resources :agencies
   resources :items
   resources :bin_items

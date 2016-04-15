@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Item Checkins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity checkedin</th>
+      <th>Quantity remaining</th>
+      <th>Unit price</th>
+      <th>Donated</th>
+      <th>Checkin date</th>
+      <th>Item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @item_checkins.each do |item_checkin| %>
+      <tr>
+        <td><%= item_checkin.quantity_checkedin %></td>
+        <td><%= item_checkin.quantity_remaining %></td>
+        <td><%= item_checkin.unit_price %></td>
+        <td><%= item_checkin.donated %></td>
+        <td><%= item_checkin.checkin_date %></td>
+        <td><%= item_checkin.item_id %></td>
+        <td><%= link_to 'Show', item_checkin %></td>
+        <td><%= link_to 'Edit', edit_item_checkin_path(item_checkin) %></td>
+        <td><%= link_to 'Destroy', item_checkin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item checkin', new_item_checkin_path %>

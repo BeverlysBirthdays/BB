@@ -24,6 +24,7 @@ class BinsController < ApplicationController
   # GET /bins/1.json
   def show
     @bin_items = @bin.bin_items
+    print('Bin Items: ', @bin_items)
   end
 
   # GET /bins/new
@@ -55,7 +56,7 @@ class BinsController < ApplicationController
 
         # decrease item quantity in inventory
         for bi in @bin.bin_items
-          bi.item.quantity -= bi.quantity
+          bi.item.donated_quantity -= bi.quantity
           bi.item.save!
         end
 
