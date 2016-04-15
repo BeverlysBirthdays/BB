@@ -31,7 +31,6 @@ class ItemsController < ApplicationController
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
     @total_quantity = @item.total_quantity
-
   end
 
   # GET /items/new
@@ -90,16 +89,20 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    if @item.donated=='1'
-      @item.donated_quantity = item_params['check_in_quantity']
-      @item.bought_quantity = 0
-    else
-      @item.bought_quantity = item_params['check_in_quantity']
-      @item.bought_quantity = 0
-    end
+    # if @item.donated=='1'
+    #   @item.donated_quantity = item_params['check_in_quantity']
+    #   @item.bought_quantity = 0
+    # else
+    #   @item.bought_quantity = item_params['check_in_quantity']
+    #   @item.bought_quantity = 0
+    # end
 
     respond_to do |format|
       if @item.save
+
+        #create item_checkin
+        info = {item_id: @item.id, quantity_checkedin: item_params['check_in_quantity'], donated: item_params['donated'], unit_price: item_params['unit_price'], quantity_remaining: item_params['check_in_quantity'], checkin_date: Date.today}
+        @item_checkin = ItemCheckin.create(info)
 
         format.html { redirect_to @item, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }

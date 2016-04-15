@@ -25,11 +25,10 @@ class Item < ActiveRecord::Base
 	belongs_to :category
 	has_many :bin_items
 	# has_many :bins, through: :bin_items
-	has_one :item_checkin
+	has_many :item_checkins
 
 	# Virtual Attributes
-	attr_accessor :donated
-	attr_accessor :check_in_quantity
+	attr_accessor :donated, :check_in_quantity, :unit_price
 
 	# Scopes
 	scope :sorted_by, lambda { order('name') }
@@ -68,8 +67,8 @@ class Item < ActiveRecord::Base
 	validates_presence_of :name, :category_id, :age
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
-	validates_numericality_of :donated_quantity, only_integer: true, greater_than_or_equal_to: 0
-	validates_numericality_of :bought_quantity, only_integer: true, greater_than_or_equal_to: 0
+	# validates_numericality_of :donated_quantity, only_integer: true, greater_than_or_equal_to: 0
+	# validates_numericality_of :bought_quantity, only_integer: true, greater_than_or_equal_to: 0
 	validate :age_is_in_list
 
 	# Other methods
@@ -95,6 +94,10 @@ class Item < ActiveRecord::Base
 	# def is_donated?
 	# 	donated=='1'
 	# end
+
+	def total_quantity
+		self.item_checkins.sum('quantity_remaining')
+	end
 
 	private
 	def age_is_in_list

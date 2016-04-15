@@ -7,15 +7,16 @@ class ItemCheckin < ActiveRecord::Base
 	# Validations
 	validates_numericality_of :quantity_checkedin, only_integer: true, greater_than_or_equal_to: 0
 	validates_numericality_of :quantity_remaining, only_integer: true, greater_than_or_equal_to: 0
-	validates_date :date
+	validates_date :checkin_date
 	validates_presence_of :unit_price, if: '!is_donated?'
 
 	# Scopes
 	scope :by_donated, -> {where(donated: true)}
 	scope :by_bought, -> {where(donated: false)}
 	# get total quantity for each item
+	scope :total_quantity_for_item, -> (i){group('item_id').having('item_id = ?', i).sum('quantity_remaining')}
 	scope :total_quantity, -> {group('item_id').sum('quantity_remaining')}
-	scope :total_donated_quantity, -> {group('item_id')}.having(donated: true).sum('quantity_remaining')
+	scope :total_donated_quantity, -> {group('item_id').having(donated: true).sum('quantity_remaining')}
 
 	# Methods
 	def is_donated?
