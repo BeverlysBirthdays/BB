@@ -24,7 +24,8 @@ class Item < ActiveRecord::Base
 	# Relationships
 	belongs_to :category
 	has_many :bin_items
-	has_many :bins, through: :bin_items
+	# has_many :bins, through: :bin_items
+	has_one :item_checkin
 
 	# Virtual Attributes
 	attr_accessor :donated
@@ -64,38 +65,36 @@ class Item < ActiveRecord::Base
 	# scope, :by_self_bought, -> {where(donated: false)}
 
 	# Validations
-	validates_presence_of :name, :category_id, :age, :donated_quantity, :bought_quantity
+	validates_presence_of :name, :category_id, :age
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
 	validates_numericality_of :donated_quantity, only_integer: true, greater_than_or_equal_to: 0
 	validates_numericality_of :bought_quantity, only_integer: true, greater_than_or_equal_to: 0
 	validate :age_is_in_list
-	# validates presence of price if bought
-	validates_presence_of :unit_price, if: '!is_donated?'
 
 	# Other methods
 
-	def total_quantity
-		return self.donated_quantity + self.bought_quantity
-	end
-	def low_stock
-		where(total_quantity <= MINIMUM)
-	end
-	def in_stock
-	 	total_quantity > 0
-	end
+	# def total_quantity
+	# 	return self.donated_quantity + self.bought_quantity
+	# end
+	# def low_stock
+	# 	where(total_quantity <= MINIMUM)
+	# end
+	# def in_stock
+	#  	total_quantity > 0
+	# end
 
-	def total_inventory_value
-		if unit_price.nil?
-			return 'N.A'
-		else
-			return self.total_quantity * self.unit_price
-		end
-	end
+	# def total_inventory_value
+	# 	if unit_price.nil?
+	# 		return 'N.A'
+	# 	else
+	# 		return self.total_quantity * self.unit_price
+	# 	end
+	# end
 
-	def is_donated?
-		donated=='1'
-	end
+	# def is_donated?
+	# 	donated=='1'
+	# end
 
 	private
 	def age_is_in_list
