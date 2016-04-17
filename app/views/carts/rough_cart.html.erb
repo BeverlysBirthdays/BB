@@ -1,0 +1,73 @@
+      print('Cart: ', session[:cart])
+
+      bin_items = Array.new
+      return bin_items if session[:cart].empty? # skip if cart empty...
+      session[:cart].each do |item_id, quantity|
+        # info = {item_id: item_id, quantity: quantity}
+        # print 'Info: ', info
+        # bin_item = BinItem.new(info)
+        # bin_items << bin_item
+
+        # get chronological order of item checkins
+        @item_checkins = ItemCheckin.checkins_for_item(item_id)
+
+        print('Item Checkins: ', @item_checkins)
+        print('Quantity: ', quantity)
+
+        quantity_required = quantity
+        bin_items_info = Array.new
+        # decrease remaining quantity
+        print('Reached')
+        @item_checkins.each do |i|
+          print('Reached 0')
+          print('I: ', i)
+          # if quantity required is checked out
+          if quantity_required == 0
+            print('Reached 1')
+            break
+          # if i has lower quantity than reqd qty
+          elsif i.quantity_remaining < quantity_required
+            print('Reached 2')
+            info = {item_checkin_id: i.id, quantity: i.quantity_remaining}
+            bin_items_info << info
+            quantity_required-=i.quantity_remaining
+          # if i has greater quantity than reqd qty
+          elsif i.quantity_remaining > quantity_required
+            print('Reached 3')
+            info = {item_checkin_id: i.id, quantity: i.quantity_required}
+            bin_items_info << info
+            quantity_required = 0
+            break
+          # if i has qty equal to reqd qty
+          elsif i.quantity_remaining == quantity_required
+            print('Reached 4')
+            info = {item_checkin_id: i.id, quantity: i.quantity_remaining}
+            bin_items_info << info
+            quantity_required = 0
+            break
+          end
+        end
+        print('Bin Items info: ', bin_items_info)
+        print()
+
+        # create Bin Items for each Bin
+        blen = bin_items_info.length - 1
+        (0..blen).each do |i|
+          info = bin_items_info[i]
+          b = BinItem.new(info)
+          bin_items << b 
+        end
+
+      end
+      bin_items
+      print('Bin items in cart: ', bin_items) 
+
+
+          @bin_items_in_cart = Array.new 
+
+    qty_array = @bin_items.group('item_id').sum('quantity_remaining')
+    for (i, qty) in qty_array
+      item = Item.find(i)
+      info = {item_name: item.name, quantity: quantity, category: item.category.name}
+      @bin_items_in_cart << info
+    end

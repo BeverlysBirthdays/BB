@@ -35,28 +35,76 @@ module BbInventoryHelpers
     end
 
     def get_list_of_items_in_cart
-      # if no cart at this moment, call create_cart
-      if session[:cart]==nil
-        create_cart
-      end
-      
+      # # if no cart at this moment, call create_cart
+      # if session[:cart]==nil
+      #   create_cart
+      # end
+
       bin_items = Array.new
       return bin_items if session[:cart].empty? # skip if cart empty...
+
       session[:cart].each do |item_id, quantity|
-        info = {item_id: item_id, quantity: quantity}
-        print 'Info: ', info
-        bin_item = BinItem.new(info)
-        bin_items << bin_item
+        info={item_id: item_id, quantity: quantity}
+        bin_items << info
       end
-      bin_items
-      print('Bin items in cart.rb: ', bin_items)    
+
     end
 
     def save_each_item_in_cart(bin)
       session[:cart].each do |item_id, quantity|
-        info = {item_id: item_id, quantity: quantity, bin_id: bin.id}
-        # create Basket Items for each Basket
-        b = BinItem.create(info)
+        # get chronological list of item checkins for each item
+        @item_checkins = ItemCheckin.checkins_for_item(item_id)
+
+        quantity_required = quantity
+        item_checkins_used = []
+        bin_items_info = []
+        # decrease remaining quantity
+        for i in @item_checkins
+          # if quantity required is checked out
+          if quantity_required == 0
+            break
+          # if i has lower quantity than reqd qty
+          elsif i.quantity_remaining < quantity_required
+            info = {item_checkin_id: i.id, quantity: i.quantity_remaining, bin_id: bin_id}
+            bin_items_info << info
+            item_checkins_used << i 
+            quantity_required-=i.quantity_remaining
+          # if i has greater quantity than reqd qty
+          elsif i.quantity_remaining > quantity_required
+            info = {item_checkin_id: i.id, quantity: i.quantity_required, bin_id: bin_id}
+            bin_items_info << info
+            item_checkins_used << i
+            quantity_required = 0
+            break
+          # if i has qty equal to reqd qty
+          elsif i.quantity_remaining = quantity_required
+            info = {item_checkin_id: i.id, quantity: i.quantity_remaining, bin_id: bin_id}
+            bin_items_info << info
+            item_checkins_used << i 
+            quantity_required = 0
+            break
+          end
+        end
+
+        # set reqd qty to total qty
+        quantity_required = quantity
+        # create Bin Items for each Bin
+        blen = bin_items_info.length - 1
+        for i in blen
+          info = bin_items_info[i]
+          b = BinItem.create(info)
+
+          # if reached end of array:
+          if i == blen
+            item_checkins_used[i].quantity_remaining-= quantity_required
+          # else: 
+          else
+            item_checkins_used[i].quantity_remaining = 0
+          end
+          quantity_required -= item_checkins_used[i].quantity_remaining
+
+        end
+
       end
 
     end

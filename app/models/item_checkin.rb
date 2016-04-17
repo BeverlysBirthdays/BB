@@ -13,6 +13,8 @@ class ItemCheckin < ActiveRecord::Base
 	# Scopes
 	scope :by_donated, -> {where(donated: true)}
 	scope :by_bought, -> {where(donated: false)}
+	# get chronological listing of item_checkins for each item
+	scope :checkins_for_item, -> (i){where('item_id=?',i).order('checkin_date')}
 	# get total quantity for each item
 	scope :total_quantity_for_item, -> (i){group('item_id').having('item_id = ?', i).sum('quantity_remaining')}
 	scope :total_quantity, -> {group('item_id').sum('quantity_remaining')}

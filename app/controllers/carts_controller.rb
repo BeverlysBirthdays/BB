@@ -24,6 +24,7 @@ class CartsController < ApplicationController
 
 	def show_cart
 		@bin_items_in_cart = get_list_of_items_in_cart
+
 		# @cart_total = calculate_cart_items_cost
 		# @cart_shipping_cost = calculate_cart_shipping
 		# @grand_total = @cart_shipping_cost + @cart_total
