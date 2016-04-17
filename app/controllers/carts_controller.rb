@@ -15,9 +15,19 @@ class CartsController < ApplicationController
 	def add_item_and_quantity_to_cart
 		@item = Item.find(params[:id])
 		
-		@qty = params[:qty]
-		add_item_to_cart(@item.id.to_i, @qty.to_i)
-		redirect_to show_cart_path
+		@qty = params[:qty].to_i
+
+		@item_checkins = ItemCheckin.checkins_for_item(@item.id)
+		@total_quantity_for_item = @item_checkins.sum('quantity_remaining')
+
+		if @item_checkins.nil? or @total_quantity_for_item<@qty 
+			flash[:error] = 'Required quantity not in stock. Stock Available: '+ @total_quantity_for_item.to_s
+			redirect_to get_quantity_for_item_path(params[:id])
+		else
+			add_item_to_cart(@item.id.to_i, @qty.to_i)
+			redirect_to show_cart_path
+		end
+
 	end
 
 	def show_cart

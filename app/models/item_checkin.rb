@@ -13,10 +13,12 @@ class ItemCheckin < ActiveRecord::Base
 	# Scopes
 	scope :by_donated, -> {where(donated: true)}
 	scope :by_bought, -> {where(donated: false)}
+	# in_stock: positive quantity of this batch remaining in inventory
+	scope :in_stock, -> {where('quantity_remaining>0')}
 	# get chronological listing of item_checkins for each item
-	scope :checkins_for_item, -> (i){where('item_id=?',i).order('checkin_date')}
+	scope :checkins_for_item, -> (i){where('item_id=?',i).in_stock.order('checkin_date')}
 	# get total quantity for each item
-	scope :total_quantity_for_item, -> (i){group('item_id').having('item_id = ?', i).sum('quantity_remaining')}
+	scope :total_quantity_remaining_for_item, -> (i){group('item_id').having('item_id = ?', i).sum('quantity_remaining')}
 	scope :total_quantity, -> {group('item_id').sum('quantity_remaining')}
 	scope :total_donated_quantity, -> {group('item_id').having(donated: true).sum('quantity_remaining')}
 
@@ -35,7 +37,7 @@ class ItemCheckin < ActiveRecord::Base
 
 	# check if item in stock
 	def in_stock
-		self.where (self.total_quantity > 0)
+		self.quantity_remaining > 0
 	end
 
 end

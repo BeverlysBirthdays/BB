@@ -8,7 +8,6 @@ class BinsController < ApplicationController
   # GET /bins.json
   def index
     # Filter record OR Return all items
-    print('Params: ', params[:filterrific])
     @filterrific = initialize_filterrific(Bin, params[:filterrific], 
       select_options: { 
         search_by_agency: Agency.alphabetical.all.to_a.map(&:name),
@@ -16,7 +15,6 @@ class BinsController < ApplicationController
       },
       persistence_id: false ) or return 
     @bins = @filterrific.find.chronological.paginate(:page => params[:page]).per_page(10)
-    print("Bins: ",@bins)
     #@bins = Bin.all.paginate(:page => params[:page]).per_page(10)
   end
 
@@ -24,8 +22,7 @@ class BinsController < ApplicationController
   # GET /bins/1.json
   def show
     @bin_items = @bin.bin_items
-    @items = @bin.get_unique_items_per_bin
-    print('Bin Items: ', @bin_items)
+    @items = @bin.get_unique_items_and_quantity_per_bin
   end
 
   # GET /bins/new
@@ -64,8 +61,6 @@ class BinsController < ApplicationController
 
         # clear cart
         clear_cart
-        
-        print('Reached clear cart')
 
         format.html { redirect_to @bin, notice: 'bin was successfully created.' }
         format.json { render :show, status: :created, location: @bin }

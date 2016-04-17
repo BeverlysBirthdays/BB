@@ -25,6 +25,7 @@ module BbInventoryHelpers
       #   # add it to the cart
       #   session[:cart][item_id.to_s] = qty
       # end
+      
       session[:cart][item_id.to_s] = qty
     end
 
@@ -35,10 +36,6 @@ module BbInventoryHelpers
     end
 
     def get_list_of_items_in_cart
-      # # if no cart at this moment, call create_cart
-      # if session[:cart]==nil
-      #   create_cart
-      # end
 
       bin_items = Array.new
       return bin_items if session[:cart].empty? # skip if cart empty...
@@ -55,9 +52,15 @@ module BbInventoryHelpers
         # get chronological list of item checkins for each item
         @item_checkins = ItemCheckin.checkins_for_item(item_id)
 
+        if @item_checkins.nil?
+          errors.add(@item, 'not in stock')
+          return # skip rest if not in stock
+        end
+
+        # total quantity required from different item checkins
         quantity_required = quantity
-        item_checkins_used = []
-        bin_items_info = []
+        item_checkins_used = [] # add to this to decrease quantity in inventory
+        bin_items_info = [] # add to this array to create BinItems
         # decrease remaining quantity
         for i in @item_checkins
           # if quantity required is checked out
