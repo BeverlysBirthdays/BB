@@ -65,20 +65,20 @@ module BbInventoryHelpers
             break
           # if i has lower quantity than reqd qty
           elsif i.quantity_remaining < quantity_required
-            info = {item_checkin_id: i.id, quantity: i.quantity_remaining, bin_id: bin_id}
+            info = {item_checkin_id: i.id, quantity: i.quantity_remaining}
             bin_items_info << info
             item_checkins_used << i 
             quantity_required-=i.quantity_remaining
           # if i has greater quantity than reqd qty
           elsif i.quantity_remaining > quantity_required
-            info = {item_checkin_id: i.id, quantity: i.quantity_required, bin_id: bin_id}
+            info = {item_checkin_id: i.id, quantity: i.quantity_required}
             bin_items_info << info
             item_checkins_used << i
             quantity_required = 0
             break
           # if i has qty equal to reqd qty
-          elsif i.quantity_remaining = quantity_required
-            info = {item_checkin_id: i.id, quantity: i.quantity_remaining, bin_id: bin_id}
+          elsif i.quantity_remaining == quantity_required
+            info = {item_checkin_id: i.id, quantity: i.quantity_remaining}
             bin_items_info << info
             item_checkins_used << i 
             quantity_required = 0
@@ -89,10 +89,12 @@ module BbInventoryHelpers
         # set reqd qty to total qty
         quantity_required = quantity
         # create Bin Items for each Bin
-        blen = bin_items_info.length - 1
-        for i in blen
+        blen = bin_items_info.length
+        blen.times do |i|
           info = bin_items_info[i]
           b = BinItem.create(info)
+          b.bin_id = bin.id
+          b.save!
 
           # if reached end of array:
           if i == blen
@@ -102,12 +104,10 @@ module BbInventoryHelpers
             item_checkins_used[i].quantity_remaining = 0
           end
           quantity_required -= item_checkins_used[i].quantity_remaining
-
         end
-
       end
-
     end
 
+  # end of both modules
   end
 end

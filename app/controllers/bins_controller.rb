@@ -24,6 +24,7 @@ class BinsController < ApplicationController
   # GET /bins/1.json
   def show
     @bin_items = @bin.bin_items
+    @items = @bin.get_unique_items_per_bin
     print('Bin Items: ', @bin_items)
   end
 
@@ -31,6 +32,7 @@ class BinsController < ApplicationController
   def new
     @bin = Bin.new
     @bin_items_in_cart = get_list_of_items_in_cart
+
     @agencies = Agency.active.alphabetical
     if @bin_items_in_cart.empty?
         redirect_to items_path, notice: "No items in basket to checkout"
@@ -55,14 +57,16 @@ class BinsController < ApplicationController
         save_each_item_in_cart(@bin)
 
         # decrease item quantity in inventory
-        for bi in @bin.bin_items
-          bi.item.donated_quantity -= bi.quantity
-          bi.item.save!
-        end
+        # for bi in @bin.bin_items
+        #   bi.item.donated_quantity -= bi.quantity
+        #   bi.item.save!
+        # end
 
         # clear cart
         clear_cart
         
+        print('Reached clear cart')
+
         format.html { redirect_to @bin, notice: 'bin was successfully created.' }
         format.json { render :show, status: :created, location: @bin }
       else

@@ -35,7 +35,7 @@ class ItemCheckin < ActiveRecord::Base
 
 	# check if item in stock
 	def in_stock
-		ItemCheckin.where (total_quantity > 0)
+		self.where (self.total_quantity > 0)
 	end
 
 end

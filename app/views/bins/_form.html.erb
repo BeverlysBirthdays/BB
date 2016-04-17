@@ -37,12 +37,12 @@
         </thead>
         <% @bin_items_in_cart.each do |bi| %>
         <tr>
-          <td><%= link_to bi.item.name, item_path(bi.item) %></td>
-          <td><%= bi.item.category.name %></td> 
-          <td>
-            <%= bi.quantity %>
-          </td>
-          <td><%= link_to '<i class="material-icons">close</i>'.html_safe, remove_item_path(bi.item.id), class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {position: 'right', tooltip: 'Remove from Bin'}%></td>
+          <!-- Bad style but only option to display names of items in cart since bin and asscoiations not yet created at this time -->
+          <% item = Item.find(bi[0]) %>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td><%= item.category.name %></td>
+          <td><%= bi[1] %></td>
+          <td><%= link_to '<i class="material-icons">close</i>'.html_safe, remove_item_path(item.id), class: "waves-effect waves-light btn-floating deep-orange darken-4 tooltipped", data: {position: 'right', tooltip: 'Remove from Bin'}%></td>
         </tr>
         <% end %>
       </table>

@@ -6,7 +6,9 @@ class BinItem < ActiveRecord::Base
 
 	# Validations
 	validates_numericality_of :quantity, only_integer: true, greater_than: 0
-	validate :item_in_inventory
+	#validate :item_in_inventory
+
+	# Scopes
 
 	# Methods
 	private

@@ -24,10 +24,11 @@
 				<th>Name</th>
 				<th>Quantity</th>
 			</thead>
-			<% @bin_items.each do |bi| %>
+			<% @items.keys.each do |i| %>
 				<tr>
-					<td><%=link_to bi.item.name, item_path(bi.item)%></td>
-					<td><%=bi.quantity%></td>
+					<% item = Item.find(i)%>
+					<td><%=link_to item.name, item_path(item)%></td>
+					<td><%=@items[i]%></td>
 				</tr>	
 			<%end%>
 		</table>
