@@ -72,7 +72,6 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    print 'Item: ', @item
     @total_quantity = @item.total_quantity
   end
 
@@ -104,11 +103,17 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
 
+        # get latest itemCheckin record
+        @latest_item_checkin = @item.item_checkins.chronological.first()
         # create new item_checkin record
         # if quantity of item edited: new check_in record only consists of item increment
         if item_params['check_in_quantity'].to_i > 0
           info = {item_id: @item.id, quantity_checkedin: item_params['check_in_quantity'], donated: item_params['donated'], unit_price: item_params['unit_price'], quantity_remaining: item_params['check_in_quantity'], checkin_date: Date.today}
           @item_checkin = ItemCheckin.create(info)
+        # else: if donated field of item edited: edit last entry
+        elsif item_params['donated']!=@latest_item_checkin.donated
+          @latest_item_checkin.update({donated: item_params['donated']})
+          @latest_item_checkin.save!
         end 
 
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }

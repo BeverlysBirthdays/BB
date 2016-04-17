@@ -86,7 +86,7 @@
   </div>
   <div class='col s4'>
     <strong>Quantity Bought: </strong>
-    <%= @item.total_bought_quantity %>
+    <%= @item.total_quantity - @item.total_donated_quantity %>
   </div>
 </div>
 
