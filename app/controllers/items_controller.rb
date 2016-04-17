@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
     @total_quantity = @item.total_quantity
+    @item_checkins = @item.item_checkins.chronological
   end
 
   # GET /items/new

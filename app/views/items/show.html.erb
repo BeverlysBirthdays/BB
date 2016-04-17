@@ -1,3 +1,12 @@
+<!-- Show Item Page: 
+  1. General Item Details: 
+    - Name, barcode, total value
+    - Gender, Age, Category
+    - Total Quantity in inventory, donated, bought
+    - Notes
+  2. Item Checkins History
+-->
+
 <p>
   <h5><strong>Item Details</strong></h5>
 </p>
@@ -10,7 +19,7 @@
   <!-- Barcode -->
   <div class="col s4">
       <strong>Barcode:</strong>
-      <% if @item.barcode='' %>
+      <% if @item.barcode=='' %>
         None
       <% else %>
         <%= @item.barcode %>
@@ -93,15 +102,34 @@
 </div>
 
 <div class='row'>
-  <!-- Donation: Specific to item checked in. Not for all similar items in inventory -->
-  <div class="col s4">
-      <strong>Donation:</strong>
-      <% if @item.donated == true%>
-        <i class="material-icons center-align small">done</i>
-      <% else %>
-        <i class="material-icons center-align small">clear</i>
+  <table class='hoverable col s12'>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Incoming Quantity</th>
+        <th>Remaining Quantity</th>
+        <th>Unit Price</th>
+        <th>Donated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @item_checkins.each do |ic| %>
+        <tr>
+          <td><%= link_to ic.checkin_date.strftime('%m/%d/%y'), item_checkin_path(ic) %></td>
+          <td class='center-align'><%= ic.quantity_checkedin %></td>
+          <td class='center-align'><%= ic.quantity_remaining %></td>
+          <td class='center-align'><%= ic.unit_price %></td>
+          <td>
+            <% if @item.donated == true%>
+              <i class="material-icons center-align small">done</i>
+            <% else %>
+              <i class="material-icons center-align small">clear</i>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-  </div>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "Edit Item", edit_item_path(@item), class: "waves-effect waves-light btn col s5 valign pink white-text" %>

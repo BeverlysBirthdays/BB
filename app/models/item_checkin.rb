@@ -15,6 +15,7 @@ class ItemCheckin < ActiveRecord::Base
 	scope :by_bought, -> {where(donated: false)}
 	# in_stock: positive quantity of this batch remaining in inventory
 	scope :in_stock, -> {where('quantity_remaining>0')}
+	scope :chronological, -> {order('checkin_date DESC')}
 	# get chronological listing of item_checkins for each item
 	scope :checkins_for_item, -> (i){where('item_id=?',i).in_stock.order('checkin_date')}
 	# get total quantity for each item
