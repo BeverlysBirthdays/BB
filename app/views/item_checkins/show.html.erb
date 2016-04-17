@@ -1,34 +1,47 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Quantity checkedin:</strong>
-  <%= @item_checkin.quantity_checkedin %>
+  <h5><strong>Item Details</strong></h5>
 </p>
 
-<p>
-  <strong>Quantity remaining:</strong>
-  <%= @item_checkin.quantity_remaining %>
-</p>
+<!-- Quantity -->
+<div class='row'>
+  <div class='col s4'>
+    <strong>Incoming Quantity: </strong>
+    <%= @item_checkin.quantity_checkedin %>
+  </div>
+  <div class='col s4'>
+    <strong>Remaining Quantity: </strong>
+    <%= @item_checkin.quantity_remaining %>
+  </div>
+</div>
 
-<p>
-  <strong>Unit price:</strong>
-  <%= @item_checkin.unit_price %>
-</p>
+<!-- Checkin_Date + Price -->
+<div class='row'>
+  <div class='col s4'>
+    <strong>Incoming Date: </strong>
+    <%= @item_checkin.checkin_date %>
+  </div>
+  <div class='col s4'>
+    <strong>Unit Price: </strong>
+    <% if @item_checkin.unit_price.nil? %>
+      N.A
+    <% else %>
+      <%= @item_checkin.unit_price %>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Donated:</strong>
-  <%= @item_checkin.donated %>
-</p>
+<div class='row'>
+  <div class='col s4'>
+    <strong>Donated: </strong>
+    <% if @item_checkin.donated == true%>
+      <i class="material-icons center-align small">done</i>
+    <% else %>
+      <i class="material-icons center-align small">clear</i>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Checkin date:</strong>
-  <%= @item_checkin.checkin_date %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @item_checkin.item_id %>
-</p>
-
-<%= link_to 'Edit', edit_item_checkin_path(@item_checkin) %> |
-<%= link_to 'Back', item_checkins_path %>
+<div class='row'>
+  <%= link_to 'Edit Item Check-in', edit_item_checkin_path(@item_checkin), class: "col s3 waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %> 
+  <%= link_to 'Back', item_path(@item_checkin.item), class: "col s3 offset-s1 waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
+</div>

@@ -1,16 +1,30 @@
 <%= simple_form_for(@item_checkin) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :quantity_checkedin %>
-    <%= f.input :quantity_remaining %>
-    <%= f.input :unit_price %>
-    <%= f.input :donated %>
-    <%= f.input :checkin_date %>
-    <%= f.input :item_id %>
+  <!-- Quantity + Price -->
+  <div class="form-inputs row">
+    <div class='col s3'>
+      <%= f.input :quantity_checkedin, label: 'Incoming Quantity' %>
+    </div>
+    <div class='col s3'>
+      <%= f.input :unit_price %>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <!-- Info: donated -->
+  <div class='row'>
+    <div class='col s3'>
+      <%= f.input :donated, as: :boolean, boolean_style: :inline, input_html: {:checked=>true} %>
+    </div>
+  </div>
+
+  <!-- Submit Form -->
+  <div class="form-actions row">
+    <div class='col s3'>
+      <%= f.button :submit %>
+    </div>
+    <div class='col s3 offset-s1'>
+      <%= link_to 'Back', url_for(:back), class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
+    </div>
   </div>
 <% end %>
