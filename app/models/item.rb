@@ -66,10 +66,8 @@ class Item < ActiveRecord::Base
 	# Validations
 	validates_presence_of :name, :category_id, :age
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
-	# validates_inclusion_of :age, in: AGE_LIST.to_h.values, message: "is not an option"
-	# validates_numericality_of :donated_quantity, only_integer: true, greater_than_or_equal_to: 0
-	# validates_numericality_of :bought_quantity, only_integer: true, greater_than_or_equal_to: 0
 	validate :age_is_in_list
+	validates_presence_of :unit_price, if: '!is_donated?'
 
 	# Other methods
 
@@ -108,6 +106,11 @@ class Item < ActiveRecord::Base
 	# end
 	def total_bought_quantity
 		self.item_checkins.where(donated: false).sum('quantity_remaining * unit_price')
+	end
+
+	def is_donated?
+		print("Donated?: ", donated != "0")
+		donated != "0"
 	end
 
 	private

@@ -1,6 +1,5 @@
-<p>
-  <strong>Bin Details</strong>
-</p>
+<h5>Bin Details</h5>
+
 <p>
   <strong>Agency:</strong>
   <%= @bin.agency.name %>
@@ -32,10 +31,8 @@
 				</tr>	
 			<%end%>
 		</table>
-		<%= link_to "Edit Bin", edit_bin_path(@bin), class: "waves-effect waves-light btn col s5 valign green lighten-5 light-blue-text text-darken-4" %>
 	</div>
 </div>
 
-<br>
 <%= link_to "Back to Bin Listings", bins_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
 

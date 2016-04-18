@@ -1,5 +1,7 @@
 class ItemCheckin < ActiveRecord::Base
 
+	# Callbacks
+
 	# Relationships
 	belongs_to :item
 	has_one :bin_item
@@ -40,5 +42,6 @@ class ItemCheckin < ActiveRecord::Base
 	def in_stock
 		self.quantity_remaining > 0
 	end
+
 
 end

@@ -74,7 +74,7 @@ module BbInventoryHelpers
             quantity_required-=i.quantity_remaining
           # if i has greater quantity than reqd qty
           elsif i.quantity_remaining > quantity_required
-            info = {item_checkin_id: i.id, quantity: i.quantity_required}
+            info = {item_checkin_id: i.id, quantity: quantity_required}
             bin_items_info << info
             item_checkins_used << i
             quantity_required = 0
@@ -100,12 +100,17 @@ module BbInventoryHelpers
           b.save!
 
           # if reached end of array:
-          if i == blen
+          if i == blen-1
+            print('Reached 1')
             item_checkins_used[i].quantity_remaining-= quantity_required
           # else: 
           else
+            print('Reached 2')
             item_checkins_used[i].quantity_remaining = 0
           end
+          print('Item Checkin Used To Be Saved: ', item_checkins_used[i])
+          # save changes in quantity
+          item_checkins_used[i].save!
           quantity_required -= item_checkins_used[i].quantity_remaining
         end
       end

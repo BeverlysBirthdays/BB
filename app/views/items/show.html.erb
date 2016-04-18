@@ -1,11 +1,19 @@
 <!-- Show Item Page: 
-  1. General Item Details: 
+  1. Nav buttons
+  2. General Item Details: 
     - Name, barcode, total value
     - Gender, Age, Category
     - Total Quantity in inventory, donated, bought
     - Notes
-  2. Item Checkins History
+  3. Item Checkins History
 -->
+<p></p>
+
+<div class='row'>
+  <%= link_to "Edit Item", edit_item_path(@item), class: "waves-effect waves-light btn col s5 valign pink white-text" %>
+  <%= link_to "Back to Item Listings", items_path, class: "waves-effect waves-light btn col s5 offset-s2 valign green white-text" %>
+</div>
+
 
 <p>
   <h5><strong>Item Details</strong></h5>
@@ -139,6 +147,3 @@
     </tbody>
   </table>
 </div>
-
-<%= link_to "Edit Item", edit_item_path(@item), class: "waves-effect waves-light btn col s5 valign pink white-text" %>
-<%= link_to "Back to Item Listings", items_path, class: "waves-effect waves-light btn col s5 offset-s2 valign green white-text" %>

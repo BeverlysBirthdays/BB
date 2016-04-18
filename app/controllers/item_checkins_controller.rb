@@ -25,6 +25,8 @@ class ItemCheckinsController < ApplicationController
   # POST /item_checkins.json
   def create
     @item_checkin = ItemCheckin.new(item_checkin_params)
+    @item_checkin.checkin_date = Date.today
+    @item_checkin.quantity_remaining = @item_checkin.quantity_checkedin
 
     respond_to do |format|
       if @item_checkin.save
@@ -41,7 +43,14 @@ class ItemCheckinsController < ApplicationController
   # PATCH/PUT /item_checkins/1.json
   def update
     respond_to do |format|
+      old_checkedin_quantity = @item_checkin.quantity_checkedin
       if @item_checkin.update(item_checkin_params)
+        # update difference in values to remaining_quantity:
+        new_checkedin_quantity = @item_checkin.quantity_checkedin
+        diff = new_checkedin_quantity - old_checkedin_quantity
+        @item_checkin.quantity_remaining += diff
+        @item_checkin.save!
+
         format.html { redirect_to @item_checkin, notice: 'Item checkin was successfully updated.' }
         format.json { render :show, status: :ok, location: @item_checkin }
       else
@@ -69,6 +78,6 @@ class ItemCheckinsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_checkin_params
-      params.require(:item_checkin).permit(:quantity_checkedin, :quantity_remaining, :unit_price, :donated, :checkin_date, :item_id)
+      params.require(:item_checkin).permit(:quantity_checkedin, :unit_price, :donated, :item_id)
     end
 end
