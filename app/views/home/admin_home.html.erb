@@ -1,0 +1,31 @@
+<!-- 
+	1. Inventory Count by Category: 
+		- number of items per category - total, donated, bought
+		- total value of items per category
+	2. Bin Count by Agency & Program:
+		- number of bins and value of bins per agency and program
+-->
+
+<div class='row'></div>
+
+<!-- Title + Nav buttons -->
+<div class='row'>
+	<div class='col s5'> Admin Dashboard </div>
+	<div class='col s7'>
+		<%= link_to "Add New Item", new_item_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
+		<%= link_to "View Basket", show_cart_path, class: "waves-effect waves-light btn col s3 offset-s1 valign orange white-text" %>
+	</div>
+</div>
+
+<div class='row'>
+	<div class='col s12'>
+		<table>
+			<tr>
+				<!-- Inventory Count by Category -->
+				<%= render :partial => 'inventory_count_by_category', collection: @items_by_category%>
+				<!-- Bin Count by Agency + Program -->
+				<%= render :partial => 'bin_count_by_agency', collection: @bins_by_agency%>
+			</tr>
+		</table>
+	</div>
+</div>
