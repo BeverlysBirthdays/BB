@@ -1,22 +1,22 @@
 <!-- Inventory Count by Category -->
 <td class='col s6'>
 	<h6 class='teal-text'><b>Inventory Count by Category</b></h6>
-	<table>
+	<table class='hoverable'>
 		<thead>
 			<tr>
-				<td>Category</td>
-				<td>Total Quantity Remaining</td>
-				<td>Total Donated Quantity</td>
-				<td>Total Bought Quantity</td>
+				<th class='center-align'>Category</th>
+				<th class='center-align'>Total Quantity Remaining</th>
+				<th class='center-align'>Total Donated Quantity</th>
+				<th class='center-align'>Total Bought Quantity</th>
 			</tr>
 		</thead>
 		<tbody>
 			<% @items_by_category.each do |i| %>
 			  <tr>
-			  	<td><%= i.category %></td>
-			  	<td><%= i.total_quantity %></td>
-			  	<td><%= i.total_donated_quantity%></td>
-			  	<td><%= i.total_quantity - i.total_donated_quantity%></td>
+			  	<td class='center-align'><%= i[:category] %></td>
+			  	<td class='center-align'><%= i[:total_quantity] %></td>
+			  	<td class='center-align'><%= i[:total_donated_quantity] %></td>
+			  	<td class='center-align'><%= i[:total_bought_quantity] %></td>
 			  </tr>
 			<% end %>
 		</tbody>
