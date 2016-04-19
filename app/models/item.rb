@@ -26,6 +26,7 @@ class Item < ActiveRecord::Base
 	has_many :bin_items
 	# has_many :bins, through: :bin_items
 	has_many :item_checkins
+	has_many :item_checkin_archives
 
 	# Virtual Attributes
 	attr_accessor :donated, :check_in_quantity, :unit_price
@@ -44,59 +45,19 @@ class Item < ActiveRecord::Base
 	# by barcode
 	scope :search_by_barcode, -> (b) { where("barcode = ? ", b.to_s)}
 
-	# stock
-	# scope :by_asc_count, -> { order("quantity ASC")}
-	# scope :by_desc_count, -> { order("quantity DESC")}
-	# scope :for_low_stock, -> { where("quantity <= ?", MINIMUM)}
-	# scope :not_in_stock, -> { where("quantity = ?", 0)}
-	# scope :in_stock, -> { where('total_quantity > ?', 0)}
-
-	# donations vs. self-bought
-	# scope :by_donation, -> {where('quantity[0]!=0') }
-	# scope, :by_bought, -> {where('quantity[1]!=0')}
-
-
-	# # donation = True
-	# scope :by_donation, -> { where("name && ARRAY[0]")}
-	# # Self_bought = False
-	# scope :by_self_bought, -> { where("name && ARRAY[1]")} 
-	# scope :by_donation, -> {where(donated: true)}
-	# scope, :by_self_bought, -> {where(donated: false)}
-
 	# Validations
 	validates_presence_of :name, :category_id, :age
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	validate :age_is_in_list
 	validates_presence_of :unit_price, if: '!is_donated?'
 
-	# Other methods
 
-	# def total_quantity
-	# 	return self.donated_quantity + self.bought_quantity
-	# end
-	# def low_stock
-	# 	where(total_quantity <= MINIMUM)
-	# end
-	# def in_stock
-	#  	total_quantity > 0
-	# end
-
-	# def total_inventory_value
-	# 	if unit_price.nil?
-	# 		return 'N.A'
-	# 	else
-	# 		return self.total_quantity * self.unit_price
-	# 	end
-	# end
-
-	# def is_donated?
-	# 	donated=='1'
-	# end
-
-	def total_quantity
+	# Custom Methods
+	# total quantity in inventory currently
+	def total_quantity_remaining
 		self.item_checkins.sum('quantity_remaining')
 	end
-	def total_donated_quantity
+	def total_donated_quantity_remaining
 		self.item_checkins.where(donated: true).sum('quantity_remaining')
 	end
 	# def total_donated_value
@@ -104,8 +65,16 @@ class Item < ActiveRecord::Base
 	# 	p
 	# 	return d.where('!unit_price.nil?').sum('quantity_remaining * unit_price')
 	# end
-	def total_bought_quantity
+	def total_bought_quantity_remaining
 		self.item_checkins.where(donated: false).sum('quantity_remaining * unit_price')
+	end
+
+	# total quantity checked in to inventory
+	def total_quantity_checkedin
+		self.item_checkins.sum('quantity_checkedin') + self.item_checkin_archives.sum('quantity_checkedin')
+	end
+	def total_donated_quantity_checkedin
+		self.item_checkins.where(donated: true).sum('quantity_checkedin') + self.item_checkin_archives.where(donated: true).sum('quantity_checkedin')
 	end
 
 	def is_donated?

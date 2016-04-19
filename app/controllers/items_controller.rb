@@ -30,9 +30,8 @@ class ItemsController < ApplicationController
   def show
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
-    @total_quantity = @item.total_quantity
     @item_checkins = @item.item_checkins.chronological
-    print('Item Checkins: ', @item_checkins)
+    @item_checkin_archives = @item.item_checkin_archives.chronological
   end
 
   # GET /items/new
