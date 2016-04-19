@@ -1,0 +1,15 @@
+<%= simple_form_for(@item_checkin_archive) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :quantity_checkedin %>
+    <%= f.input :unit_price %>
+    <%= f.input :donated %>
+    <%= f.input :checkin_date %>
+    <%= f.input :item_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

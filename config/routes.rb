@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :item_checkin_archives
   resources :item_checkins
   resources :agencies
   resources :items

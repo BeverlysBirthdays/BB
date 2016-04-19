@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Item Checkin Archives</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quantity checkedin</th>
+      <th>Unit price</th>
+      <th>Donated</th>
+      <th>Checkin date</th>
+      <th>Item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @item_checkin_archives.each do |item_checkin_archive| %>
+      <tr>
+        <td><%= item_checkin_archive.quantity_checkedin %></td>
+        <td><%= item_checkin_archive.unit_price %></td>
+        <td><%= item_checkin_archive.donated %></td>
+        <td><%= item_checkin_archive.checkin_date %></td>
+        <td><%= item_checkin_archive.item_id %></td>
+        <td><%= link_to 'Show', item_checkin_archive %></td>
+        <td><%= link_to 'Edit', edit_item_checkin_archive_path(item_checkin_archive) %></td>
+        <td><%= link_to 'Destroy', item_checkin_archive, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item checkin archive', new_item_checkin_archive_path %>
