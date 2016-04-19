@@ -31,6 +31,10 @@ class CartsController < ApplicationController
 	end
 
 	def show_cart
+		if session[:cart].nil?
+			create_cart
+		end
+		
 		@bin_items_in_cart = get_list_of_items_in_cart
 
 		# @cart_total = calculate_cart_items_cost
