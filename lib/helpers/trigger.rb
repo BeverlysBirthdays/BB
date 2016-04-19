@@ -1,65 +1,5 @@
 module BbInventoryHelpers
-  module Cart
-
-    # For this application, our cart is simply a hash consisting
-    # of item_ids as keys and quantities as values.  The hash is 
-    # saved as a session variable that the user should have  
-    # available during the course of their interactions w/ system.
-
-    def create_cart
-      session[:cart] ||= Hash.new
-    end
-
-    def clear_cart
-      session[:cart] = Hash.new
-    end
-
-    def destroy_cart
-      session[:cart] = nil
-    end
-
-    def add_item_to_cart(item_id, qty=1)
-      # if session[:cart].keys.include?(item_id.to_s)
-      #   # if item in cart, set quantity to new value
-      #   session[:cart][item_id.to_s] = qty
-      # else
-      #   # add it to the cart
-      #   session[:cart][item_id.to_s] = qty
-      # end
-      
-      session[:cart][item_id.to_s] = qty
-    end
-
-    def remove_item_from_cart(item_id)
-      if session[:cart].keys.include?(item_id.to_s)
-        session[:cart].delete(item_id.to_s)
-      end
-    end
-
-    def get_list_of_items_in_cart
-
-      bin_items = Array.new
-      return bin_items if session[:cart].empty? # skip if cart empty...
-
-      session[:cart].each do |item_id, quantity|
-        info={item_id: item_id, quantity: quantity}
-        bin_items << info
-      end
-
-    end
-
-    def save_each_item_in_cart(bin)
-      session[:cart].each do |item_id, quantity|
-        # get chronological list of item checkins for each item
-        @item_checkins = ItemCheckin.checkins_for_item(item_id)
-
-        if @item_checkins.nil?
-          errors.add(@item, 'not in stock')
-          return # skip rest if not in stock
-        end
-        decrease_inventory_quantity(bin, quantity, @item_checkins)
-      end
-    end
+  module Trigger
 
     # decrease quantity in item_checkin after saving each item in cart
     def decrease_inventory_quantity(bin, quantity, item_checkins)
@@ -105,7 +45,6 @@ module BbInventoryHelpers
         b = BinItem.create(info)
         b.bin_id = bin.id
         b.save!
-        
 
         # if reached end of array:
         if i == blen-1
@@ -130,7 +69,7 @@ module BbInventoryHelpers
       i = ItemCheckinArchive.create(info)
 
       # update bin item with archive_id
-      update_bin_item_with_archive_id(bin_item, i.id)
+      update_bin_item_with_arhive_id(bin_item, i.id)
       
     end
 
@@ -140,6 +79,6 @@ module BbInventoryHelpers
       bin_item.save!
     end
 
-  # end of both modules
+# end of both modules
   end
 end

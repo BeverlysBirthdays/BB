@@ -53,12 +53,6 @@ class BinsController < ApplicationController
         # update bin_items from cart
         save_each_item_in_cart(@bin)
 
-        # decrease item quantity in inventory
-        # for bi in @bin.bin_items
-        #   bi.item.donated_quantity -= bi.quantity
-        #   bi.item.save!
-        # end
-
         # clear cart
         clear_cart
 

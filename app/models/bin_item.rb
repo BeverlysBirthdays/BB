@@ -3,10 +3,11 @@ class BinItem < ActiveRecord::Base
 	# Relationships
 	belongs_to :bin 
 	belongs_to :item_checkin
+	belongs_to :item_checkin_archive
 
 	# Validations
 	validates_numericality_of :quantity, only_integer: true, greater_than: 0
-	validate :item_in_inventory
+	# validate :item_in_inventory
 
 	# Scopes
 

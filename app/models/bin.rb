@@ -33,7 +33,14 @@ class Bin < ActiveRecord::Base
 	def get_unique_items_and_quantity_per_bin()
 		d = {}
 		self.bin_items.each do |b|
-			item_id = b.item_checkin.item_id
+			# either item_Checkin or item_checkin_Archive: both are mutually exclusive, i.e. one has to be null
+			if !b.item_checkin.nil?
+				item_id = b.item_checkin.item_id
+			else
+				item_id = b.item_checkin_archive.item_id
+			end
+
+			# update quantity for given item
 			if d.keys().include?(item_id)
 				d[item_id] += b.quantity
 			else
