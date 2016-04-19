@@ -30,4 +30,5 @@ module HomeHelper
 		end
 		return @items_by_category
 	end
+
 end

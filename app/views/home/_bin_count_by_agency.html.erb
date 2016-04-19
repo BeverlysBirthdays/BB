@@ -1,0 +1,25 @@
+<!-- Bin Count by Agency & Program -->
+<td class='col s6'>
+	<h6 class='teal-text'><b>Bins Count by Agency & Program</b></h6>
+	<table class='hoverable'>
+		<thead>
+			<tr>
+				<th class='center-align'>Agency</th>
+				<th class='center-align'>Program</th>
+				<th class='center-align'>Number of Bins</th>
+				<th class='center-align'>Value of Bins</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- b[0]: Agency_ID, b[1]: Program_ID, c: Bin Count -->
+			<% @bins_by_agency.each do |b, c| %>
+			  <tr>
+			  	<td class='center-align'><%= Agency.find(b[0]).name %></td>
+			  	<td class='center-align'><%= Program.find(b[1]).name %></td>
+			  	<td class='center-align'><%= c %></td>
+			  	<td class='center-align'><%=  %></td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</td>
