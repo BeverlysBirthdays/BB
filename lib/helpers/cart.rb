@@ -105,7 +105,7 @@ module BbInventoryHelpers
         b = BinItem.create(info)
         b.bin_id = bin.id
         b.save!
-        
+
 
         # if reached end of array:
         if i == blen-1
@@ -129,9 +129,15 @@ module BbInventoryHelpers
       info = {quantity_checkedin: item_checkin.quantity_checkedin, unit_price: item_checkin.unit_price, donated: item_checkin.donated, checkin_date: item_checkin.checkin_date, item_id: item_checkin.item_id}
       i = ItemCheckinArchive.create(info)
 
-      # update bin item with archive_id
-      update_bin_item_with_archive_id(bin_item, i.id)
-      
+      # ensure item in archive created:
+      if !i.nil?
+        # delete item_checkin
+        item_checkin.destroy 
+        # update bin_item with archive_id
+        update_bin_item_with_archive_id(bin_item, i.id)
+
+      end
+
     end
 
     def update_bin_item_with_archive_id(bin_item, item_checkin_archive_id)

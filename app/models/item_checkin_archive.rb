@@ -9,13 +9,13 @@ class ItemCheckinArchive < ActiveRecord::Base
 	validates_date :checkin_date
 	validates_presence_of :unit_price, if: '!is_donated?'
 
-	# Scopes
+	# Scopes 
 	scope :by_donated, -> {where(donated: true)}
 	scope :by_bought, -> {where(donated: false)}
 	# in_stock: positive quantity of this batch remaining in inventory
 	scope :chronological, -> {order('checkin_date DESC')}
 	# get chronological listing of item_checkins for each item
-	scope :checkins_for_item, -> (i){where('item_id=?',i).in_stock.order('checkin_date')}
+	scope :checkins_for_item, -> (i){where('item_id=?',i).in_stock.chronological}
 	# get total quantity for each item
 	scope :total_quantity_checkedin, -> {group('item_id').sum('quantity_checkedin')}
 	scope :total_donated_quantity, -> {group('item_id').having(donated: true).sum('quantity_checkedin')}

@@ -19,7 +19,7 @@ class ItemCheckin < ActiveRecord::Base
 	scope :in_stock, -> {where('quantity_remaining>0')}
 	scope :chronological, -> {order('checkin_date DESC')}
 	# get chronological listing of item_checkins for each item
-	scope :checkins_for_item, -> (i){where('item_id=?',i).in_stock.order('checkin_date')}
+	scope :checkins_for_item, -> (i){where('item_id=?',i).in_stock.chronological}
 	# get total quantity for each item
 	scope :total_quantity_remaining_for_item, -> (i){group('item_id').having('item_id = ?', i).sum('quantity_remaining')}
 	scope :total_quantity, -> {group('item_id').sum('quantity_remaining')}
