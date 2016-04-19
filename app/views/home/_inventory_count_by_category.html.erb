@@ -1,0 +1,25 @@
+<!-- Inventory Count by Category -->
+<td class='col s6'>
+	<h6 class='teal-text'><b>Inventory Count by Category</b></h6>
+	<table class='hoverable'>
+		<thead>
+			<tr>
+				<th class='center-align'>Category</th>
+				<th class='center-align'>Total Quantity Remaining</th>
+				<th class='center-align'>Total Donated Quantity</th>
+				<th class='center-align'>Total Bought Quantity</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @items_by_category.each do |i| %>
+			<% puts @items_by_category %>
+			  <tr>
+			  	<td class='center-align'><%= i[:category] %></td>
+			  	<td class='center-align'><%= i[:total_quantity] %></td>
+			  	<td class='center-align'><%= i[:total_donated_quantity] %></td>
+			  	<td class='center-align'><%= i[:total_bought_quantity] %></td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</td>
