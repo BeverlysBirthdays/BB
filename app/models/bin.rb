@@ -28,7 +28,7 @@ class Bin < ActiveRecord::Base
 	scope :search_by_program, -> (p) { joins(:program).where('programs.name = ?', p) }
 	
 	# Validations
-	validates_date :checkout_date, :on_or_before => :today
+	validates_date :checkout_date, :on => :today
 	validates_numericality_of :num_of_bins, only_integer: true, greater_than_or_equal_to: 1
 
 	# Methods
