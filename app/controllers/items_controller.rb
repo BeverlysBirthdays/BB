@@ -72,7 +72,7 @@ class ItemsController < ApplicationController
 
   # GET /items/1/edit
   def edit
-    @total_quantity = @item.total_quantity
+    @total_quantity = @item.total_quantity_remaining
   end
 
   # POST /items

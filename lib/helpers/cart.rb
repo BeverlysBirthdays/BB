@@ -119,7 +119,9 @@ module BbInventoryHelpers
         quantity_required -= item_checkins_used[i].quantity_remaining
 
         # trigger: move item_checkin to archive if quantity_remaining = 0
-        move_item_checkin_to_archive(b,item_checkins_used[i])
+        if item_checkins_used[i].quantity_remaining==0
+          move_item_checkin_to_archive(b,item_checkins_used[i])
+        end
 
       end
 

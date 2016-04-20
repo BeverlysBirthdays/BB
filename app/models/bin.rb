@@ -5,7 +5,8 @@ class Bin < ActiveRecord::Base
 	  available_filters: [
 	    :sorted_by,
 	    :search_by_agency,
-	    :search_by_date,
+	    :search_by_date_gte,
+	    :search_by_date_lte,
 	    :search_by_program
 	  ]
 	)
@@ -22,7 +23,8 @@ class Bin < ActiveRecord::Base
 	scope :by_agency_and_program, -> {group('agency_id', 'program_id').sum('num_of_bins')}
 
 	scope :search_by_agency, -> (a){joins(:agency).where('agencies.name = ?', a)}
-	scope :search_by_date, -> (d){where("checkout_date=?", d)}
+	scope :search_by_date_gte, -> (d){where("checkout_date>=?", d)}
+	scope :search_by_date_lte, -> (d){where("checkout_date<=?", d)}
 	scope :search_by_program, -> (p) { joins(:program).where('programs.name = ?', p) }
 	
 	# Validations

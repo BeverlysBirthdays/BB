@@ -26,7 +26,7 @@ $(document).ready(function() {
 });
 
 //datepicker for filter on bins index page
-$( "#datepicker" ).datepicker();
+$( ".datepicker" ).datepicker();
 
 $(".button-collapse").sideNav();
 $( document ).ready(function() { 
