@@ -9,7 +9,7 @@ class ItemCheckin < ActiveRecord::Base
 	# Validations
 	validates_numericality_of :quantity_checkedin, only_integer: true, greater_than_or_equal_to: 0
 	validates_numericality_of :quantity_remaining, only_integer: true, greater_than_or_equal_to: 0
-	validates_date :checkin_date
+	validates_date :checkin_date, :on => :today
 	validates_presence_of :unit_price, if: '!is_donated?'
 
 	# Scopes
