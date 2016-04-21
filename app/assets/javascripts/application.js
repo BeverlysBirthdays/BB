@@ -21,11 +21,11 @@
 $(document).ready(function() {
 	$('select').material_select();
 	// fixed filter bar on right
-    $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
+    // $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
 
 });
 
-//datepicker for filter on bins index page
+// datepicker for filter on bins index page
 $( ".datepicker" ).datepicker();
 
 $(".button-collapse").sideNav();
@@ -39,3 +39,14 @@ $(document).ready(function(){
     	$(this).parent().hide();
     })
  });
+
+// upon resize: display filter bar on top instead of right side
+$(window).on('resize', function(){
+	if($(window).width() < 600){
+		$('.small-filter-box > div').addClass('filter-box');
+	}
+	else{
+		$('.small-filter-box > div').removeClass('filter-box');
+	}
+});
+

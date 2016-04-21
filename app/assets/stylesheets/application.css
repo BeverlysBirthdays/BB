@@ -40,6 +40,11 @@ main {
 .error, #error_explanation{
   color: red;
 }
+
+.filter-box{
+  display: inline-block;
+}
+
 /*.avg {
   display: block;
  }

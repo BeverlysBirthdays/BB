@@ -19,13 +19,6 @@
 					<strong>Gender: </strong><%= @gender_list.key(item.gender) %>
 					<br>
 					<!-- Second Line -->
-					<!-- Donated -->
-					<% if item.donated == true %>
-						Donated
-					<% else %>
-						Bought
-					<% end %>
-					&nbsp;&nbsp;
 					<strong>Notes: </strong>
 					<% if item.notes == ""%> 
 						- 

@@ -77,6 +77,7 @@ class Item < ActiveRecord::Base
 		donated != "0"
 	end
 
+	# Methods = scope
 	def self.search_by_quantity(min)
 		low_stock = Array.new
 		a = Item.joins(:item_checkins).group('item_id').sum('quantity_remaining')
