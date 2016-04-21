@@ -26,9 +26,9 @@
     </table>
   <% end %>
 
-  <!-- Add the pagination using will_paginate gem -->
+  <!-- Add the pagination using Kaminari gem -->
   <span class="paginate">
-    <%= will_paginate @all_orders, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+    <%= paginate @bins %>
   </span>
 
 </div>

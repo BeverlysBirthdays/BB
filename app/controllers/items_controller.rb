@@ -17,12 +17,32 @@ class ItemsController < ApplicationController
     # Filter record OR Return all items
     @filterrific = initialize_filterrific( Item, params[:filterrific], 
       select_options: { 
-        by_category: Category.alphabetical.all.to_a.map(&:name),
+        by_category: Category.alphabetical.all.pluck(:name),
         by_age_category: @age_list,
         by_gender: @gender_list 
       },
-      persistence_id: false) or return 
-    @items = @filterrific.find.alphabetical.paginate(:page => params[:page]).per_page(10)
+      persistence_id: false) or return
+    if !params[:filterrific].nil? && params[:filterrific][:search_by_quantity]==""
+      print('Reached 1')
+      @items = @filterrific.find.alphabetical
+    elsif params[:filterrific].nil?
+      print('Reached 2')
+      @items = @filterrific.find.alphabetical
+    else
+      print('Reached 3')
+      @items = Array.new
+      Item.search_by_quantity(params[:filterrific][:search_by_quantity].to_i).each do |i|
+        item = Item.find(i)
+        @items << item
+      end
+    end
+    # paginate: different function if array
+    if @items.instance_of?(Array)
+      @items=Kaminari.paginate_array(@items).page(params[:page]).per(10)
+    else
+      @items = @items.page(params[:page])
+    end
+
   end
 
   # GET /items/1

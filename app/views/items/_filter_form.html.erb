@@ -18,6 +18,9 @@
 		<%= f.select(:by_category, @filterrific.select_options[:by_category], { include_blank: 'Category' }, class: 'filterrific-periodically-observed') %>	
 	</div>
 	<div>
+	    <%= f.text_field(:search_by_quantity, class: 'filterrific-periodically-observed', :placeholder=>'<= Quantity') %>
+	</div>
+	<div>
 		<%= link_to 'Reset filters',reset_filterrific_url, class: 'waves-effect waves-light btn col s12 green white-text' %>
 	</div>
 	<%# add an automated spinner to your form when the list is refreshed %>

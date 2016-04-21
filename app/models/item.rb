@@ -16,6 +16,7 @@ class Item < ActiveRecord::Base
 	    :by_gender,
 	    :by_age_category,
 	    :by_category,
+	    :search_by_quantity
 	    # :by_donation,
 	    # :by_bought
 	  ]
@@ -24,7 +25,6 @@ class Item < ActiveRecord::Base
 	# Relationships
 	belongs_to :category
 	has_many :bin_items
-	# has_many :bins, through: :bin_items
 	has_many :item_checkins
 	has_many :item_checkin_archives
 
@@ -60,11 +60,6 @@ class Item < ActiveRecord::Base
 	def total_donated_quantity_remaining
 		self.item_checkins.where(donated: true).sum('quantity_remaining')
 	end
-	# def total_donated_value
-	# 	d = self.item_checkins.where(donated: true)
-	# 	p
-	# 	return d.where('!unit_price.nil?').sum('quantity_remaining * unit_price')
-	# end
 	def total_bought_quantity_remaining
 		self.item_checkins.where(donated: false).sum('quantity_remaining * unit_price')
 	end
@@ -77,9 +72,20 @@ class Item < ActiveRecord::Base
 		self.item_checkins.where(donated: true).sum('quantity_checkedin') + self.item_checkin_archives.where(donated: true).sum('quantity_checkedin')
 	end
 
+	# Methods used in scopes
 	def is_donated?
-		print("Donated?: ", donated != "0")
 		donated != "0"
+	end
+
+	def self.search_by_quantity(min)
+		low_stock = Array.new
+		a = Item.joins(:item_checkins).group('item_id').sum('quantity_remaining')
+		a.keys.each do |item_id|
+			if a[item_id] <= min
+				low_stock << item_id
+			end
+		end
+		return low_stock
 	end
 
 	private

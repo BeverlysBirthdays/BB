@@ -10,11 +10,11 @@ class BinsController < ApplicationController
     # Filter record OR Return all items
     @filterrific = initialize_filterrific(Bin, params[:filterrific], 
       select_options: { 
-        search_by_agency: Agency.alphabetical.all.to_a.map(&:name),
-        search_by_program: Program.alphabetical.all.to_a.map(&:name) 
+        search_by_agency: Agency.alphabetical.all.pluck(:name),
+        search_by_program: Program.alphabetical.all.pluck(:name) 
       },
       persistence_id: false ) or return 
-    @bins = @filterrific.find.chronological.paginate(:page => params[:page]).per_page(10)
+    @bins = @filterrific.find.chronological.paginate(:page => params[:page])
     #@bins = Bin.all.paginate(:page => params[:page]).per_page(10)
   end
 

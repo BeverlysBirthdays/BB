@@ -29,9 +29,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
 gem 'validates_timeliness', '~> 4.0'
 gem 'materialize-sass'
-gem 'will_paginate'
+gem 'kaminari'
+
+# for postgres and Heroku
 gem 'pg_array_parser'
 gem 'postgres_ext'
+
 source 'https://rails-assets.org' do
   gem 'rails-assets-materialize'
 end
