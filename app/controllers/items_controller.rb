@@ -26,13 +26,10 @@ class ItemsController < ApplicationController
       },
       persistence_id: false) or return
     if !params[:filterrific].nil? && params[:filterrific][:search_by_quantity]==""
-      print('Reached 1')
       @items = @filterrific.find.alphabetical
     elsif params[:filterrific].nil?
-      print('Reached 2')
       @items = @filterrific.find.alphabetical
     else
-      print('Reached 3')
       @items = Array.new
       Item.search_by_quantity(params[:filterrific][:search_by_quantity].to_i).each do |i|
         item = Item.find(i)
@@ -50,10 +47,12 @@ class ItemsController < ApplicationController
   end
 
   # export items to csv
-  def export
+  def export_items
     @items = Item.dump_to_csv
+    timestamp = Time.now.to_s
+    fname = 'Items '+ timestamp + '.csv'
     respond_to do |format|
-      format.csv { send_data @items.to_csv }
+      format.csv { send_data @items.to_csv, filename: fname }
     end
   end
 

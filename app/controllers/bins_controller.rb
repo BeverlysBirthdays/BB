@@ -15,7 +15,16 @@ class BinsController < ApplicationController
       },
       persistence_id: false ) or return 
     @bins = @filterrific.find.chronological.page(params[:page])
-    #@bins = Bin.all.paginate(:page => params[:page]).per_page(10)
+  end
+
+  # export bins to csv format
+  def export_bins
+    @bins = Bin.dump_to_csv
+    timestamp = Time.now.to_s
+    fname = 'Bins '+ timestamp + '.csv'
+    respond_to do |format|
+      format.csv { send_data @bins.to_csv, filename: fname}
+    end
   end
 
   # GET /bins/1

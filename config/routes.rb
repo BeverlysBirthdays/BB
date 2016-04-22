@@ -28,7 +28,8 @@ Rails.application.routes.draw do
   patch 'toggle_agency/:id' => 'agencies#toggle_agency', as: :toggle_agency
 
   # export as csv
-  get 'export', to: 'items#export', as: :items_export
+  get 'export_items', to: 'items#export_items', as: :items_export
+  get 'export_bins', to: 'bins#export_bins', as: :bins_export
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -52,4 +52,33 @@ class Bin < ActiveRecord::Base
 		return d
 	end
 
+	# get data to dump from db to csv
+	def self.dump_to_csv
+		@bins = Bin.chronological
+	end
+	def self.to_csv(options = {})
+		CSV.generate(options) do |csv|
+		    csv << ['Bin ID', 'Checkout Date', 'Number of Bins', 'Agency', 'Program', 'Item ID', 'Item Name', 'Quantity', 'Unit Price', 'Donated']
+		    all.each do |bin|
+		    	# bin_items for bins
+		    	bin.bin_items.each do |bi|
+		    		info=[]
+		    		info = [bin.id, bin.checkout_date, bin.num_of_bins, bin.agency.name, bin.program.name]
+		    		# if item_checkin_archive
+		    		if bi.item_checkin_id.nil?
+		    			ica = bi.item_checkin_archive
+		    			info+=[ica.item_id, ica.item.name, bi.quantity, ica.unit_price, ica.donated]
+		    		# else item_checkin
+		    		else
+		    			ic = bi.item_checkin
+		    			info+=[ic.item_id, ic.item.name, bi.quantity, ic.unit_price, ic.donated]
+		    		end
+		    		csv << info
+		    		
+		    	end
+
+		    end
+	  	end
+	 end
+
 end
