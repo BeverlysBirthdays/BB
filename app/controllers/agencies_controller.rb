@@ -7,6 +7,15 @@ class AgenciesController < ApplicationController
     @agencies = Agency.all
   end
 
+  def export_agencies
+    @agencies = Agency.dump_to_csv
+    timestamp = Time.now.to_s
+    fname = 'Agencies '+ timestamp + '.csv'
+    respond_to do |format|
+      format.csv { send_data @agencies.to_csv, filename: fname}
+    end
+  end
+
   # GET /agencies/1
   # GET /agencies/1.json
   def show

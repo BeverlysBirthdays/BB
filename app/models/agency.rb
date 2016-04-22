@@ -30,6 +30,19 @@ class Agency < ActiveRecord::Base
 	scope :active, -> { where(active: true) }
 	scope :inactive, -> {where(active: false)}
 
+	# get data to dump from db to csv
+	def self.dump_to_csv
+		@agencies = Agency.alphabetical
+	end
+	def self.to_csv(options = {})
+		CSV.generate(options) do |csv|
+		    csv << column_names
+		    all.each do |agency|
+		    	csv << agency.attributes.values_at(*column_names)
+		    end
+	  	end
+	end
+
 	# Callback code
   	# -----------------------------
    	private
