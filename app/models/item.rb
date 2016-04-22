@@ -89,6 +89,27 @@ class Item < ActiveRecord::Base
 		return low_stock
 	end
 
+	# get data to dump from db to csv
+	def self.dump_to_csv
+		@items = Item.alphabetical
+	end
+	def self.to_csv(options = {})
+	  CSV.generate(options) do |csv|
+	    csv << ['Item ID', 'Item Barcode', 'Item Name', 'Age', 'Gender', 'Notes', 'Category', 'Created At', 'Updated At']
+	    all.each do |item|
+
+	    	# get string version for age instead of integer
+	    	age=Array.new
+	    	item.age.each do |a|
+	    		print('Al: ', AGE_LIST[a][0])
+	    		age << AGE_LIST[a][0]
+	    	end
+
+	    	csv << [item.id, item.barcode, item.name, age, GENDER_LIST[item.gender][0], item.notes, item.category.name, item.created_at, item.updated_at]
+	    end
+	  end
+	end
+
 	private
 	def age_is_in_list
 		if ! self.age.nil?

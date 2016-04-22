@@ -7,13 +7,16 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
+
     # create cart
     create_cart
+
     # age list with only keys
     al = Item::AGE_LIST.to_h
     gl = Item::GENDER_LIST.to_h
     @gender_list = Item::GENDER_LIST.to_h
     @age_list = Item::AGE_LIST.to_h 
+
     # Filter record OR Return all items
     @filterrific = initialize_filterrific( Item, params[:filterrific], 
       select_options: { 
@@ -36,6 +39,7 @@ class ItemsController < ApplicationController
         @items << item
       end
     end
+    
     # paginate: different function if array
     if @items.instance_of?(Array)
       @items=Kaminari.paginate_array(@items).page(params[:page]).per(10)
@@ -43,6 +47,14 @@ class ItemsController < ApplicationController
       @items = @items.page(params[:page])
     end
 
+  end
+
+  # export items to csv
+  def export
+    @items = Item.dump_to_csv
+    respond_to do |format|
+      format.csv { send_data @items.to_csv }
+    end
   end
 
   # GET /items/1
