@@ -95,17 +95,35 @@ class Item < ActiveRecord::Base
 	end
 	def self.to_csv(options = {})
 	  CSV.generate(options) do |csv|
-	    csv << ['Item ID', 'Item Barcode', 'Item Name', 'Age', 'Gender', 'Notes', 'Category', 'Created At', 'Updated At']
+	    csv << ['Item ID', 'Item Barcode', 'Item Name', 'Age', 'Gender', 'Notes', 'Category', 'Quantity Checked In', 'Quantity Remaining', 'Unit Price', 'Donated', 'Check-in Date']
 	    all.each do |item|
+	    	# item_checkins for items
+	    	item.item_checkins.each do |ic|
 
-	    	# get string version for age instead of integer
-	    	age=Array.new
-	    	item.age.each do |a|
-	    		print('Al: ', AGE_LIST[a][0])
-	    		age << AGE_LIST[a][0]
+	    		# get string version for age instead of integer
+	    		age=Array.new
+	    		item.age.each do |a|
+	    			print('Al: ', AGE_LIST[a][0])
+	    			age << AGE_LIST[a][0]
+	    		end
+
+	    		csv << [item.id, item.barcode, item.name, age, GENDER_LIST[item.gender][0], item.notes, item.category.name, ic.quantity_checkedin, ic.quantity_remaining, ic.unit_price, ic.donated, ic.checkin_date]
+
+	    	end
+	    	# item_checkin_archives for items
+	    	item.item_checkin_archives.each do |ic|
+
+	    		# get string version for age instead of integer
+	    		age=Array.new
+	    		item.age.each do |a|
+	    			print('Al: ', AGE_LIST[a][0])
+	    			age << AGE_LIST[a][0]
+	    		end
+
+	    		csv << [item.id, item.barcode, item.name, age, GENDER_LIST[item.gender][0], item.notes, item.category.name, ic.quantity_checkedin, 0, ic.unit_price, ic.donated, ic.checkin_date]
+
 	    	end
 
-	    	csv << [item.id, item.barcode, item.name, age, GENDER_LIST[item.gender][0], item.notes, item.category.name, item.created_at, item.updated_at]
 	    end
 	  end
 	end
