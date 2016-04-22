@@ -1,13 +1,13 @@
-<%= form_for_filterrific @filterrific do |f| %>
+<%= form_for_filterrific @filterrific, :html => {class: 'small-filter-box'} do |f| %>
 	<div>
 	    <%# give the search field the 'filterrific-periodically-observed' class for live updates %>
 	    <%= f.select(:search_by_agency, @filterrific.select_options[:search_by_agency], { include_blank: 'Agency' }, class: 'filterrific-periodically-observed') %>	
-	    <%# f.text_field(:search_by_agency, class: 'filterrific-periodically-observed', :placeholder=>'Agency Name') %>
 	</div>
 	<div>
 	    <%= f.text_field(:search_by_date_gte, class: 'datepicker filterrific-periodically-observed', :placeholder=>'From Date') %>
-	    <%= f.text_field(:search_by_date_lte, class: 'datepicker filterrific-periodically-observed', :placeholder=>'To Date') %>
-	    <%# f.date_select(:search_by_date, class: 'filterrific-periodically-observed', :use_short_month=> true, :default=> Date.today) %>
+	</div>
+	<div>
+		<%= f.text_field(:search_by_date_lte, class: 'datepicker filterrific-periodically-observed', :placeholder=>'To Date') %>
 	</div>
 	<div>
 	    <%= f.select(:search_by_program, @filterrific.select_options[:search_by_program], { include_blank: 'Program' }, class: 'filterrific-periodically-observed') %>	

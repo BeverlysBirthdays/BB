@@ -14,7 +14,7 @@ class BinsController < ApplicationController
         search_by_program: Program.alphabetical.all.pluck(:name) 
       },
       persistence_id: false ) or return 
-    @bins = @filterrific.find.chronological.paginate(:page => params[:page])
+    @bins = @filterrific.find.chronological.page(params[:page])
     #@bins = Bin.all.paginate(:page => params[:page]).per_page(10)
   end
 
