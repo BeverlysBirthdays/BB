@@ -4,7 +4,7 @@ class BinItemsController < ApplicationController
   # GET /bin_items
   # GET /bin_items.json
   def index
-    @bin_items = BinItem.all.paginate(:page => params[:page])
+    @bin_items = BinItem.all.page(:page => params[:page])
   end
 
   # GET /bin_items/1

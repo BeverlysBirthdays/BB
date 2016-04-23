@@ -4,7 +4,7 @@ class ItemCheckinArchivesController < ApplicationController
   # GET /item_checkin_archives
   # GET /item_checkin_archives.json
   def index
-    @item_checkin_archives = ItemCheckinArchive.all
+    @item_checkin_archives = ItemCheckinArchive.all.page(params[:page])
   end
 
   # GET /item_checkin_archives/1

@@ -4,7 +4,7 @@ class AgenciesController < ApplicationController
   # GET /agencies
   # GET /agencies.json
   def index
-    @agencies = Agency.all
+    @agencies = Agency.alphabetical.page(params[:page])
   end
 
   def export_agencies
