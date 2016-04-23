@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get 'get_new_barcode' => 'items#get_new_barcode', as: :get_new_barcode
   post 'get_new_barcode' => 'items#get_new_item_info', as: :get_new_item_info
 
+  # Home Routes
   get 'home' => 'home#home', as: :home
+  get 'about_us' => 'home#about_us', as: :about
 
   # Named routes - Cart
   get 'add_to_cart/:id' => 'carts#add_to_cart', as: :add_to_cart

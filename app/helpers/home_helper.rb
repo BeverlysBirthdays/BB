@@ -3,7 +3,7 @@ module HomeHelper
 	def calculate_total_quantity(items)
 		total_quantity = 0
 		items.each do |i|
-			total_quantity+=i.total_quantity
+			total_quantity+=i.total_quantity_remaining
 		end
 		return total_quantity
 	end
@@ -11,7 +11,7 @@ module HomeHelper
 	def calculate_total_donated_quantity(items)
 		total_donated_quantity = 0
 		items.each do |i|
-			total_donated_quantity+=i.total_donated_quantity
+			total_donated_quantity+=i.total_donated_quantity_remaining
 		end
 		return total_donated_quantity
 	end
