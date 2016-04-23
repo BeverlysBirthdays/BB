@@ -3,6 +3,7 @@ require 'test_helper'
 class AgencyTest < ActiveSupport::TestCase
   # testing relationships
   should have_many(:bins)
+  
   # testing validations
   should validate_uniqueness_of(:name)
 
