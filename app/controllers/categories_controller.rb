@@ -1,4 +1,8 @@
 class CategoriesController < ApplicationController
+  
+  # ensure user logged in
+  authorize_resource
+
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   # GET /categories

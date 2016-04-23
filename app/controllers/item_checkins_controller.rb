@@ -1,4 +1,8 @@
 class ItemCheckinsController < ApplicationController
+
+  # ensure user logged in
+  authorize_resource
+  
   before_action :set_item_checkin, only: [:show, :edit, :update, :destroy]
 
   # GET /item_checkins

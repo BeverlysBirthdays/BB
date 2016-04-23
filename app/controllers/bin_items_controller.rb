@@ -1,4 +1,8 @@
 class BinItemsController < ApplicationController
+
+  # ensure user logged in
+  authorize_resource
+
   before_action :set_bin_item, only: [:show, :edit, :update, :destroy]
 
   # GET /bin_items

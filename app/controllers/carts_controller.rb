@@ -1,5 +1,8 @@
 class CartsController < ApplicationController
 
+	# ensure user logged in
+	authorize_resource
+  
 	include BbInventoryHelpers::Cart
 
 	def add_to_cart()

@@ -1,7 +1,7 @@
 class AgenciesController < ApplicationController
 
   # ensure user logged in
-  # load_and_authorize_resource
+  authorize_resource
   
   before_action :set_agency, only: [:show, :edit, :update, :destroy]
 

@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
 	# skip authorization for about_us page
-	skip_authorization_check :only => [:about_us]
+  	authorize_resource, :except => [:about_us]
 
 	include HomeHelper
 	

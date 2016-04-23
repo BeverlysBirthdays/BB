@@ -29,9 +29,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'simple_form'
 gem 'validates_timeliness', '~> 4.0'
 gem 'materialize-sass'
+# for pagination
 gem 'kaminari'
+# for user authorization
 gem 'cancan'
-
 # use ActiveModel has_secure_password 
 gem 'bcrypt-ruby'
 

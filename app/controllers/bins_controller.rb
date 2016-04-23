@@ -1,5 +1,8 @@
 class BinsController < ApplicationController
 
+  # ensure user logged in
+  authorize_resource
+  
   include BbInventoryHelpers::Cart
 
   before_action :set_bin, only: [:show, :edit, :update, :destroy]
