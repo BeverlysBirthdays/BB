@@ -30,6 +30,7 @@ gem 'simple_form'
 gem 'validates_timeliness', '~> 4.0'
 gem 'materialize-sass'
 gem 'kaminari'
+gem 'cancan'
 
 # for postgres and Heroku
 gem 'pg_array_parser'
