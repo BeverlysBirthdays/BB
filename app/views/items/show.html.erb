@@ -33,15 +33,10 @@
         <%= @item.barcode %>
       <% end %>
   </div> 
-  <!-- Price -->
-  <div class='col s4'>
-    <strong>Total Value:</strong>
-<!--     <%# if @item.unit_price.nil? %>
-      N.A
-    <%# else %>
-      <%# number_to_currency @item.unit_price %>
-    <%# end %> -->
-    <%# number_to_currency @item.total_donated_value+total_bought_value %>
+  <!-- Category -->
+  <div class="col s4">
+      <strong>Category:</strong>
+      <%= @item.category.name %>
   </div>
 
 </div>
@@ -75,11 +70,6 @@
       <% end %>
   </div>
 
-  <!-- Category -->
-  <div class="col s4">
-      <strong>Category:</strong>
-      <%= @item.category.name %>
-  </div>
 </div>
 
 <!-- Quantity Checked In -->
@@ -115,6 +105,24 @@
   <div class='col s4'>
     <strong>Remaining Quantity Bought: </strong>
     <%= tq-td %>
+  </div>
+</div>
+
+<!-- Value of inventory remaining -->
+<div class='row'>
+  <% tv = @item.total_quantity_remaining_value %>
+  <% tbv = @item.total_bought_quantity_remaining_value %>
+  <div class='col s4'>
+    <strong>Estimated Remaining Value: </strong>
+    <%= tv %>
+  </div>
+  <div class='col s4'>
+    <strong>Total Value of Bought: </strong>
+    <%= tbv %>
+  </div>
+  <div class='col s4'>
+    <strong>Estimated Value of Donated: </strong>
+    <%= tv - tbv %>
   </div>
 </div>
 

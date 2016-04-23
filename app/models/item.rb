@@ -17,8 +17,6 @@ class Item < ActiveRecord::Base
 	    :by_age_category,
 	    :by_category,
 	    :search_by_quantity
-	    # :by_donation,
-	    # :by_bought
 	  ]
 	)
 	
@@ -61,8 +59,40 @@ class Item < ActiveRecord::Base
 		self.item_checkins.where(donated: true).sum('quantity_remaining')
 	end
 	def total_bought_quantity_remaining
-		self.item_checkins.where(donated: false).sum('quantity_remaining * unit_price')
+		self.item_checkins.where(donated: false).sum('quantity_remaining')
 	end
+
+	# total value of inventory remaining
+	def total_quantity_remaining_value
+		total = 0
+		# self.item_checkins.each do |ic|
+		# 	if !ic.unit_price.nil?
+		# 		total += (ic.unit_price * ic.quantity_remaining)
+		# 	elsif 
+		# 	end
+		# end
+
+		ics = self.item_checkins
+		total = 0
+		ics.length.times do |i|
+			if !ics[i].unit_price.nil?
+				total += (ics[i].unit_price * ics[i].quantity_remaining)
+			elsif i>0 && !ics[i-1].unit_price.nil?
+				total += (ics[i-1].unit_price * ics[i-1].quantity_remaining)
+			elsif i<ics.length-1 && !ics[i+1].unit_price.nil?
+				total += (ics[i+1].unit_price * ics[i+1].quantity_remaining)
+			end
+		end
+		if total==0
+			return 'N.A'
+		else 
+			return total
+		end
+
+	end
+	def total_bought_quantity_remaining_value
+		self.item_checkins.where(donated: false).sum('quantity_remaining * unit_price')
+	end	
 
 	# total quantity checked in to inventory
 	def total_quantity_checkedin
