@@ -60,13 +60,27 @@ class BinsController < ApplicationController
     respond_to do |format|
       if @bin.save
         # update bin_items from cart
-        save_each_item_in_cart(@bin)
+        success = save_each_item_in_cart(@bin)
 
-        # clear cart
-        clear_cart
+        if success != false
+          # clear cart
+          clear_cart
 
-        format.html { redirect_to @bin, notice: 'bin was successfully created.' }
-        format.json { render :show, status: :created, location: @bin }
+          format.html { redirect_to @bin, notice: 'Bin was successfully created.' }
+          format.json { render :show, status: :created, location: @bin }
+        else
+          # destroy bin since items not in stock
+          @bin.destroy
+
+          @bin = Bin.new
+          @bin_items_in_cart = get_list_of_items_in_cart
+          @agencies = Agency.active.alphabetical
+          
+          format.html { render :new }
+          format.json { render json: @bin.errors, status: :unprocessable_entity }
+      
+        end 
+
       else
         @bin_items_in_cart = get_list_of_items_in_cart
 

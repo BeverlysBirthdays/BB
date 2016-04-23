@@ -55,7 +55,7 @@ module BbInventoryHelpers
 
         if @item_checkins.nil?
           errors.add(@item, 'not in stock')
-          return # skip rest if not in stock
+          return false # skip rest if not in stock
         end
 
         # validation that all items in stock
@@ -65,8 +65,8 @@ module BbInventoryHelpers
         @total_quantity_for_item = @item_checkins.sum('quantity_remaining')
 
         if @item_checkins.nil? or @total_quantity_for_item<@qty 
-          errors.add(@item, 'Required quantity not in stock. Stock Available: '+ @total_quantity_for_item.to_s)
-          return
+          flash[:error] = 'Required quantity not in stock. Stock Available: '+ @total_quantity_for_item.to_s
+          return false
         end
 
         # skip rest if not in stock. Else decrease inventory
