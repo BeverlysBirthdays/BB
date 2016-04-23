@@ -64,7 +64,7 @@
         <%= @age_list.key(@item.age[0])%> 
       <% else %>
         <!-- If length of age list > 1 -->
-        <% for i in range(a_length) %>
+        <% a_length.times do |i| %>
           <% if i == a_length %>
             <!-- Dont show '|' if last item -->
             <%= @age_list.key(@item.age[i])%> 
