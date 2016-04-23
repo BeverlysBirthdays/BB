@@ -4,7 +4,7 @@ class BinTest < ActiveSupport::TestCase
   # testing relationships
   should belong_to(:program)
   should have_many(:bin_items)
-  # should have_many(:items).through(:bin_items)
+ # should have_many(:items).through(:bin_items) ##### not working
   should belong_to(:agency)
 
   # testing validations
@@ -15,5 +15,4 @@ class BinTest < ActiveSupport::TestCase
   should_not allow_value("bad").for(:num_of_bins)
 
   should allow_value(Date.today).for(:checkout_date)
-  should_not allow_value("bad").for(:checkout_date)
 end
