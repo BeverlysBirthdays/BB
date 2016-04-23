@@ -4,7 +4,8 @@ class ItemCheckinArchivesController < ApplicationController
   authorize_resource
   
   before_action :set_item_checkin_archive, only: [:show, :edit, :update, :destroy]
-
+  # before_action :check_login
+  
   # GET /item_checkin_archives
   # GET /item_checkin_archives.json
   def index

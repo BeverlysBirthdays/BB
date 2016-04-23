@@ -6,7 +6,8 @@ class BinsController < ApplicationController
   include BbInventoryHelpers::Cart
 
   before_action :set_bin, only: [:show, :edit, :update, :destroy]
-
+  # before_action :check_login
+  
   # GET /bins
   # GET /bins.json
   def index

@@ -1,14 +1,14 @@
 class HomeController < ApplicationController
 
 	# skip authorization for about_us page
-  	authorize_resource, :except => [:about_us]
+	before_action :check_login, except: [:about_us]
+
 
 	include HomeHelper
 	
 	def home
 		@items_by_category = get_category_count
 		@bins_by_agency = Bin.by_agency_and_program
-
 	end
 
 	def about_us

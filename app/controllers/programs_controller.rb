@@ -4,7 +4,8 @@ class ProgramsController < ApplicationController
   authorize_resource
   
   before_action :set_program, only: [:show, :edit, :update, :destroy]
-
+  # before_action :check_login
+  
   def index
     @programs = Program.alphabetical.all.page(params[:page])
   end

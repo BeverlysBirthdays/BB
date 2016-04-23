@@ -4,7 +4,8 @@ class AgenciesController < ApplicationController
   authorize_resource
   
   before_action :set_agency, only: [:show, :edit, :update, :destroy]
-
+  # before_action :check_login
+  
   # GET /agencies
   # GET /agencies.json
   def index

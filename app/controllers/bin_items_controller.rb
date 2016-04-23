@@ -4,7 +4,8 @@ class BinItemsController < ApplicationController
   authorize_resource
 
   before_action :set_bin_item, only: [:show, :edit, :update, :destroy]
-
+  # before_action :check_login
+  
   # GET /bin_items
   # GET /bin_items.json
   def index

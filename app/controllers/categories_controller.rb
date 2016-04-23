@@ -4,7 +4,8 @@ class CategoriesController < ApplicationController
   authorize_resource
 
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-
+  # before_action :check_login
+  
   # GET /categories
   # GET /categories.json
   def index
