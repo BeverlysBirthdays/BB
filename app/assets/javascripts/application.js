@@ -22,11 +22,11 @@ $(document).ready(function() {
 	$('select').material_select();
 	// fixed filter bar on right
     // $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
+    
+    // datepicker for filter on bins index page
+	$( ".datepicker" ).datepicker();
 
 });
-
-// datepicker for filter on bins index page
-$( ".datepicker" ).datepicker();
 
 $(".button-collapse").sideNav();
 $( document ).ready(function() { 
