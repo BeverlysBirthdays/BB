@@ -17,6 +17,12 @@
     </div>
   </div>
 
+  <!-- Summary Info -->
+  <div class='col s6 m4 l5'>
+      <strong>Total Number of Bins: </strong>
+      <%= @total_num_of_bins %>
+  </div>
+
   <div class='col s12 m9 l10'>
     <!-- Main Content -->
     <%= render( partial: 'bins/list', locals: { bins: @bins} )%>

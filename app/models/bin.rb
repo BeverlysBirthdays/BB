@@ -26,12 +26,29 @@ class Bin < ActiveRecord::Base
 	scope :search_by_date_gte, -> (d){where("checkout_date>=?", d)}
 	scope :search_by_date_lte, -> (d){where("checkout_date<=?", d)}
 	scope :search_by_program, -> (p) { joins(:program).where('programs.name = ?', p) }
+	scope :get_total_num_of_bins, -> {sum('num_of_bins')}
 	
 	# Validations
 	validates_date :checkout_date, :on => :today
 	validates_numericality_of :num_of_bins, only_integer: true, greater_than_or_equal_to: 1
 
 	# Methods
+	def get_total_value_of_bin
+		total = 0
+		self.bin_items.each do |bi|
+			# item_checkin_archive
+			if bi.item_checkin_id.nil? && !bi.item_checkin_archive.unit_price.nil?
+				total += (bi.quantity * bi.item_checkin_archive.unit_price)
+			# item_checkin
+			elsif  bi.item_checkin_archive_id.nil? && !bi.item_checkin.unit_price.nil?
+				total += (bi.quantity * bi.item_checkin.unit_price)
+			end
+		end
+		# return total value per bin
+		return total/self.num_of_bins
+
+	end
+
 	def get_unique_items_and_quantity_per_bin()
 		d = {}
 		self.bin_items.each do |b|

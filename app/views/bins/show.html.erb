@@ -1,18 +1,37 @@
+<p></p>
+<!-- Nav -->
+<%= link_to "Back to Bin Listings", bins_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
+
+<!-- Bin Details -->
 <h5>Bin Details</h5>
 
-<p>
-  <strong>Agency:</strong>
-  <%= @bin.agency.name %>
-</p> 
-<p>
-	<strong>Program:</strong>
-	<%= @bin.program.name %>
-</p>
-<p>
-	<strong>Checkout Date:</strong>
-	<%= @bin.checkout_date %>
-</p>
+<!-- Bin Info -->
+<div class='row'>
+	<div class='col s4'>
+		<strong>Agency:</strong>
+		<%= @bin.agency.name %>
+	</div>
+	<div class='col s4'>
+		<strong>Program:</strong>
+		<%= @bin.program.name %>
+	</div>
+</div>
 
+<!-- Date + Bin Value -->
+<div class='row'>
+	<div class='col s4'>
+		<strong>Checkout Date:</strong>
+		<%= @bin.checkout_date %>
+	</div>
+	<div class='col s4'>
+		<strong>Number of Bins:</strong>
+		<%= @bin.num_of_bins %>
+	</div>
+	<div class='col s4'>
+		<strong>Approx Value of Bin:</strong>
+		<%= @bin.get_total_value_of_bin %>
+	</div>
+</div>
 
 <div class = "row">
 	<!--Current Basket details -->
@@ -34,5 +53,4 @@
 	</div>
 </div>
 
-<%= link_to "Back to Bin Listings", bins_path, class: "waves-effect waves-light btn valign purple lighten-5 light-blue-text text-darken-4" %>
 

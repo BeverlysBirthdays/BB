@@ -15,6 +15,7 @@ class BinsController < ApplicationController
       },
       persistence_id: false ) or return 
     @bins = @filterrific.find.chronological.page(params[:page])
+    @total_num_of_bins = @bins.get_total_num_of_bins
   end
 
   # export bins to csv format
