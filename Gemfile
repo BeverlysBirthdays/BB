@@ -32,6 +32,9 @@ gem 'materialize-sass'
 gem 'kaminari'
 gem 'cancan'
 
+# use ActiveModel has_secure_password 
+gem 'bcrypt-ruby'
+
 # for postgres and Heroku
 gem 'pg_array_parser'
 gem 'postgres_ext'
