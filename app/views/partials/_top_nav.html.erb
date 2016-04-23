@@ -1,9 +1,3 @@
-<!-- Dropdown for user settings once logged in -->
-<ul id='dropdownUser' class='dropdown-content'>
-  <li><%= link_to 'Edit', user_path(current_user) %></li>
-  <li><%= link_to 'Logout', logout_path %></li>
-</ul>
-
 <nav class = "light-blue lighten-1">
   <div class = "nav-wrapper container">
     <!-- Left Nav -->
@@ -22,6 +16,11 @@
         <li>
           <%= link_to current_user.username, '' ,class: 'dropdown-button', data: {activates: 'dropdownUser', beloworigin: true} %>
         </li>
+        <!-- Dropdown for user settings once logged in -->
+        <ul id='dropdownUser' class='dropdown-content'>
+          <li><%= link_to 'Edit', user_path(current_user) %></li>
+          <li><%= link_to 'Logout', logout_path %></li>
+        </ul>
       <% else %>
         <li><%= link_to 'Login', login_path %></li>
       <% end %>
