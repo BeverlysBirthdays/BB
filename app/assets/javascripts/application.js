@@ -23,20 +23,20 @@ $(document).ready(function() {
 	// fixed filter bar on right
     // $('.tabs-wrapper .row').pushpin({ top: $('.tabs-wrapper').offset().top });
     
-    // datepicker for filter on bins index page
+  // datepicker for filter on bins index page
 	$( ".datepicker" ).datepicker();
+
+  //dropdown
+  $('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    hover: true, // Activate on hover
+    belowOrigin: true // Displays dropdown below the button
+  });
 
 });
 
 $(".button-collapse").sideNav();
-
-$('.dropdown-button').dropdown({
-  inDuration: 300,
-  outDuration: 225,
-  hover: true, // Activate on hover
-  belowOrigin: true // Displays dropdown below the button
-}
-);
 
 $(document).ready(function(){
     $('.tooltipped').tooltip({delay: 50});
