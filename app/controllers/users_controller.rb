@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+
+  before_action :set_user, only: [:show, :destroy]
+  before_action :set_current_user, only: [:edit, :update]
+  before_action :logged_in?, except: [:new, :create]
+  # authorize_resource
 
   # GET /users
   # GET /users.json
@@ -26,7 +29,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @user.role = 'admin'
     respond_to do |format|
       if @user.save
 
@@ -71,8 +74,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
+    def set_current_user
+      @user = current_user
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password_digest)
+      params.require(:user).permit(:username, :password, :password_confirmation)
     end
 end

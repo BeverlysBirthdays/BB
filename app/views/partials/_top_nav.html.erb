@@ -18,7 +18,12 @@
       <li><%= link_to 'Agencies', agencies_path %></li>
       <li><%= link_to 'Programs', programs_path %></li>
       <li><%= link_to 'Dashboard', home_path %></li>
-      <li><%= link_to 'Login', login_path %></li>
+      <% if logged_in? %>
+        <li><%= link_to 'Logout', logout_path %></li>
+      <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+      <% end %>
+
     </ul>
   </div>
 </nav>

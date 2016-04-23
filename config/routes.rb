@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :carts
   resources :programs
+  resources :sessions
 
   get 'get_new_barcode' => 'items#get_new_barcode', as: :get_new_barcode
   post 'get_new_barcode' => 'items#get_new_item_info', as: :get_new_item_info
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
   get 'export_agencies', to: 'agencies#export_agencies', as: :agencies_export
 
   # Authentication routes
+  get 'user/edit' => 'users#edit', :as => :edit_current_user
+  get 'signup' => 'users#new', :as => :signup
   get 'logout' => 'sessions#destroy', as: :logout
   get 'login' => 'sessions#new', as: :login
 
