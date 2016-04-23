@@ -1,7 +1,9 @@
 require 'test_helper'
 
 class ProgramTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  # testing relationships
+  should have_many(:bins)
+
+  # testing validations
+  should validate_uniqueness_of(:name)
 end
