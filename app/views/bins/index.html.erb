@@ -1,4 +1,5 @@
 <p></p>
+
 <div class='row'>
 
   <!-- Fixed filters on the top if small screen-->
@@ -18,9 +19,8 @@
   </div>
 
   <!-- Summary Info -->
-  <div class='col s6 m4 l5'>
-      <strong>Total Number of Bins: </strong>
-      <%= @total_num_of_bins %>
+  <div class='col s6 m4 l5 '>
+    <%= render( partial: 'bins/bin_count', locals: {total_num_of_bins: @total_num_of_bins} )%>
   </div>
 
   <div class='col s12 m9 l10'>
