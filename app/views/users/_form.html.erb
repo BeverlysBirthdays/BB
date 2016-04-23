@@ -1,13 +1,25 @@
 <%= simple_form_for(@user) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :username %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
+  <div class='row'>
+  	<div class='col s4'>
+  		<%= f.input :username %>
+  	</div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class='row'>
+  	<div class='col s4'> 
+  		<%= f.input :password %>
+  	</div>
+  	<div class='col s4 offset-s1'>
+  		<%= f.input :password_confirmation %>
+  	</div>
   </div>
+
+  <div class='row actions'>
+  	<%= f.button :submit, class: "waves-effect waves-light btn col s4 valign blue lighten-5 light-blue-text text-darken-4" %>
+    <%= link_to 'Cancel', home_path, class: "waves-effect waves-light btn col s4 offset-s1 valign purple lighten-5 light-blue-text text-darken-4" %>
+
+  </div>
+
 <% end %>

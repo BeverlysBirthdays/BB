@@ -1,16 +1,33 @@
+<!-- Dropdown for user settings once logged in -->
+<ul id='dropdownUser' class='dropdown-content'>
+  <li><%= link_to 'Edit', user_path(current_user) %></li>
+  <li><%= link_to 'Logout', logout_path %></li>
+</ul>
+
 <nav class = "light-blue lighten-1">
   <div class = "nav-wrapper container">
     <!-- Left Nav -->
     <%= link_to 'Beverly\'s Birthday Inventory', home_path, :class => 'brand-logo white-text' %>            
     <!--Bottom nav -->
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+    <!-- Top Right Nav for Desktop -->
     <ul class = "right hide-on-med-and-down">
       <li><%= link_to 'Items', items_path %></li>
       <li><%= link_to 'Categories', categories_path %></li>
       <li><%= link_to 'Bins', bins_path %></li>
       <li><%= link_to 'Agencies', agencies_path %></li>
       <li><%= link_to 'Programs', programs_path %></li>
+      <% if logged_in? %>
+        <li>
+          <%= link_to current_user.username, '' ,class: 'dropdown-button', data: {activates: 'dropdownUser', beloworigin: true} %>
+        </li>
+      <% else %>
+        <li><%= link_to 'Login', login_path %></li>
+      <% end %>
     </ul>
+
+    <!-- Side Nav for Mobile -->
     <ul class = "side-nav" id="mobile-demo">
       <li><%= link_to 'Items', items_path %></li>
       <li><%= link_to 'Categories', categories_path %></li>
@@ -19,11 +36,11 @@
       <li><%= link_to 'Programs', programs_path %></li>
       <li><%= link_to 'Dashboard', home_path %></li>
       <% if logged_in? %>
-        <li><%= link_to 'Logout', logout_path %></li>
+        <li><%= link_to current_user.username, '' ,class: 'dropdown-button', data: {activates: 'dropdownUser', beloworigin: true} %></li>
       <% else %>
         <li><%= link_to 'Login', login_path %></li>
       <% end %>
-
     </ul>
+    
   </div>
 </nav>
