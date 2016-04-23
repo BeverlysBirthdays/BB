@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   get 'export_bins', to: 'bins#export_bins', as: :bins_export
   get 'export_agencies', to: 'agencies#export_agencies', as: :agencies_export
 
+  # Authentication routes
+  get 'logout' => 'sessions#destroy', as: :logout
+  get 'login' => 'sessions#new', as: :login
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

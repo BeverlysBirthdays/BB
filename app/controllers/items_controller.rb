@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
 
+  # ensure user logged in
+  load_and_authorize_resource
+
   include BbInventoryHelpers::Cart
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
