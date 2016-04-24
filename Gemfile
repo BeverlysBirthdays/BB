@@ -72,6 +72,17 @@ group :development do
   gem 'rails-erd'
 end
 
+# Gems used only in testing
+group :test do
+  gem 'shoulda', '3.5.0'
+  gem 'shoulda-matchers', '2.7.0'
+  gem 'factory_girl_rails', '4.5.0'
+  gem 'single_test', '0.6.0'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'capybara'
+end
+
 # For Heroku integration
 gem 'rails_12factor', group: :production
 ruby "2.2.0"

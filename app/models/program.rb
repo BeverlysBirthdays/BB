@@ -5,4 +5,8 @@ class Program < ActiveRecord::Base
 
 	# Scopes 
     scope :alphabetical, -> { order(:name) }
+
+    # Validations
+    validates_uniqueness_of(:name)
+
 end
