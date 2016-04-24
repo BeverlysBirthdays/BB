@@ -2,7 +2,4 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
-namespace :test do 
-	require 'single_test/tasks'
-end
 Rails.application.load_tasks

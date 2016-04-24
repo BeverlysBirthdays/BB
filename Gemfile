@@ -71,10 +71,9 @@ end
 
 # Gems used only in testing
 group :test do
-  gem 'shoulda', '3.5.0'
-  gem 'shoulda-matchers', '2.7.0'
-  gem 'factory_girl_rails', '4.5.0'
-  gem 'single_test', '0.6.0'
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
