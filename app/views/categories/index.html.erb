@@ -1,6 +1,8 @@
 <!-- <p id="notice"><%# notice %></p>  -->
-
-<h3>Listing Categories</h3>
+<div class="row">
+  <h4 class="col s5">Categories Listing</h4>
+  <%= link_to 'New Category', new_category_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
+</div>
 <ul class='collection'>
   <% @categories.each do |category| %>
     <li class='collection-item avatar'>
@@ -10,4 +12,4 @@
   <% end %>
 </ul>
 
-<%= link_to 'New Category', new_category_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
+
