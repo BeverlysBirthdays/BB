@@ -45,6 +45,13 @@ main {
   display: inline-block;
 }
 
+.middle-collection {
+  margin-top: 20px;
+}
+
+.middle-button {
+  margin-top: 15px;
+}
 /*.avg {
   display: block;
  }

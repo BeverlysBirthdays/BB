@@ -1,13 +1,16 @@
 <!-- <p id="notice"><%# notice %></p>  -->
+<p></p>
 <div class="row">
   <h4 class="col s5">Categories Listing</h4>
-  <%= link_to 'New Category', new_category_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
+  <%= link_to 'New Category', new_category_path, class: "waves-effect waves-light btn col s3 valign pink white-text middle-button" %>
 </div>
 <ul class='collection'>
   <% @categories.each do |category| %>
-    <li class='collection-item avatar'>
+    <li class='collection-item avatar col s12 m3'>
+    <div class="middle-collection">
       <i class='material-icons circle green'><%= category.icon %></i>
       <%= link_to category.name, category %>
+    </div>
     </li>
   <% end %>
 </ul>
