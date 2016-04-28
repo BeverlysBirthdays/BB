@@ -26,10 +26,13 @@
 
   <!-- Contact -->
   <div class='form-inputs row'>
-    <div class='col s6'>
+    <div class='col s4'>
+      <%= f.input :contact_person, label: 'Contact Person', placeholder: 'Becca Smith'%>
+    </div>
+    <div class='col s4'>
       <%= f.input :phone, placeholder: '412-970-9734' %>
     </div>
-    <div class='col s6'>
+    <div class='col s4'>
       <%= f.input :email, placeholder: 'agency@domain.com' %>
     </div>
   </div>

@@ -11,15 +11,23 @@
 </div>
 
 <div class='row'>
+	<!-- Contact Person -->
+	<div class='col s4'>
+		<strong>Contact Person: </strong>
+		<%= @agency.contact_person.titleize %>
+	</div>
+</div>
+
+<div class='row'>
 	<!-- Contact -->
-	<div class='col s6'>
+	<div class='col s4'>
 		<strong>Phone: </strong>
 		<%= @agency.phone %>
 	</div>
 </div>
 <div class='row'>
 	<!-- Email -->
-	<div class='col s6'>
+	<div class='col s4'>
 		<strong>Email: </strong>
 		<%= @agency.email %>
 	</div>
