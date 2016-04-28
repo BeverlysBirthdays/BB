@@ -103,11 +103,11 @@
 
   <div class="row actions">
     <% if controller.action_name.capitalize == 'Edit'%>
-      <%= f.submit 'Update Item', class: 'waves-effect waves-light btn pink white-text col s5' %>
+      <%= f.submit 'Update Item', class: 'waves-effect waves-light btn pink white-text' %>
     <% else %>
-      <%= f.submit 'Create Item', class: 'waves-effect waves-light btn pink white-text col s5' %> 
+      <%= f.submit 'Create Item', class: 'waves-effect waves-light btn pink white-text' %> 
     <% end %>
     <!-- Links to previous page: either when check in item page or show item page -->
-    <%= link_to 'Back', url_for(:back), class: "waves-effect waves-light btn col s5 offset-s2 valign purple lighten-5 light-blue-text text-darken-4" %>
+    <%= link_to 'Back', url_for(:back), class: "waves-effect waves-light btn purple lighten-5 light-blue-text text-darken-4" %>
   </div>
 <% end %>

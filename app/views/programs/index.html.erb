@@ -1,4 +1,8 @@
-<h3>Listing Programs</h3>
+<p></p>
+<div class="row">
+  <h4 class="col s5">Programs Listing</h4>
+  <%= link_to 'New Program', new_program_path, class: "waves-effect waves-light btn col s3 valign pink white-text middle-button" %>
+</div>
 <ul class='collection'>
   <% @programs.each do |program| %>
     <li class='collection-item'>
@@ -6,5 +10,3 @@
     </li>
   <% end %>
 </ul>
-
-<%= link_to 'New Program', new_program_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
