@@ -26,23 +26,7 @@
 						<%= item.notes %>
 					<% end %>
 				</p>	
-				<div class="secondary-content">
-					<!-- Donated -->
-	<!-- 				<%# if item.donated == true%>
-						<i class="mdi-action-done small center-align tooltipped", data-position: 'right', data-tooltip='Donated'></i>
-			        <%# else %>
-			        	<i class="mdi-content-clear center-align small tooltipped", data-position='right', data-tooltip='Bought'></i>
-			        <%# end %> -->
-
-			        <!-- Price -->
-<!-- 					<text class='tooltipped', data-position='left', data-tooltip='Total Value'>
-						<%# if item.unit_price.nil?%>
-							<%# 'N.A' %>
-						<%# else %>
-							<%# number_to_currency item.total_inventory_value %>
-						<%# end %>
-					</text> -->
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
+				<div class="secondary-content">	
 					<!-- Quantity -->
 					<text class='tooltipped', data-position='left', data-tooltip='Total Quantity in Inventory'><%= item.total_quantity_remaining %></text>
 			        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
