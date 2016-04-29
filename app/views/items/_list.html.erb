@@ -7,7 +7,7 @@
 		<% @items.each do |item| %>
 			<li class='collection-item avatar'>
 				<i class='material-icons circle green'> <%=item.category.icon %></i>
-				<span class="title"> <%= link_to item.name.capitalize, item_path(item) %></span>
+				<span class="title"> <%= link_to item.name, item_path(item) %></span>
 				<p>
 					<!-- First Line -->
 					<strong>Age: </strong>

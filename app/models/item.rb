@@ -44,7 +44,7 @@ class Item < ActiveRecord::Base
 	scope :search_by_barcode, -> (b) { where("barcode = ? ", b.to_s)}
 
 	# Validations
-	validates_presence_of :name, :category_id, :age
+	validates_presence_of :name, :category_id, :age, :unit_price
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	validate :age_is_in_list
 

@@ -114,6 +114,7 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
+    @item.name = item_params['name'].titleize
 
     respond_to do |format|
       if @item.save
