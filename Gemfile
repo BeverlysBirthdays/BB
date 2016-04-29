@@ -44,6 +44,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-materialize'
 end
 gem 'filterrific'
+gem 'font-awesome-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
