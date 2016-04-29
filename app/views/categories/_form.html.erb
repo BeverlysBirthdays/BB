@@ -11,15 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <!-- Name -->
+  <div class="row">
+    <%= f.label :name, class: 'col s4' %><br>
+    <%= f.text_field :name, class: 'col s4'  %>
   </div>
-  <div class="field">
-    <%= f.label :icon %><br>
-    <%= f.text_field :icon %>
+  <!-- Icon -->
+  <div class="row">
+    <%= f.label :icon, class: 'col s4'  %><br>
+    <%= f.text_field :icon, class: 'col s4'  %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <!-- Submit button -->
+  <div class="actions row">
+    <%= f.submit 'Add New Category', class: 'col s4 btn pink white-text' %>
   </div>
+
 <% end %>
