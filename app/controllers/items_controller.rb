@@ -147,8 +147,8 @@ class ItemsController < ApplicationController
           print('Info: ', info)
           @item_checkin = ItemCheckin.create(info)
         # else: if donated field of item edited: edit last entry
-        elsif item_params['donated']!=@latest_item_checkin.donated
-          @latest_item_checkin.update({donated: item_params['donated']})
+        elsif item_params['donated']!=@latest_item_checkin.donated || item_params['unit_price']!=@latest_item_checkin.unit_price
+          @latest_item_checkin.update({donated: item_params['donated'], unit_price: item_params['unit_price']})
           @latest_item_checkin.save!
         end 
 
