@@ -1,10 +1,15 @@
-<h3>Listing Programs</h3>
-<ul class='collection'>
-  <% @programs.each do |program| %>
-    <li class='collection-item'>
-      <%= link_to program.name, program %>
-    </li>
-  <% end %>
-</ul>
+<div class='row'></div>
+<div class='row'>
+	<h4 class='col s8'>Listing Programs</h4>
+	<%= link_to 'Add New Program', new_program_path, class: "waves-effect waves-light btn col s4 valign pink white-text" %>
+</div>
 
-<%= link_to 'New Program', new_program_path, class: "waves-effect waves-light btn col s3 valign pink white-text" %>
+<div class='row'>
+	<ul class='collection'>
+	  <% @programs.each do |program| %>
+	    <li class='collection-item'>
+	      <%= link_to program.name, program %>
+	    </li>
+	  <% end %>
+	</ul>
+</div>
