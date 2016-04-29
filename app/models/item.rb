@@ -47,7 +47,6 @@ class Item < ActiveRecord::Base
 	validates_presence_of :name, :category_id, :age
 	validates_inclusion_of :gender, in: GENDER_LIST.to_h.values, message: "must be selected from given options"
 	validate :age_is_in_list
-	validates_presence_of :unit_price, if: '!is_donated?'
 
 
 	# Custom Methods
@@ -64,30 +63,13 @@ class Item < ActiveRecord::Base
 
 	# total value of inventory remaining
 	def total_quantity_remaining_value
-		total = 0
-		# self.item_checkins.each do |ic|
-		# 	if !ic.unit_price.nil?
-		# 		total += (ic.unit_price * ic.quantity_remaining)
-		# 	elsif 
-		# 	end
-		# end
-
+		
 		ics = self.item_checkins
 		total = 0
 		ics.length.times do |i|
-			if !ics[i].unit_price.nil?
-				total += (ics[i].unit_price * ics[i].quantity_remaining)
-			elsif i>0 && !ics[i-1].unit_price.nil?
-				total += (ics[i-1].unit_price * ics[i-1].quantity_remaining)
-			elsif i<ics.length-1 && !ics[i+1].unit_price.nil?
-				total += (ics[i+1].unit_price * ics[i+1].quantity_remaining)
-			end
+			total += (ics[i].unit_price * ics[i].quantity_remaining)
 		end
-		if total==0
-			return 'N.A'
-		else 
-			return total
-		end
+		return total
 
 	end
 	def total_bought_quantity_remaining_value
@@ -100,11 +82,6 @@ class Item < ActiveRecord::Base
 	end
 	def total_donated_quantity_checkedin
 		self.item_checkins.where(donated: true).sum('quantity_checkedin') + self.item_checkin_archives.where(donated: true).sum('quantity_checkedin')
-	end
-
-	# Methods used in scopes
-	def is_donated?
-		donated != "0"
 	end
 
 	# Methods = scope

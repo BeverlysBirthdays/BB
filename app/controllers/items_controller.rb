@@ -144,7 +144,6 @@ class ItemsController < ApplicationController
         # if quantity of item edited: new check_in record only consists of item increment
         if item_params['check_in_quantity'].to_i > 0
           info = {item_id: @item.id, quantity_checkedin: item_params['check_in_quantity'], donated: item_params['donated'], unit_price: item_params['unit_price'], quantity_remaining: item_params['check_in_quantity'], checkin_date: Date.today}
-          print('Info: ', info)
           @item_checkin = ItemCheckin.create(info)
         # else: if donated field of item edited: edit last entry
         elsif item_params['donated']!=@latest_item_checkin.donated || item_params['unit_price']!=@latest_item_checkin.unit_price
