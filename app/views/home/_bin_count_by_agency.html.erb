@@ -8,14 +8,13 @@
       <div class="table-responsive">
         <table class="table table-hover scrolltable">
         <% if @bins_by_agency.empty? %>
-          <i>No bins created for agencies. Get started <%= link_to 'here', items_path %>!</i>
+          <i>No bins created for agencies yet. Get started <%= link_to 'here', items_path %>!</i>
         <% else %>
           <thead>
             <tr>
               <th>Agency</th>
               <th>Program</th>
               <th># of Bins</th>
-              <th>Value of Bins</th>
             </tr>
           </thead>
           <tbody class="scrollbody">
@@ -25,7 +24,6 @@
 			  	      <td><%= Agency.find(b[0]).name %></td>
 			  	      <td><%= Program.find(b[1]).name %></td>
 			  	      <td><%= c %></td>
-                <td></td>
 			        </tr>
 			      <% end %>
 		      </tbody>
