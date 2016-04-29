@@ -14,7 +14,11 @@
  *= require_self
  *= require materialize
  *= require jquery-ui/datepicker
+ *= require font-awesome
  */
+a:hover {
+  text-decoration: none;
+}
 
 .footer {
 	position: absolute;
@@ -23,6 +27,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-color: #FFF;
 }
 
 main {
@@ -51,6 +56,23 @@ main {
 
 .middle-button {
   margin-top: 15px;
+}
+
+.scrollbody {
+  height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  width: 90%;
+}
+
+.scrolltable {
+  height: 250px;
+}
+
+.scroll {
+  width: 100%;
+  display: inline-table;
+  table-layout: fixed;
 }
 /*.avg {
   display: block;
