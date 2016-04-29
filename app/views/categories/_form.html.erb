@@ -23,7 +23,11 @@
   </div>
   <!-- Submit button -->
   <div class="actions row">
-    <%= f.submit 'Add New Category', class: 'col s4 btn pink white-text' %>
+    <% if controller.action.name.capitalize == 'Edit'%>
+      <%= f.submit 'Update Category', class: 'col s4 btn pink white-text' %>
+    <% else %>
+      <%= f.submit 'Add New Category', class: 'col s4 btn pink white-text' %>
+    <% end %>
   </div>
 
 <% end %>
