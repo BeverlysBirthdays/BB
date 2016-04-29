@@ -9,6 +9,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Contact</th>
       <th>Phone</th>
       <th>Email</th>
       <th>Active</th>
@@ -19,6 +20,7 @@
     <% @agencies.each do |agency| %>
       <tr>
         <td><%= link_to agency.name, agency_path(agency) %></td>
+        <td><%= agency.contact_person.titleize %></td>
         <td><%= number_to_phone agency.phone %></td>
         <td><%= agency.email %></td>
 

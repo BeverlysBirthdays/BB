@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
 	# ensure user logged in
-	authorize_resource
+	# authorize_resource
   
 	include BbInventoryHelpers::Cart
 

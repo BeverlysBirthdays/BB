@@ -21,10 +21,10 @@
           <tbody class="scrollbody">
 			      <% @items_by_category.each do |i| %>
 			        <tr class="scroll">
-			  	      <td class='center-align'><%= i[:category] %></td>
-			  	      <td class='center-align'><%= i[:total_quantity] %></td>
-			  	      <td class='center-align'><%= i[:total_donated_quantity] %></td>
-			  	      <td class='center-align'><%= i[:total_bought_quantity] %></td>
+			  	      <td><%= i[:category] %></td>
+			  	      <td><%= i[:total_quantity] %></td>
+			  	      <td><%= i[:total_donated_quantity] %></td>
+			  	      <td><%= i[:total_bought_quantity] %></td>
 			        </tr>
 			      <% end %>
 		      </tbody>

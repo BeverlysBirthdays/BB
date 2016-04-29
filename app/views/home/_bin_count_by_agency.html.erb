@@ -22,9 +22,10 @@
 			   <!-- b[0]: Agency_ID, b[1]: Program_ID, c: Bin Count -->
 			      <% @bins_by_agency.each do |b, c| %>
 			        <tr class="scroll">
-			  	      <td class='center-align'><%= Agency.find(b[0]).name %></td>
-			  	      <td class='center-align'><%= Program.find(b[1]).name %></td>
-			  	      <td class='center-align'><%= c %></td>
+			  	      <td><%= Agency.find(b[0]).name %></td>
+			  	      <td><%= Program.find(b[1]).name %></td>
+			  	      <td><%= c %></td>
+                <td></td>
 			        </tr>
 			      <% end %>
 		      </tbody>
