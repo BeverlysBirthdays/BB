@@ -18,7 +18,7 @@ class Category < ActiveRecord::Base
 	private 
 	def capitalize_category
 	  self.name = self.name.titleize
-	  self.icon = self.icon.capitalize 
+	  self.icon = self.icon.upcase 
 	end
 
 end
