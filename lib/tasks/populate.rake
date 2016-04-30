@@ -58,7 +58,6 @@ namespace :db do
       item.age = [[0,1],[1,2],[0,1,2],[0],[0],[1],[1],[2]].sample
       item.gender = rand(2)
       item.barcode = (10000..100000).to_a.sample
-      item.donated = rand(1) == 1 ? true : false
       item.category_id = category_ids.sample
       item.notes = Faker::Lorem.sentence
       # set the timestamps
