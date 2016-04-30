@@ -1,0 +1,67 @@
+<!-- Summary Metric Buttons:
+	1. Total Num of Items in Inventory
+	2. Total Num of Donated Items
+	3. Total Num of Bins
+	4. Total Num of Agencies
+-->
+
+<!-- Total Num of Items in Inventory -->
+<div class='col s3'>
+	<div class="card blue hoverable">
+		<%= link_to items_path, class: 'white-text' do%>
+			<div class="card-content left-align">
+				<%= content_tag('h4', @items.count) %>
+				<h6>Items</h6>
+			</div>
+			<div class="card-image right-align">
+				<i class="material-icons medium">insert_chart</i>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<!-- Total Num of Donated Items in Inventory -->
+<div class='col s3'>
+	<div class="card green hoverable">
+		<%= link_to items_path, class: 'white-text' do%>
+			<div class="card-content left-align">
+				<%= content_tag('h4', @donated_items_count) %>
+				<h6>Donated</h6>
+			</div>
+			<div class="card-image right-align">
+				<i class="material-icons medium">favorite_border</i>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<!-- Total Num of Bins -->
+<div class='col s3'>
+	<div class="card orange hoverable">
+		<%= link_to bins_path, class: 'white-text' do%>
+			<div class="card-content left-align">
+				<%= content_tag('h4', @bins.count) %>
+				<h6>Bins</h6>
+			</div>
+			<div class="card-image right-align">
+				<i class="material-icons medium">shopping_basket</i>
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<!-- Total Num of Agencies -->
+<div class='col s3'>
+	<div class="card red hoverable">
+		<%= link_to agencies_path, class: 'white-text' do%>
+			<div class="card-content left-align">
+				<%= content_tag('h4', @agencies.count) %>
+				<h6>Agencies</h6>
+			</div>
+			<div class="card-image right-align">
+				<i class="material-icons medium">people</i>
+			</div>
+		<% end %>
+	</div>
+</div>
+
