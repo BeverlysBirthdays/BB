@@ -42,7 +42,7 @@ class Item < ActiveRecord::Base
 	# by category
 	scope :by_category, -> (c) {joins(:category).where("categories.name = ?", c)}
 	# by name
-	scope :search_by_name, -> (name) { where("name LIKE ? OR notes LIKE ?", "%" + name + "%", "%"+name+"%") }
+	scope :search_by_name, -> (name) { where("lower(name) LIKE ? OR lower(notes) LIKE ?", "%" + name.downcase + "%", "%"+name.downcase+"%") }
 	# by barcode
 	scope :search_by_barcode, -> (b) { where("barcode = ? ", b.to_s)}
 
