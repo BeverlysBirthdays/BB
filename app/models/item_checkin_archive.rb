@@ -7,7 +7,7 @@ class ItemCheckinArchive < ActiveRecord::Base
 	# Validations
 	validates_numericality_of :quantity_checkedin, only_integer: true, greater_than_or_equal_to: 0
 	validates_date :checkin_date, :on => :today
-	validates_presence_of :unit_price, if: '!is_donated?'
+	validates_numericality_of :unit_price
 
 	# Scopes 
 	scope :by_donated, -> {where(donated: true)}
@@ -21,10 +21,6 @@ class ItemCheckinArchive < ActiveRecord::Base
 	scope :total_donated_quantity, -> {group('item_id').having(donated: true).sum('quantity_checkedin')}
 
 	# Methods
-	def is_donated?
-		donated == true
-	end
-
 	def total_value
 		if unit_price.nil?
 			return 'N.A'

@@ -14,37 +14,37 @@ namespace :db do
     # Step 1: Create Categories
     big_item = Category.new
     big_item.name = 'Big Item'
-    big_item.icon = 'card_giftcard'
+    big_item.icon = 'BI'
     big_item.save!
 
     small_item = Category.new
     small_item.name = 'Small Item'
-    small_item.icon = 'donut_small'
+    small_item.icon = 'SI'
     small_item.save!
 
     dental = Category.new
     dental.name = 'Dental Hygiene'
-    dental.icon = 'brush'
+    dental.icon = 'DH'
     dental.save!
 
     reading_book = Category.new
     reading_book.name = 'Reading Book'
-    reading_book.icon = 'book'
+    reading_book.icon = 'RB'
     reading_book.save!
 
     coloring_book = Category.new
     coloring_book.name = 'Coloring Book'
-    coloring_book.icon = 'bookmark_border'
+    coloring_book.icon = 'CB'
     coloring_book.save!
 
     crayon = Category.new
     crayon.name = 'Crayon'
-    crayon.icon = 'folder_open'
+    crayon.icon = 'C'
     crayon.save!
 
     snack = Category.new
     snack.name = 'Snack'
-    snack.icon = 'settings_input_composite'
+    snack.icon = 'S'
     snack.save!
 
     # Step 2: Create Items
@@ -54,12 +54,15 @@ namespace :db do
       item = Item.new
       # get some fake data using faker gem
       item.name = Faker::Commerce.product_name
-      item.quantity = rand(100)+1
       item.age = [[0,1],[1,2],[0,1,2],[0],[0],[1],[1],[2]].sample
       item.gender = rand(2)
       item.barcode = (10000..100000).to_a.sample
       item.category_id = category_ids.sample
       item.notes = Faker::Lorem.sentence
+      # temporary attributes
+      item.donated = true
+      item.unit_price = 1.5
+      item.check_in_quantity = 1
       # set the timestamps
       item.save!   
     end

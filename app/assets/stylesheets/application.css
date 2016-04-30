@@ -45,6 +45,11 @@ main {
   display: inline-block;
 }
 
+.pagination{
+  /* green color */
+  background-color: #4caf50;
+}
+
 /*.avg {
   display: block;
  }

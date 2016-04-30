@@ -42,11 +42,11 @@ class ItemsController < ApplicationController
     end
     
     # paginate: different function if array
-    if @items.instance_of?(Array)
-      @items=Kaminari.paginate_array(@items).page(params[:page]).per(10)
-    else
-      @items = @items.page(params[:page])
-    end
+    # if @items.instance_of?(Array)
+    #   @items=Kaminari.paginate_array(@items).page(params[:page]).per(10)
+    # else
+    #   @items = @items.page(params[:page])
+    # end
 
   end
 
