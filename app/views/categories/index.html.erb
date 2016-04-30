@@ -9,9 +9,11 @@
 <div class='row'>
 	<ul class='collection'>
 	  <% @categories.each do |category| %>
-	    <li class='collection-item avatar'>
-	      <i class='material-icons circle green'><%= category.icon %></i>
-	      <%= link_to category.name, category %>
+	    <li class='collection-item avatar col s12 m3 valign-wrapper'>
+	    	<div class='middle-collection valign'>
+	    		<i class='material-icons circle green'><%= category.icon %></i>
+	    		<%= link_to category.name, category %>
+	    	</div>
 	    </li>
 	  <% end %>
 	</ul>
