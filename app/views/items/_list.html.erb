@@ -6,7 +6,9 @@
 		<% else %>
 		<% @items.each do |item| %>
 			<li class='collection-item avatar'>
-				<i class='material-icons circle green'> <%=item.category.icon %></i>
+				<!-- Tooltip on Icon: category name -->
+				<%= tt = item.category.name%>
+				<%= content_tag('i', item.category.icon, class: 'material-icons circle green tooltipped', data: {position: 'left', tooltip: tt}) %>
 				<span class="title"> <%= link_to item.name, item_path(item) %></span>
 				<p>
 					<!-- First Line -->
