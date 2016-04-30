@@ -1,5 +1,8 @@
 class Item < ActiveRecord::Base
 
+	# Callbacks
+	before_save :capitalize_item
+
 	# get an array of gender types
 	GENDER_LIST = [['Neutral', 0], ['Girl', 1], ['Boy', 2]]
 	# get an array of age category (in years)
@@ -152,6 +155,10 @@ class Item < ActiveRecord::Base
 			end
 			return true
 		end
+	end
+
+	def capitalize_item
+		self.name = self.name.titleize
 	end
 
 end

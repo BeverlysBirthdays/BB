@@ -2,6 +2,7 @@ class Agency < ActiveRecord::Base
 
 	# create a callback that will strip non-digits before saving to db
 	before_save :reformat_phone
+	before_save :capitalize_agency
 
 	# Relationships
 	has_many :bins
@@ -51,6 +52,10 @@ class Agency < ActiveRecord::Base
 		phone = self.phone.to_s  # change to string in case input as all numbers 
 		phone.gsub!(/[^0-9]/,"") # strip all non-digits
 		self.phone = phone       # reset self.phone to new string
+    end
+    # Capitalize agency name
+    def capitalize_agency
+    	self.name = self.name.titleize
     end
 
 end

@@ -30,8 +30,6 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new(category_params)
-    @category.icon = category_params['icon'].capitalize
-    @category.name = category_params['name'].titleize
     
     respond_to do |format|
       if @category.save

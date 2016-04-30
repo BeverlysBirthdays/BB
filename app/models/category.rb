@@ -11,6 +11,14 @@ class Category < ActiveRecord::Base
 	validates_presence_of :name, :icon
 	validates_uniqueness_of :name, :icon
 
-	# Other methods
+	# Callbacks
+	before_save :capitalize_category
+
+	# Private methods
+	private 
+	def capitalize_category
+	  self.name = self.name.titleize
+	  self.icon = self.icon.capitalize 
+	end
 
 end
