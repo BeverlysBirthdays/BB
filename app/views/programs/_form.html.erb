@@ -11,11 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class='form-inputs row'>
+    <div class='col s4'>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <!-- Submit button -->
+  <div class="actions row">
+    <% if controller.action_name.capitalize == 'Edit'%>
+      <!-- Submit and Nav buttons -->
+      <%= f.submit 'Update Program', class: 'col s3 btn pink white-text' %>
+    <% else %>
+      <%= f.submit 'Add New Program', class: 'col s4 btn pink white-text' %>
+    <% end %>
   </div>
+
 <% end %>
