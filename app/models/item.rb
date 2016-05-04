@@ -110,7 +110,6 @@ class Item < ActiveRecord::Base
 		    csv << ['Item ID', 'Item Barcode', 'Item Name', 'Age', 'Gender', 'Notes', 'Category', 'Quantity Checked In', 'Quantity Remaining', 'Unit Price', 'Donated', 'Check-in Date']
 		    all.each do |item|
 
-		    	info = []
 		    	# item specific info:
 
 	    		# get string version for age instead of integer
@@ -119,21 +118,27 @@ class Item < ActiveRecord::Base
 	    			age << AGE_LIST[a][0]
 	    		end
 
-	    		info = [item.id, item.barcode, item.name, age, GENDER_LIST[item.gender][0], item.notes, item.category.name]
+	    		base_info = [item.id, item.barcode, item.name, age, GENDER_LIST[item.gender][0], item.notes, item.category.name]
 
 		    	# item_checkins for items
 		    	item.item_checkins.each do |ic|
 
+		    		info = []
+		    		info = base_info
 		    		info += [ic.quantity_checkedin, ic.quantity_remaining, ic.unit_price, ic.donated, ic.checkin_date]
+
+		    		csv << info
 
 		    	end
 		    	# item_checkin_archives for items
 		    	item.item_checkin_archives.each do |ic|
-
+		    		info = []
+		    		info = base_info
 		    		info += [ic.quantity_checkedin, 0, ic.unit_price, ic.donated, ic.checkin_date]
 
+		    		csv << info
+		    		
 		    	end
-		    	csv << info
 
 		    end
 	  	end
