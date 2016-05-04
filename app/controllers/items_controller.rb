@@ -108,6 +108,11 @@ class ItemsController < ApplicationController
   # GET /items/1/edit
   def edit
     @total_quantity = @item.total_quantity_remaining
+    if !@item.item_checkins.nil?
+      @item.unit_price = @item.item_checkins.last.unit_price
+    else
+      @item.unit_price = @item.item_checkin_archives.last.unit_price
+    end
   end
 
   # POST /items
