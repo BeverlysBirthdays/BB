@@ -11,6 +11,48 @@
     </div>
   <% end %>
 
+  <!-- Disable all fields except agency -->
+  <% if controller.action_name.capitalize == 'Edit' %>
+
+    <!-- Agency and number of bins -->
+    <div class='row'>
+      <div class='col s4'>
+        <%= f.label :num_of_bins, 'Number of Bins' %>
+        <%= f.number_field :num_of_bins, :value => 1, :disabled => true %>
+      </div>
+      <div class='col s4'>
+        <%= f.label :agency_id %>
+        <%= f.collection_select :agency_id, @agencies, :id, :name %>
+      </div>
+      <div class='col s4'>
+        <%= f.label :program_id %>
+        <%= f.collection_select :program_id, Program.alphabetical.all, :id, :name, :disabled => true %>
+      </div>
+    </div>
+
+    <!-- Items -->
+    <div class = "row">
+      <table>
+        <thead>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Quantity</th>
+        </thead>
+        <% @bin_items_in_cart.each do |bi| %>
+          <tr>
+            <!-- Bad style but only option to display names of items in cart since bin and asscoiations not yet created at this time -->
+            <% item = Item.find(bi[:item_id]) %>
+            <td><%= link_to item.name, item_path(item) %></td>
+            <td><%= item.category.name %></td>
+            <td><%= bi[1] %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+
+  <!-- All fields can be edited -->
+  <% else %>
+
     <!-- Agency and number of bins -->
     <div class='row'>
       <div class='col s4'>
@@ -48,6 +90,9 @@
       </table>
     </div>
 
+  <% end %>
+
+
     <!--Submit -->
     <div class="form-actions row">
 
@@ -55,10 +100,9 @@
         <%= f.button 'Update', class: 'btn orange white-text col s3' %>
       <% else %>
         <%= f.button 'Create', class: 'btn orange white-text col s3' %> 
+        <%= link_to 'Back to Basket', show_cart_path, :class => 'btn red white-text col s3 offset-s1' %>
+        <%= link_to "Back to Items", items_path , class: "waves-effect waves-light btn col s4 offset-s1 valign green white-text col s3" %>
       <% end %>
-
-      <%= link_to 'Back to Basket', show_cart_path, :class => 'btn red white-text col s3 offset-s1' %>
-      <%= link_to "Back to Items", items_path , class: "waves-effect waves-light btn col s4 offset-s1 valign green white-text col s3" %>
     </div>
 
 <% end %>

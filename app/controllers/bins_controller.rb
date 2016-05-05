@@ -50,10 +50,46 @@ class BinsController < ApplicationController
     end
   end
 
+  # Edit Method: To get unique item id and qty in bin
+  def get_list_of_items_in_bin(bin)
+
+    # dict with item_id and total qty for each item
+    item_ids = {}
+    for b in bin.bin_items
+      # item_checkin
+      if !b.item_checkin_id.nil?
+        # if in dict
+        if item_ids.has_key?(b.item_checkin.item_id)
+          item_ids[b.item_checkin.item_id] += b.quantity
+        else
+          item_ids[b.item_checkin.item_id] = b.quantity
+        end
+      # item_checkin_archive
+      else
+        if item_ids.has_key?(b.item_checkin_archive.item_id)
+          item_ids[b.item_checkin_archive.item_id] += b.quantity
+        else
+          item_ids[b.item_checkin_archive.item_id] = b.quantity
+        end
+      end
+    end
+
+    bin_items = Array.new
+    # get array from dict
+    for k in item_ids.keys()
+      info = {item_id: k, quantity: item_ids[k]}
+      bin_items << info
+    end
+
+    return bin_items 
+
+  end
+
   # GET /bins/1/edit
   def edit
     @agencies = Agency.active.alphabetical
-    @bin_items_in_cart = @bin.bin_items
+    @bin_items_in_cart = get_list_of_items_in_bin(@bin)
+    print('Bin Items: ', @bin_items_in_cart)
   end
 
   # POST /bins
