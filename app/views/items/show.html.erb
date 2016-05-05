@@ -150,55 +150,66 @@
         <th>Donated</th>
       </tr>
     </thead>
+
     <tbody>
       <!-- Checkins -->
-      <% @item_checkins.each do |ic| %>
-        <tr>
-          <td><%= link_to ic.checkin_date.strftime('%m/%d/%y'), item_checkin_path(ic) %></td>
-          <td class='center-align'><%= ic.quantity_checkedin %></td>
-          <td class='center-align'>
-            <%= ic.quantity_remaining %>
-          </td>
-          <td class='center-align'>
-            <% if ic.unit_price.nil? %>
-              N.A
-            <% else %>
-              <%= ic.unit_price %>
-            <% end %>
-          </td>
-          <td>
-            <% if ic.donated == true%>
-              <i class="material-icons center-align small">done</i>
-            <% else %>
-              <i class="material-icons center-align small">clear</i>
-            <% end %>
-          </td>
-        </tr>
+      <% if !@item_checkins.nil? %>
+
+        <% @item_checkins.each do |ic| %>
+          <tr>
+            <td><%= link_to ic.checkin_date.strftime('%m/%d/%y'), item_checkin_path(ic) %></td>
+            <td class='center-align'><%= ic.quantity_checkedin %></td>
+            <td class='center-align'>
+              <%= ic.quantity_remaining %>
+            </td>
+            <td class='center-align'>
+              <% if ic.unit_price.nil? %>
+                N.A
+              <% else %>
+                <%= ic.unit_price %>
+              <% end %>
+            </td>
+            <td>
+              <% if ic.donated == true%>
+                <i class="material-icons center-align small">done</i>
+              <% else %>
+                <i class="material-icons center-align small">clear</i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
       <% end %>
+
       <!-- Archives -->
-      <% @item_checkin_archives.each do |ic| %>
-        <tr>
-          <td><%= link_to ic.checkin_date.strftime('%m/%d/%y'), item_checkin_path(ic) %></td>
-          <td class='center-align'><%= ic.quantity_checkedin %></td>
-          <td class='center-align'>
-            0
-          </td>
-          <td class='center-align'>
-            <% if ic.unit_price.nil? %>
-              N.A
-            <% else %>
-              <%= ic.unit_price %>
-            <% end %>
-          </td>
-          <td>
-            <% if ic.donated == true%>
-              <i class="material-icons center-align small">done</i>
-            <% else %>
-              <i class="material-icons center-align small">clear</i>
-            <% end %>
-          </td>
-        </tr>
+      <% if !@item_checkins.nil? %>
+
+        <% @item_checkin_archives.each do |ic| %>
+          <tr>
+            <td><%= ic.checkin_date.strftime('%m/%d/%y') %></td>
+            <td class='center-align'><%= ic.quantity_checkedin %></td>
+            <td class='center-align'>
+              0
+            </td>
+            <td class='center-align'>
+              <% if ic.unit_price.nil? %>
+                N.A
+              <% else %>
+                <%= ic.unit_price %>
+              <% end %>
+            </td>
+            <td>
+              <% if ic.donated == true%>
+                <i class="material-icons center-align small">done</i>
+              <% else %>
+                <i class="material-icons center-align small">clear</i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
       <% end %>
+
     </tbody>
   </table>
 </div>
