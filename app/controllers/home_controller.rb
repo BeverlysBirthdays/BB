@@ -19,4 +19,8 @@ class HomeController < ApplicationController
 		
 	end
 
+	def download_documentation
+		send_file Rails.root.join('public/resource/' ,'BBInventoryDocumentation.pdf'), :type => 'application/pdf', :x_send_file => true
+	end
+
 end

@@ -1,9 +1,7 @@
 <div class="container col s12 center" id="footer">
 	<%= link_to 'Home', home_path, class: "white-text" %>&nbsp;&nbsp;|&nbsp;&nbsp;
 	<%= link_to 'About Us', about_path, class: "white-text"  %>&nbsp;&nbsp;|&nbsp;&nbsp;
-<!-- 	<%# link_to 'Documentation', 'BBInventoryDocumentation.pdf', class: "white-text"  %>&nbsp;&nbsp;|&nbsp;&nbsp; -->
-<!-- 	<a href="BBInventoryDocumentation.pdf" class='white-text'>Documentation</a>&nbsp;&nbsp;|&nbsp;&nbsp; -->
-	<%# link_to 'Privacy Policy', privacy_path, class: "light-blue-text text-darken-4"  %>
+	<%= link_to 'Documentation', documentation_path, class: "white-text"  %>
 	<div class="copyright white-text">
 		<br />Webmaster: <%= mail_to "gauryn@andrew.cmu.edu", "CMU 373", :encode => "javascript", :class=>"orange-text text-lighten-3"%>
 		&nbsp;&nbsp;Copyright 2016
