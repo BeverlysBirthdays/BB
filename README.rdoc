@@ -1,28 +1,9 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This application is developed by Gaury Nagaraju, Jeanine Huang and Ibrahim Soltan with the guidance of Prof. Raja Sooriamurthi as part of 67-373, Carnegie Mellon University Information System's Junior Spring Client Project.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+References:
+No code snippet was directly copied but we would like to thank Prof. Larry Heimann for his help with technical issues. Stackoverflow, PATS 67-272 and Arbeit_2014 were primary reference resources.
+stackoverflow.com
+www.github.com/profh/Arbeit_2014
+www.github/com/profh/PATS_67272

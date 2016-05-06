@@ -10,9 +10,9 @@ class ApplicationController < ActionController::Base
   end
 
   # handle missing pages the BSG way...
-  # rescue_from ActiveRecord::RecordNotFound do |exception|
-  #   render template: 'errors/not_found'
-  # end
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    render template: 'errors/not_found'
+  end
 
   private
   # Handling authentication
